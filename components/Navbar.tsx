@@ -59,7 +59,7 @@ export default function Navbar() {
         {/* Action Button (Benchling style) */}
         <div className="hidden md:flex items-center gap-4">
           <a
-            href="/#booking"
+            href="/team#booking"
             className="benchling-cta-purple inline-flex items-center justify-center gap-2 rounded-xl px-4 py-2.5 text-xs font-semibold uppercase tracking-wider text-white active:scale-95 transition-all"
           >
             <span>Request Demo</span>
@@ -96,7 +96,7 @@ export default function Navbar() {
           ))}
           <div className="pt-3">
             <a
-              href="/#booking"
+              href="/team#booking"
               onClick={() => setMobileMenuOpen(false)}
               className="benchling-cta-purple flex w-full items-center justify-center gap-2 rounded-xl py-3 text-sm font-semibold text-white shadow-md shadow-purple-600/20"
             >

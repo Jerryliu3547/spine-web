@@ -172,7 +172,7 @@ export default function Hero() {
           {/* Benchling Signature CTA */}
           <div className="mt-8 flex items-center justify-center">
             <a
-              href="#booking"
+              href="/team#booking"
               className="benchling-cta-purple inline-flex items-center justify-center gap-2.5 rounded-xl px-7 py-3.5 text-sm font-semibold text-white transition-all shadow-md shadow-purple-600/25 hover:shadow-lg hover:shadow-purple-600/35 hover:-translate-y-0.5"
             >
               <span>Request Clinical Demo</span>

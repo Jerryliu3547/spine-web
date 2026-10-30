@@ -27,13 +27,7 @@ export default function Footer() {
             <p className="text-xs text-slate-500 max-w-sm leading-relaxed mb-6 font-normal">
               The autonomous biomechanical foundry for spine surgery. Transforming lateral radiographs into validated FEBio and OpenSim multi-physics simulations in minutes.
             </p>
-            <div className="flex items-center gap-3 text-slate-600">
-              <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-emerald-50 border border-emerald-200 text-[11px] font-mono text-emerald-800 font-medium">
-                <span className="h-1.5 w-1.5 rounded-full bg-emerald-500 animate-pulse"></span>
-                <span>FEBio & OpenSim Live</span>
-              </span>
-              <span className="text-[11px] text-slate-500 font-mono">FDA 21 CFR Part 11 Architecture</span>
-            </div>
+
           </div>
 
           {/* Col 1: Platform & Foundry */}
