@@ -1,0 +1,103 @@
+@import "tailwindcss";
+
+:root {
+  --background: #ffffff;
+  --foreground: #0f172a;
+  --benchling-white: #ffffff;
+  --benchling-slate-50: #f8fafc;
+  --benchling-slate-100: #f1f5f9;
+  --benchling-border: #e2e8f0;
+  --benchling-border-hover: rgba(110, 86, 207, 0.4);
+  --benchling-purple: #6e56cf;
+  --benchling-purple-hover: #5b45e0;
+  --benchling-purple-light: #f5f3ff;
+  --benchling-purple-text: #5b21b6;
+  --benchling-blue: #2563eb;
+  --benchling-cyan: #0284c7;
+  --benchling-emerald: #10b981;
+}
+
+body {
+  background-color: var(--background);
+  color: var(--foreground);
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  overflow-x: hidden;
+  selection-background-color: #ede9fe;
+  selection-color: #4c1d95;
+}
+
+/* Benchling subtle white grid background */
+.benchling-grid-bg {
+  background-image: 
+    linear-gradient(to right, rgba(15, 23, 42, 0.04) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(15, 23, 42, 0.04) 1px, transparent 1px);
+  background-size: 36px 36px;
+}
+
+.benchling-dot-bg {
+  background-image: radial-gradient(rgba(110, 86, 207, 0.12) 1px, transparent 1px);
+  background-size: 24px 24px;
+}
+
+/* Benchling clean elevated white card */
+.benchling-card {
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
+  box-shadow: 0 4px 20px -2px rgba(15, 23, 42, 0.05);
+}
+
+.benchling-card-hover {
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.benchling-card-hover:hover {
+  border-color: rgba(110, 86, 207, 0.4);
+  box-shadow: 0 12px 32px -4px rgba(110, 86, 207, 0.12);
+  transform: translateY(-2px);
+}
+
+/* Benchling signature CTA button */
+.benchling-cta-purple {
+  background-color: #6e56cf;
+  color: #ffffff;
+  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+  box-shadow: 0 4px 14px 0 rgba(110, 86, 207, 0.25);
+}
+
+.benchling-cta-purple:hover {
+  background-color: #5b45e0;
+  box-shadow: 0 6px 20px 0 rgba(110, 86, 207, 0.4);
+  transform: translateY(-1px);
+}
+
+.benchling-cta-purple:active {
+  transform: translateY(0);
+}
+
+/* Light ambient glow blurs */
+.glow-benchling-purple {
+  box-shadow: 0 0 60px -10px rgba(110, 86, 207, 0.18);
+}
+
+.glow-benchling-blue {
+  box-shadow: 0 0 50px -10px rgba(37, 99, 235, 0.14);
+}
+
+/* Custom comfortable scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: #f8fafc;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #cbd5e1;
+  border-radius: 9999px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #94a3b8;
+}
