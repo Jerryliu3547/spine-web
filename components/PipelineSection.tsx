@@ -7,15 +7,8 @@ import {
   Bone, 
   Activity, 
   CheckCircle, 
-  Layers, 
-  ArrowRight, 
   Cpu, 
   Sliders, 
-  Gauge, 
-  Maximize2,
-  FileCheck2,
-  AlertTriangle,
-  Sparkles,
   ChevronRight
 } from "lucide-react";
 

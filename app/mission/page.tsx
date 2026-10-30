@@ -1,5 +1,6 @@
 import React from "react";
 import type { Metadata } from "next";
+import Link from "next/link";
 import StickyBanner from "@/components/StickyBanner";
 import Navbar from "@/components/Navbar";
 import LogoTicker from "@/components/LogoTicker";
@@ -12,10 +13,7 @@ import {
   Bone, 
   HeartHandshake, 
   ArrowRight, 
-  CheckCircle2, 
-  Sparkles,
-  Award,
-  Globe2
+  Sparkles
 } from "lucide-react";
 
 export const metadata: Metadata = {
@@ -95,13 +93,13 @@ export default function MissionPage() {
               </p>
 
               <div className="mt-8 flex flex-wrap items-center justify-center gap-4">
-                <a
-                  href="/#booking"
+                <Link
+                  href="/contact"
                   className="benchling-cta-purple inline-flex items-center justify-center gap-2.5 rounded-xl px-7 py-3.5 text-sm font-semibold text-white shadow-md shadow-purple-600/25"
                 >
                   <span>Join Our Research Coalition</span>
                   <ArrowRight className="h-4 w-4" />
-                </a>
+                </Link>
                 <a
                   href="/product"
                   className="inline-flex items-center justify-center gap-2 rounded-xl border border-slate-300 bg-white px-6 py-3.5 text-sm font-medium text-slate-700 hover:bg-slate-50 hover:border-slate-400 transition-all shadow-xs"
@@ -141,7 +139,7 @@ export default function MissionPage() {
                 Four Pillars of the Spine Suite Standard
               </h2>
               <p className="mt-4 text-base text-slate-600">
-                Why we are building the world's first autonomous multi-physics foundries for surgical spine planning.
+                Why we are building the world&apos;s first autonomous multi-physics foundries for surgical spine planning.
               </p>
             </div>
 

@@ -4,15 +4,9 @@ import React from "react";
 import { 
   ShieldCheck, 
   CheckCircle2, 
-  AlertTriangle, 
   Clock, 
   FlaskConical, 
-  Award, 
-  Check, 
-  ArrowRight,
-  Database,
-  Layers,
-  FileText
+  Database
 } from "lucide-react";
 
 export default function ValidationSection() {

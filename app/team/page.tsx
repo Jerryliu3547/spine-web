@@ -1,5 +1,6 @@
 import React from "react";
 import type { Metadata } from "next";
+import Link from "next/link";
 import StickyBanner from "@/components/StickyBanner";
 import Navbar from "@/components/Navbar";
 import TeamSection from "@/components/TeamSection";
@@ -8,13 +9,8 @@ import BookingSection from "@/components/BookingSection";
 import Footer from "@/components/Footer";
 import { 
   Users, 
-  Sparkles, 
   ArrowRight, 
-  GraduationCap, 
   Building2, 
-  Award, 
-  FileText,
-  Mail,
   Calendar
 } from "lucide-react";
 
@@ -88,7 +84,7 @@ export default function TeamPage() {
               </h1>
 
               <p className="mt-6 text-base sm:text-lg text-slate-600 leading-relaxed font-normal">
-                Spine Suite unites world-renowned spine biomechanists, medical imaging scientists, and AI systems architects from North America's top research hospitals and engineering institutions.
+                Spine Suite unites world-renowned spine biomechanists, medical imaging scientists, and AI systems architects from North America&apos;s top research hospitals and engineering institutions.
               </p>
 
               <div className="mt-8 flex flex-wrap items-center justify-center gap-4">
@@ -99,13 +95,13 @@ export default function TeamPage() {
                   <span>Meet the Founding Team</span>
                   <ArrowRight className="h-4 w-4" />
                 </a>
-                <a
-                  href="#booking"
+                <Link
+                  href="/contact"
                   className="inline-flex items-center justify-center gap-2 rounded-xl border border-slate-300 bg-white px-6 py-3.5 text-sm font-medium text-slate-700 hover:bg-slate-50 hover:border-slate-400 transition-all shadow-xs"
                 >
                   <Calendar className="h-4 w-4 text-purple-600" />
                   <span>Book 30-min Technical Review</span>
-                </a>
+                </Link>
               </div>
             </div>
           </div>

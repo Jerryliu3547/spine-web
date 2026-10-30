@@ -4,6 +4,7 @@ import Navbar from "@/components/Navbar";
 import ProductPage from "@/app/product/page";
 import MissionPage from "@/app/mission/page";
 import TeamPage from "@/app/team/page";
+import ContactPage from "@/app/contact/page";
 
 // Mock next/navigation usePathname
 vi.mock("next/navigation", () => ({
@@ -11,11 +12,12 @@ vi.mock("next/navigation", () => ({
 }));
 
 describe("New Navigation & Pages", () => {
-  it("renders Product, Mission, and Team navigation links", () => {
+  it("renders Product, Mission, Team, and Contact navigation links", () => {
     render(<Navbar />);
     expect(screen.getByRole("link", { name: /^product$/i })).toHaveAttribute("href", "/product");
     expect(screen.getByRole("link", { name: /^mission$/i })).toHaveAttribute("href", "/mission");
     expect(screen.getByRole("link", { name: /^team$/i })).toHaveAttribute("href", "/team");
+    expect(screen.getByRole("link", { name: /^contact$/i })).toHaveAttribute("href", "/contact");
   });
 
   it("renders the Product page properly", () => {
@@ -31,5 +33,10 @@ describe("New Navigation & Pages", () => {
   it("renders the Team page properly", () => {
     render(<TeamPage />);
     expect(screen.getByText(/pioneering computational/i)).toBeInTheDocument();
+  });
+
+  it("renders the Contact page properly", () => {
+    render(<ContactPage />);
+    expect(screen.getByText(/Contact Us & Schedule an Executive Review/i)).toBeInTheDocument();
   });
 });

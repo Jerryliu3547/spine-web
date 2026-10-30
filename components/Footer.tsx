@@ -2,7 +2,7 @@
 
 import React from "react";
 import Link from "next/link";
-import { Activity, ShieldCheck, ArrowRight } from "lucide-react";
+import { Activity } from "lucide-react";
 
 export default function Footer() {
   return (
@@ -66,7 +66,7 @@ export default function Footer() {
             <ul className="space-y-2.5">
               <li><Link href="/team" className="hover:text-purple-700 transition-colors">Founding Scientists</Link></li>
               <li><Link href="/team" className="hover:text-purple-700 transition-colors">Academic Institutions</Link></li>
-              <li><Link href="/#booking" className="hover:text-purple-700 transition-colors">Schedule Clinical Demo</Link></li>
+              <li><Link href="/contact" className="hover:text-purple-700 transition-colors">Contact Us & Demo</Link></li>
               <li><a href="mailto:contact@esklashlabs.ai" className="hover:text-purple-700 transition-colors">contact@esklashlabs.ai</a></li>
             </ul>
           </div>

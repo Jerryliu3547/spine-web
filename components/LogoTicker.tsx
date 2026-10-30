@@ -1,5 +1,5 @@
 import React from "react";
-import { GraduationCap, Building2, Stethoscope, Award, Shield, CheckCircle } from "lucide-react";
+import { GraduationCap, Building2, Stethoscope, Award } from "lucide-react";
 
 export default function LogoTicker() {
   const institutions = [

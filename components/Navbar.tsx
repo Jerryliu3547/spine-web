@@ -18,6 +18,7 @@ export default function Navbar() {
     { label: "Product", href: "/product" },
     { label: "Mission", href: "/mission" },
     { label: "Team", href: "/team" },
+    { label: "Contact", href: "/contact" },
   ];
 
   return (
@@ -58,13 +59,13 @@ export default function Navbar() {
 
         {/* Action Button (Benchling style) */}
         <div className="hidden md:flex items-center gap-4">
-          <a
-            href="/team#booking"
+          <Link
+            href="/contact"
             className="benchling-cta-purple inline-flex items-center justify-center gap-2 rounded-xl px-4 py-2.5 text-xs font-semibold uppercase tracking-wider text-white active:scale-95 transition-all"
           >
             <span>Request Demo</span>
             <ArrowRight className="h-3.5 w-3.5" />
-          </a>
+          </Link>
         </div>
 
         {/* Mobile menu button */}
@@ -95,14 +96,14 @@ export default function Navbar() {
             </Link>
           ))}
           <div className="pt-3">
-            <a
-              href="/team#booking"
+            <Link
+              href="/contact"
               onClick={() => setMobileMenuOpen(false)}
               className="benchling-cta-purple flex w-full items-center justify-center gap-2 rounded-xl py-3 text-sm font-semibold text-white shadow-md shadow-purple-600/20"
             >
               <span>Request Clinical Demo</span>
               <ArrowRight className="h-4 w-4" />
-            </a>
+            </Link>
           </div>
         </div>
       )}

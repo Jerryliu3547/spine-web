@@ -1,5 +1,6 @@
 import React from "react";
 import type { Metadata } from "next";
+import Link from "next/link";
 import StickyBanner from "@/components/StickyBanner";
 import Navbar from "@/components/Navbar";
 import PipelineSection from "@/components/PipelineSection";
@@ -13,11 +14,7 @@ import {
   Cpu, 
   Activity, 
   ArrowRight, 
-  ShieldCheck, 
-  CheckCircle2, 
-  BarChart3, 
-  Zap, 
-  BrainCircuit 
+  ShieldCheck 
 } from "lucide-react";
 
 export const metadata: Metadata = {
@@ -101,12 +98,12 @@ export default function ProductPage() {
                   <span>Explore 11-Stage Workflow</span>
                   <ArrowRight className="h-4 w-4" />
                 </a>
-                <a
-                  href="/#booking"
+                <Link
+                  href="/contact"
                   className="inline-flex items-center justify-center gap-2 rounded-xl border border-slate-300 bg-white px-6 py-3.5 text-sm font-medium text-slate-700 hover:bg-slate-50 hover:border-slate-400 transition-all shadow-xs"
                 >
                   <span>Request Clinical Demo</span>
-                </a>
+                </Link>
               </div>
             </div>
 

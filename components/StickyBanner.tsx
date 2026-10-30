@@ -23,23 +23,23 @@ export default function StickyBanner() {
             <strong className="text-slate-900 font-semibold">Introducing Spine Agent 2.4:</strong> Autonomous multi-physics routing for surgical biomechanics.
           </span>
 
-          <a
-            href="#agent"
+          <Link
+            href="/product"
             className="inline-flex items-center gap-1 font-semibold text-purple-700 hover:text-purple-900 transition-colors"
           >
             <span>Explore live console</span>
             <ArrowRight className="h-3 w-3" />
-          </a>
+          </Link>
         </div>
 
         {/* Right utility items */}
         <div className="hidden lg:flex items-center gap-4 text-slate-500">
-          <a
-            href="#booking"
+          <Link
+            href="/contact"
             className="hover:text-slate-900 transition-colors text-[11px] font-medium"
           >
             Clinical Sign In
-          </a>
+          </Link>
           <span className="text-slate-300">|</span>
           <div className="flex items-center gap-1 text-[11px] text-slate-600 cursor-pointer hover:text-slate-900">
             <Globe className="h-3 w-3 text-slate-500" />

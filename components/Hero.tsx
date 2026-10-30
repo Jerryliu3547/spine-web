@@ -1,22 +1,10 @@
 "use client";
 
 import React, { useState } from "react";
+import Link from "next/link";
 import { 
   Sparkles, 
-  Terminal, 
-  Activity, 
-  Cpu, 
-  ArrowRight, 
-  CheckCircle2, 
-  BarChart3, 
-  Play, 
-  FileText, 
-  Zap, 
-  Bone, 
-  Clock, 
-  DollarSign,
-  Compass,
-  ChevronRight
+  ArrowRight
 } from "lucide-react";
 
 type TabKey = "xray" | "biomechanics" | "agentic";
@@ -139,8 +127,8 @@ export default function Hero() {
           className="w-full h-full object-cover opacity-75 filter brightness-105 contrast-105"
           aria-hidden="true"
         >
-          <source src="/hero-video.mp4" type="video/mp4" />
-          <source src="/gemini_generated_video_95288b1c.mp4" type="video/mp4" />
+          <source src={`${process.env.NEXT_PUBLIC_BASE_PATH || ""}/hero-video.mp4`} type="video/mp4" />
+          <source src={`${process.env.NEXT_PUBLIC_BASE_PATH || ""}/gemini_generated_video_95288b1c.mp4`} type="video/mp4" />
         </video>
         {/* Soft gradient masks to blend cleanly into white background with rich contrast for text */}
         <div className="absolute inset-0 bg-gradient-to-b from-slate-950/60 via-slate-900/40 to-white" />
@@ -171,13 +159,13 @@ export default function Hero() {
 
           {/* Benchling Signature CTA */}
           <div className="mt-8 flex items-center justify-center">
-            <a
-              href="/team#booking"
+            <Link
+              href="/contact"
               className="benchling-cta-purple inline-flex items-center justify-center gap-2.5 rounded-xl px-7 py-3.5 text-sm font-semibold text-white transition-all shadow-md shadow-purple-600/25 hover:shadow-lg hover:shadow-purple-600/35 hover:-translate-y-0.5"
             >
               <span>Request Clinical Demo</span>
               <ArrowRight className="h-4 w-4" />
-            </a>
+            </Link>
           </div>
         </div>
 
@@ -226,7 +214,7 @@ export default function Hero() {
                     <span className="text-[11px] font-mono text-slate-500">{current.badge}</span>
                   </div>
                   <p className="text-lg sm:text-xl font-medium text-slate-900 leading-relaxed font-sans">
-                    "{current.prompt}"
+                    &ldquo;{current.prompt}&rdquo;
                   </p>
                 </div>
               </div>

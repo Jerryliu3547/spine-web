@@ -6,13 +6,9 @@ import {
   Mail, 
   ArrowRight, 
   CheckCircle2, 
-  Clock, 
   ShieldCheck, 
   Send, 
-  Sparkles,
-  Building,
-  User,
-  MessageSquare
+  Sparkles
 } from "lucide-react";
 
 export default function BookingSection() {
@@ -70,7 +66,7 @@ export default function BookingSection() {
             </span>
           </h2>
           <p className="mt-4 text-base sm:text-lg text-slate-600 font-normal">
-            Book directly with the founding scientists or submit your institution's specific surgical simulation requirements.
+            Book directly with the founding scientists or submit your institution&apos;s specific surgical simulation requirements.
           </p>
         </div>
 

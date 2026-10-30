@@ -1,7 +1,7 @@
 "use client";
 
 import React from "react";
-import { Users, GraduationCap, Award, Stethoscope, ArrowUpRight, BookOpen } from "lucide-react";
+import { Users, GraduationCap, Stethoscope, BookOpen } from "lucide-react";
 
 export default function TeamSection() {
   const founders = [
