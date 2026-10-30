@@ -6,11 +6,11 @@ import LogoTicker from "@/components/LogoTicker";
 describe("LogoTicker Component", () => {
   it("renders academic and clinical institution badges", () => {
     render(<LogoTicker />);
-    expect(screen.getByText(/stanford medicine/i)).toBeInTheDocument();
-    expect(screen.getByText(/georgia tech/i)).toBeInTheDocument();
-    expect(screen.getByText(/ut health san antonio/i)).toBeInTheDocument();
-    expect(screen.getByText(/polytechnique montréal/i)).toBeInTheDocument();
-    expect(screen.getByText(/mcgill/i)).toBeInTheDocument();
+    expect(screen.getAllByText(/stanford medicine/i)[0]).toBeInTheDocument();
+    expect(screen.getAllByText(/georgia tech/i)[0]).toBeInTheDocument();
+    expect(screen.getAllByText(/ut health san antonio/i)[0]).toBeInTheDocument();
+    expect(screen.getAllByText(/polytechnique montréal/i)[0]).toBeInTheDocument();
+    expect(screen.getAllByText(/mcgill/i)[0]).toBeInTheDocument();
   });
 });
 
