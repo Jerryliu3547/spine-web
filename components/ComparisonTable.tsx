@@ -1,13 +1,13 @@
 "use client";
 
 import React, { useState } from "react";
-import { 
-  BarChart3, 
-  CheckCircle2, 
-  ShieldCheck, 
-  Sliders, 
-  ArrowRight, 
-  Layers, 
+import {
+  BarChart3,
+  CheckCircle2,
+  ShieldCheck,
+  Sliders,
+  ArrowRight,
+  Layers,
   AlertCircle,
   Activity
 } from "lucide-react";
@@ -80,11 +80,10 @@ export default function ComparisonTable() {
             <button
               key={p.id}
               onClick={() => setSelectedPlan(p.id)}
-              className={`px-4 py-2 rounded-xl text-xs font-semibold transition-all border ${
-                selectedPlan === p.id
+              className={`px-4 py-2 rounded-xl text-xs font-semibold transition-all border ${selectedPlan === p.id
                   ? "bg-purple-600 text-white border-purple-600 shadow-sm"
                   : "bg-white text-slate-600 border-slate-200 hover:text-slate-900 hover:border-slate-300 shadow-2xs"
-              }`}
+                }`}
             >
               {p.name.split(":")[0]}
             </button>

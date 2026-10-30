@@ -8,13 +8,13 @@ import ComparisonTable from "@/components/ComparisonTable";
 import ValidationSection from "@/components/ValidationSection";
 import BookingSection from "@/components/BookingSection";
 import Footer from "@/components/Footer";
-import { 
-  Sparkles, 
-  Layers, 
-  Cpu, 
-  Activity, 
-  ArrowRight, 
-  ShieldCheck 
+import {
+  Sparkles,
+  Layers,
+  Cpu,
+  Activity,
+  ArrowRight,
+  ShieldCheck
 } from "lucide-react";
 
 export const metadata: Metadata = {

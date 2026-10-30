@@ -1,11 +1,11 @@
 "use client";
 
 import React from "react";
-import { 
-  ShieldCheck, 
-  CheckCircle2, 
-  Clock, 
-  FlaskConical, 
+import {
+  ShieldCheck,
+  CheckCircle2,
+  Clock,
+  FlaskConical,
   Database
 } from "lucide-react";
 
@@ -47,7 +47,7 @@ export default function ValidationSection() {
               <p className="text-xs sm:text-sm text-slate-600 leading-relaxed">
                 Subjected to 22 analytical benchmark equilibrium tests (beam bending, linear elasticity, contact mechanics) and 85 cadaver kinematic benchmarks.
               </p>
-              
+
               <div className="mt-5 space-y-2 pt-3 border-t border-slate-100 text-xs text-slate-700">
                 <div className="flex items-center justify-between font-mono">
                   <span>Analytical Equilibrium:</span>
@@ -85,7 +85,7 @@ export default function ValidationSection() {
               <p className="text-xs sm:text-sm text-slate-600 leading-relaxed">
                 Powered by the Bruno et al. Anderson Lab model. Correlated against in vivo telemetry sensors (Wilke et al.) with 552 calibrated muscle lines.
               </p>
-              
+
               <div className="mt-5 space-y-2 pt-3 border-t border-slate-100 text-xs text-slate-700">
                 <div className="flex items-center justify-between font-mono">
                   <span>Disc Pressure Fit:</span>
@@ -123,7 +123,7 @@ export default function ValidationSection() {
               <p className="text-xs sm:text-sm text-slate-600 leading-relaxed">
                 Full transparency on clinical readiness: automated X-ray analysis and static simulation work today; 3D true patient geometry in beta.
               </p>
-              
+
               <div className="mt-5 space-y-2 pt-3 border-t border-slate-100 text-xs text-slate-700">
                 <div className="flex items-center gap-2">
                   <span className="h-2 w-2 rounded-full bg-emerald-500"></span>

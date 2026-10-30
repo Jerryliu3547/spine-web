@@ -7,10 +7,10 @@ import TeamSection from "@/components/TeamSection";
 import LogoTicker from "@/components/LogoTicker";
 import BookingSection from "@/components/BookingSection";
 import Footer from "@/components/Footer";
-import { 
-  Users, 
-  ArrowRight, 
-  Building2, 
+import {
+  Users,
+  ArrowRight,
+  Building2,
   Calendar
 } from "lucide-react";
 

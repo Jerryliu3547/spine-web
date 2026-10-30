@@ -379,11 +379,10 @@ export default function CalBookingWidget({
                             setSelectedTimezone(tz.value);
                             setShowTzDropdown(false);
                           }}
-                          className={`w-full text-left px-2.5 py-1.5 rounded-lg transition-colors flex items-center justify-between ${
-                            selectedTimezone === tz.value
+                          className={`w-full text-left px-2.5 py-1.5 rounded-lg transition-colors flex items-center justify-between ${selectedTimezone === tz.value
                               ? "bg-purple-50 text-purple-700 font-semibold"
                               : "text-slate-700 hover:bg-slate-50"
-                          }`}
+                            }`}
                         >
                           <span className="truncate">{tz.label}</span>
                           {selectedTimezone === tz.value && (
@@ -478,13 +477,12 @@ export default function CalBookingWidget({
                         setSelectedMonth(currentMonthIndex);
                         setSelectedSlot(null);
                       }}
-                      className={`h-10 w-10 mx-auto rounded-xl flex flex-col items-center justify-center relative font-medium transition-all ${
-                        isSelected
+                      className={`h-10 w-10 mx-auto rounded-xl flex flex-col items-center justify-center relative font-medium transition-all ${isSelected
                           ? "bg-[#00875a] text-white font-bold shadow-sm"
                           : isAvailable
-                          ? "text-slate-800 hover:bg-slate-100 cursor-pointer font-medium"
-                          : "text-slate-300 cursor-not-allowed"
-                      }`}
+                            ? "text-slate-800 hover:bg-slate-100 cursor-pointer font-medium"
+                            : "text-slate-300 cursor-not-allowed"
+                        }`}
                     >
                       <span>{day}</span>
                       {hasGreenDot && !isSelected && (
@@ -509,11 +507,10 @@ export default function CalBookingWidget({
                           setSelectedMonth(10);
                           setSelectedSlot(null);
                         }}
-                        className={`text-sm font-medium mt-0.5 ${
-                          selectedDay === 1 && selectedMonth === 10
+                        className={`text-sm font-medium mt-0.5 ${selectedDay === 1 && selectedMonth === 10
                             ? "bg-[#00875a] text-white px-2 rounded-lg font-bold"
                             : "text-slate-800 hover:text-slate-900"
-                        }`}
+                          }`}
                       >
                         1
                       </button>
@@ -529,11 +526,10 @@ export default function CalBookingWidget({
                           setSelectedMonth(10);
                           setSelectedSlot(null);
                         }}
-                        className={`h-10 w-10 mx-auto rounded-xl flex items-center justify-center text-sm font-bold transition-all ${
-                          selectedDay === novDay && selectedMonth === 10
+                        className={`h-10 w-10 mx-auto rounded-xl flex items-center justify-center text-sm font-bold transition-all ${selectedDay === novDay && selectedMonth === 10
                             ? "bg-[#00875a] text-white shadow-sm"
                             : "bg-[#e5e7eb] hover:bg-[#d8dbdf] text-slate-800"
-                        }`}
+                          }`}
                       >
                         {novDay}
                       </button>
@@ -547,11 +543,10 @@ export default function CalBookingWidget({
                         setSelectedMonth(10);
                         setSelectedSlot(null);
                       }}
-                      className={`h-10 w-10 mx-auto rounded-xl flex items-center justify-center text-sm font-medium transition-all ${
-                        selectedDay === 7 && selectedMonth === 10
+                      className={`h-10 w-10 mx-auto rounded-xl flex items-center justify-center text-sm font-medium transition-all ${selectedDay === 7 && selectedMonth === 10
                           ? "bg-[#00875a] text-white shadow-sm font-bold"
                           : "text-slate-800 hover:bg-slate-100"
-                      }`}
+                        }`}
                     >
                       7
                     </button>
@@ -576,22 +571,20 @@ export default function CalBookingWidget({
                 <button
                   type="button"
                   onClick={() => setTimeFormat("12h")}
-                  className={`px-2 py-0.5 rounded-md transition-colors ${
-                    timeFormat === "12h"
+                  className={`px-2 py-0.5 rounded-md transition-colors ${timeFormat === "12h"
                       ? "bg-white text-slate-900 shadow-xs"
                       : "text-slate-500 hover:text-slate-800"
-                  }`}
+                    }`}
                 >
                   12h
                 </button>
                 <button
                   type="button"
                   onClick={() => setTimeFormat("24h")}
-                  className={`px-2 py-0.5 rounded-md transition-colors ${
-                    timeFormat === "24h"
+                  className={`px-2 py-0.5 rounded-md transition-colors ${timeFormat === "24h"
                       ? "bg-white text-slate-900 shadow-xs"
                       : "text-slate-500 hover:text-slate-800"
-                  }`}
+                    }`}
                 >
                   24h
                 </button>
@@ -607,11 +600,10 @@ export default function CalBookingWidget({
                     key={slot}
                     type="button"
                     onClick={() => setSelectedSlot(slot)}
-                    className={`w-full py-3 px-3 rounded-2xl border text-sm font-medium text-center transition-all ${
-                      isSlotSelected
+                    className={`w-full py-3 px-3 rounded-2xl border text-sm font-medium text-center transition-all ${isSlotSelected
                         ? "border-[#00875a] bg-emerald-50 text-[#00875a] shadow-xs ring-1 ring-[#00875a] font-semibold"
                         : "border-slate-200 hover:border-slate-400 text-slate-800 hover:bg-slate-50"
-                    }`}
+                      }`}
                   >
                     {slot}
                   </button>

@@ -1,4 +1,4 @@
-import { render, screen, fireEvent } from "@testing-library/react";
+import { render, screen } from "@testing-library/react";
 import { describe, it, expect } from "vitest";
 import Hero from "@/components/Hero";
 
@@ -12,40 +12,17 @@ describe("Hero Component", () => {
     ).toBeInTheDocument();
   });
 
-  it("renders all highlight prompt switcher tabs", () => {
+  it("renders subheadline and clinical mission description", () => {
     render(<Hero />);
-    expect(screen.getByText(/1\. automatically reading x-ray to 3d reconstruction/i)).toBeInTheDocument();
-    expect(screen.getByText(/2\. musculoskeletal & finite element analysis/i)).toBeInTheDocument();
-    expect(screen.getByText(/4\. agentic system/i)).toBeInTheDocument();
+    expect(
+      screen.getByText(/an infinite biomechanics program team for surgical r&d/i)
+    ).toBeInTheDocument();
   });
 
-  it("switches prompt content and telemetry when clicking a tab", () => {
+  it("renders Request Clinical Demo CTA button with calendar link", () => {
     render(<Hero />);
-    // Initial active tab should be X-Ray to 3D Reconstruction
-    expect(
-      screen.getByText(/ingest lateral radiograph, detect t1–l5 anatomical landmarks/i)
-    ).toBeInTheDocument();
-
-    // Click Musculoskeletal & Finite Element Analysis tab
-    const mskTab = screen.getByRole("button", {
-      name: /2\. musculoskeletal & finite element analysis/i,
-    });
-    fireEvent.click(mskTab);
-
-    // Verify musculoskeletal prompt is now displayed
-    expect(
-      screen.getByText(/couple opensim full-trunk musculoskeletal dynamics/i)
-    ).toBeInTheDocument();
-
-    // Click Agentic System tab
-    const agentTab = screen.getByRole("button", {
-      name: /4\. agentic system/i,
-    });
-    fireEvent.click(agentTab);
-
-    // Verify agentic prompt is displayed
-    expect(
-      screen.getByText(/autonomous agentic routing across surgical planning/i)
-    ).toBeInTheDocument();
+    const ctaButton = screen.getByRole("link", { name: /request clinical demo/i });
+    expect(ctaButton).toBeInTheDocument();
+    expect(ctaButton).toHaveAttribute("href", "https://calendar.app.google/xuDw7PomLrF6Y6BW7");
   });
 });

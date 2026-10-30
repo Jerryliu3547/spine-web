@@ -1,14 +1,14 @@
 "use client";
 
 import React, { useState } from "react";
-import { 
-  Scan, 
-  Compass, 
-  Bone, 
-  Activity, 
-  CheckCircle, 
-  Cpu, 
-  Sliders, 
+import {
+  Scan,
+  Compass,
+  Bone,
+  Activity,
+  CheckCircle,
+  Cpu,
+  Sliders,
   ChevronRight
 } from "lucide-react";
 
@@ -187,11 +187,10 @@ export default function PipelineSection() {
                 key={idx}
                 type="button"
                 onClick={() => setActiveStage(idx)}
-                className={`flex flex-col justify-between text-left rounded-2xl p-5 transition-all duration-200 border ${
-                  isSelected
+                className={`flex flex-col justify-between text-left rounded-2xl p-5 transition-all duration-200 border ${isSelected
                     ? "bg-white border-2 border-purple-600 shadow-lg shadow-purple-100 scale-[1.02]"
                     : "bg-[#F8FAFC] border-slate-200 hover:border-slate-300 hover:bg-white hover:shadow-xs"
-                }`}
+                  }`}
               >
                 <div>
                   <div className="flex items-center justify-between">

@@ -3,10 +3,10 @@
 import React, { useState } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { 
-  Activity, 
-  Menu, 
-  X, 
+import {
+  Activity,
+  Menu,
+  X,
   ArrowRight
 } from "lucide-react";
 
@@ -42,11 +42,10 @@ export default function Navbar() {
               <Link
                 key={link.label}
                 href={link.href}
-                className={`relative text-xs font-semibold uppercase tracking-wider transition-colors py-2 ${
-                  isActive
+                className={`relative text-xs font-semibold uppercase tracking-wider transition-colors py-2 ${isActive
                     ? "text-purple-700 font-bold"
                     : "text-slate-600 hover:text-purple-700"
-                }`}
+                  }`}
               >
                 <span>{link.label}</span>
                 {isActive && (

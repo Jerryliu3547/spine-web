@@ -1,13 +1,13 @@
 "use client";
 
 import React, { useState } from "react";
-import { 
-  Calendar, 
-  Mail, 
-  ArrowRight, 
-  CheckCircle2, 
-  ShieldCheck, 
-  Send, 
+import {
+  Calendar,
+  Mail,
+  ArrowRight,
+  CheckCircle2,
+  ShieldCheck,
+  Send,
   Sparkles
 } from "lucide-react";
 
