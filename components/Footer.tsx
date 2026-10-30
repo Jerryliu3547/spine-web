@@ -2,7 +2,7 @@
 
 import React from "react";
 import Link from "next/link";
-import { Activity } from "lucide-react";
+import { Activity, ExternalLink } from "lucide-react";
 
 export default function Footer() {
   return (
@@ -66,7 +66,18 @@ export default function Footer() {
             <ul className="space-y-2.5">
               <li><Link href="/team" className="hover:text-purple-700 transition-colors">Founding Scientists</Link></li>
               <li><Link href="/team" className="hover:text-purple-700 transition-colors">Academic Institutions</Link></li>
-              <li><Link href="/contact" className="hover:text-purple-700 transition-colors">Contact Us & Demo</Link></li>
+              <li><Link href="/contact" className="hover:text-purple-700 transition-colors">Contact Us & Review</Link></li>
+              <li>
+                <a
+                  href="https://calendar.app.google/xuDw7PomLrF6Y6BW7"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="hover:text-purple-700 transition-colors inline-flex items-center gap-1 font-semibold text-purple-700"
+                >
+                  <span>Request Live Demo</span>
+                  <ExternalLink className="h-3 w-3" />
+                </a>
+              </li>
               <li><a href="mailto:contact@esklashlabs.ai" className="hover:text-purple-700 transition-colors">contact@esklashlabs.ai</a></li>
             </ul>
           </div>

@@ -4,7 +4,7 @@ import StickyBanner from "@/components/StickyBanner";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import CalBookingWidget from "@/components/CalBookingWidget";
-import { ShieldCheck, Cpu, Database, Activity } from "lucide-react";
+import { ShieldCheck, Cpu, Database, Activity, ExternalLink } from "lucide-react";
 
 export const metadata: Metadata = {
   title: "Request a Demo | Spine Suite - Executive & Clinical Review",
@@ -29,7 +29,17 @@ export default function DemoPage() {
             Schedule a Technical Demo
           </h1>
           <p className="mt-4 text-base sm:text-lg text-slate-600 max-w-2xl mx-auto leading-relaxed">
-            Connect directly with our founding biomechanics scientists and ML leadership. Select a convenient time on the calendar below for a live walkthrough of our surgical pipeline.
+            Connect directly with our founding biomechanics scientists and ML leadership. Select a convenient time on the calendar below for a live walkthrough, or{" "}
+            <a
+              href="https://calendar.app.google/xuDw7PomLrF6Y6BW7"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-purple-700 font-semibold underline underline-offset-4 hover:text-purple-900 inline-flex items-center gap-1"
+            >
+              <span>open our Google Calendar directly</span>
+              <ExternalLink className="h-3.5 w-3.5" />
+            </a>
+            .
           </p>
         </div>
 

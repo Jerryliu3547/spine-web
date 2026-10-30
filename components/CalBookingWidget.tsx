@@ -14,6 +14,7 @@ import {
   Building,
   Sparkles,
   ArrowLeft,
+  ExternalLink,
 } from "lucide-react";
 import Link from "next/link";
 
@@ -35,13 +36,15 @@ interface CalBookingWidgetProps {
   defaultHost?: string;
   defaultTitle?: string;
   defaultDescription?: string;
+  calendarUrl?: string;
 }
 
 export default function CalBookingWidget({
-  brandLogo = "Cesara",
-  defaultHost = "Xinan Rahman",
-  defaultTitle = "Executive conversation with Cesara",
-  defaultDescription = "Payer performance, underpayments, and recovery priorities for health systems.",
+  brandLogo = "Spine Suite",
+  defaultHost = "Jerry Liu",
+  defaultTitle = "Executive conversation with Spine Suite (Spinal Consultation)",
+  defaultDescription = "Interactive clinical walkthrough of YOLO v11 2D-to-3D X-ray reconstruction, OpenSim trunk dynamics, and FEBio finite element simulations.",
+  calendarUrl = "https://calendar.app.google/xuDw7PomLrF6Y6BW7",
 }: CalBookingWidgetProps) {
   // Calendar state
   const [currentYear, setCurrentYear] = useState<number>(2026);
@@ -136,6 +139,9 @@ export default function CalBookingWidget({
     e.preventDefault();
     if (!formData.name || !formData.email) return;
     setStep("confirmed");
+    if (typeof window !== "undefined") {
+      window.open(calendarUrl, "_blank", "noopener,noreferrer");
+    }
   };
 
   return (
@@ -153,7 +159,7 @@ export default function CalBookingWidget({
               You are scheduled!
             </h3>
             <p className="mt-2 text-sm text-slate-600">
-              A calendar invitation with Google Meet details has been sent to{" "}
+              A calendar invitation with Google Meet details has been prepared for{" "}
               <strong className="text-slate-900 font-semibold">{formData.email}</strong>.
             </p>
           </div>
@@ -182,6 +188,15 @@ export default function CalBookingWidget({
           </div>
 
           <div className="pt-4 flex flex-col sm:flex-row items-center justify-center gap-3">
+            <a
+              href={calendarUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="w-full sm:w-auto px-5 py-2.5 rounded-xl bg-purple-600 hover:bg-purple-700 text-xs font-semibold text-white transition-colors inline-flex items-center justify-center gap-2 shadow-md shadow-purple-600/20"
+            >
+              <span>Confirm on Google Calendar</span>
+              <ExternalLink className="h-3.5 w-3.5" />
+            </a>
             <button
               onClick={() => {
                 setStep("select");
@@ -193,7 +208,7 @@ export default function CalBookingWidget({
             </button>
             <Link
               href="/"
-              className="w-full sm:w-auto px-5 py-2.5 rounded-xl bg-purple-600 hover:bg-purple-700 text-xs font-semibold text-white transition-colors"
+              className="w-full sm:w-auto px-5 py-2.5 rounded-xl border border-slate-200 bg-white hover:bg-slate-50 text-xs font-semibold text-slate-700 transition-colors"
             >
               Return to Home
             </Link>
@@ -308,14 +323,14 @@ export default function CalBookingWidget({
               <div className="flex items-start justify-between">
                 <div>
                   <div className="h-10 w-10 rounded-full bg-[#5b21b6] text-white flex items-center justify-center font-bold text-base tracking-wide shadow-xs">
-                    X
+                    {defaultHost ? defaultHost.charAt(0) : "J"}
                   </div>
                   <span className="text-sm font-medium text-slate-600 block mt-3">
                     {defaultHost}
                   </span>
                 </div>
-                {/* Cesara Brand text */}
-                <div className="text-2xl font-bold tracking-tight text-slate-300 font-sans select-none pt-1">
+                {/* Brand text */}
+                <div className="text-xl sm:text-2xl font-bold tracking-tight text-slate-300 font-sans select-none pt-1">
                   {brandLogo}
                 </div>
               </div>
@@ -378,6 +393,20 @@ export default function CalBookingWidget({
                       ))}
                     </div>
                   )}
+                </div>
+
+                {/* Direct Google Calendar Link */}
+                <div className="pt-2">
+                  <a
+                    href={calendarUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center gap-2 rounded-xl bg-purple-50 hover:bg-purple-100 border border-purple-200/80 px-3.5 py-2 text-xs font-semibold text-purple-700 transition-colors shadow-2xs group"
+                  >
+                    <CalendarIcon className="h-3.5 w-3.5 text-purple-600" />
+                    <span>Open in Google Calendar</span>
+                    <ExternalLink className="h-3 w-3 text-purple-500 group-hover:translate-x-0.5 transition-transform" />
+                  </a>
                 </div>
               </div>
             </div>
@@ -592,19 +621,39 @@ export default function CalBookingWidget({
 
             {/* Action Button after slot selected */}
             {selectedSlot ? (
-              <div className="pt-4 mt-auto">
+              <div className="pt-4 mt-auto space-y-2">
                 <button
                   type="button"
                   onClick={() => setStep("form")}
                   className="w-full py-3 px-4 rounded-xl bg-purple-600 hover:bg-purple-700 text-white font-semibold text-xs transition-colors shadow-md shadow-purple-600/20 active:scale-[0.99] flex items-center justify-center gap-1.5"
                 >
-                  <span>Next</span>
+                  <span>Next: Confirm Details</span>
                   <ChevronRight className="h-3.5 w-3.5" />
                 </button>
+                <a
+                  href={calendarUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="w-full py-2.5 px-3 rounded-xl border border-slate-200 hover:bg-slate-50 text-slate-700 font-semibold text-xs transition-colors flex items-center justify-center gap-1.5"
+                >
+                  <span>Direct Google Calendar</span>
+                  <ExternalLink className="h-3 w-3 text-slate-400" />
+                </a>
               </div>
             ) : (
-              <div className="pt-4 mt-auto text-xs text-center text-slate-400 font-mono">
-                Select a time slot
+              <div className="pt-4 mt-auto">
+                <div className="text-xs text-center text-slate-400 font-mono mb-2">
+                  Select a time slot
+                </div>
+                <a
+                  href={calendarUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="w-full py-2.5 px-3 rounded-xl border border-slate-200 bg-slate-50/70 hover:bg-slate-100 text-slate-700 font-semibold text-xs transition-colors flex items-center justify-center gap-1.5"
+                >
+                  <span>Book on Google Calendar</span>
+                  <ExternalLink className="h-3 w-3 text-purple-600" />
+                </a>
               </div>
             )}
           </div>

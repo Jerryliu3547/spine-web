@@ -1,7 +1,6 @@
 "use client";
 
 import React, { useState } from "react";
-import Link from "next/link";
 import { 
   Sparkles, 
   ArrowRight
@@ -159,13 +158,15 @@ export default function Hero() {
 
           {/* Benchling Signature CTA */}
           <div className="mt-8 flex items-center justify-center">
-            <Link
-              href="/contact"
+            <a
+              href="https://calendar.app.google/xuDw7PomLrF6Y6BW7"
+              target="_blank"
+              rel="noopener noreferrer"
               className="benchling-cta-purple inline-flex items-center justify-center gap-2.5 rounded-xl px-7 py-3.5 text-sm font-semibold text-white transition-all shadow-md shadow-purple-600/25 hover:shadow-lg hover:shadow-purple-600/35 hover:-translate-y-0.5"
             >
               <span>Request Clinical Demo</span>
               <ArrowRight className="h-4 w-4" />
-            </Link>
+            </a>
           </div>
         </div>
 

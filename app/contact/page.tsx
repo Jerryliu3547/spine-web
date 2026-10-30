@@ -12,7 +12,8 @@ import {
   Stethoscope, 
   Phone,
   Clock,
-  Sparkles
+  Sparkles,
+  ExternalLink,
 } from "lucide-react";
 
 export const metadata: Metadata = {
@@ -38,7 +39,17 @@ export default function ContactPage() {
             Contact Us & Schedule an Executive Review
           </h1>
           <p className="mt-4 text-base sm:text-lg text-slate-600 max-w-2xl mx-auto leading-relaxed">
-            Connect directly with our leadership and founding biomechanics team. Pick a convenient time on the calendar below for a live walkthrough, or reach out through our institutional channels.
+            Connect directly with our leadership and founding biomechanics team. Pick a convenient time on the calendar below for a live walkthrough, or{" "}
+            <a
+              href="https://calendar.app.google/xuDw7PomLrF6Y6BW7"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-purple-700 font-semibold underline underline-offset-4 hover:text-purple-900 inline-flex items-center gap-1"
+            >
+              <span>schedule directly on Google Calendar</span>
+              <ExternalLink className="h-3.5 w-3.5" />
+            </a>
+            .
           </p>
         </div>
 

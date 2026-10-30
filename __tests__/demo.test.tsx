@@ -11,13 +11,13 @@ vi.mock("next/navigation", () => ({
 }));
 
 describe("Demo Page, Contact Page, and CalBookingWidget", () => {
-  it("renders Navbar and Hero Request Demo buttons linking to /contact", () => {
+  it("renders Navbar and Hero Request Demo buttons linking to user Google Calendar", () => {
     const { container: navContainer } = render(<Navbar />);
-    const requestDemoLink = navContainer.querySelector('a[href="/contact"]');
+    const requestDemoLink = navContainer.querySelector('a[href="https://calendar.app.google/xuDw7PomLrF6Y6BW7"]');
     expect(requestDemoLink).toBeInTheDocument();
 
     const { container: heroContainer } = render(<Hero />);
-    const heroDemoLink = heroContainer.querySelector('a[href="/contact"]');
+    const heroDemoLink = heroContainer.querySelector('a[href="https://calendar.app.google/xuDw7PomLrF6Y6BW7"]');
     expect(heroDemoLink).toBeInTheDocument();
   });
 
@@ -43,7 +43,7 @@ describe("Demo Page, Contact Page, and CalBookingWidget", () => {
     const slot6am = screen.getByText("6:00am");
     fireEvent.click(slot6am);
 
-    const nextBtn = screen.getByText("Next");
+    const nextBtn = screen.getByRole("button", { name: /Next: Confirm Details/i });
     fireEvent.click(nextBtn);
 
     expect(screen.getByText(/Confirm your reservation/i)).toBeInTheDocument();
