@@ -10,81 +10,89 @@ interface FeatureCard {
   title: string;
   description: string;
   image: string;
-  metric: {
-    stackedTop: string;
-    stackedBottom: string;
-    suffix: string;
-    label: string;
+  stationary: {
+    top: string;
+    sub: string;
   };
 }
 
 const FEATURE_CARDS: FeatureCard[] = [
   {
-    id: "cost-to-collect",
-    title: "Lower cost to collect",
-    description: "Reduce the operational burden of repetitive collections work through automation.",
+    id: "xray-sagittal",
+    title: "X-Ray Sagittal Analysis",
+    description: "Automated landmark localization and spinopelvic sagittal parameter calculation from a single lateral radiograph.",
     image: "/features/metronome.jpg",
-    metric: {
-      stackedTop: "4",
-      stackedBottom: "5",
-      suffix: "7%+",
-      label: "Reduction in AR backlog",
+    stationary: {
+      top: "X-Ray",
+      sub: "Sagittal",
     },
   },
   {
-    id: "collections-visibility",
-    title: "Gain full collections visibility",
-    description: "Track activity, progress, and outcomes entire claims pipeline.",
+    id: "shape-registration",
+    title: "3D Spine Shape Model",
+    description: "Reconstructing patient-specific 3D spine shape models and vertebral morphometry from planar imaging.",
     image: "/features/prism.jpg",
-    metric: {
-      stackedTop: "8",
-      stackedBottom: "9",
-      suffix: "4%+",
-      label: "First-pass resolution rate",
+    stationary: {
+      top: "Shape Registration",
+      sub: "spine shape model",
     },
   },
   {
-    id: "automated-routing",
-    title: "Eliminate repetitive manual touches",
-    description: "Reclaim clinical and administrative bandwidth with end-to-end autonomous routing.",
+    id: "plan-screws",
+    title: "Plan + Screws Construct",
+    description: "Patient-specific pedicle screw trajectory optimization, lordosis restoration, and PJK risk mitigation.",
     image: "/features/balance.jpg",
-    metric: {
-      stackedTop: "3",
-      stackedBottom: "4",
-      suffix: "2%",
-      label: "Reduction in operational overhead",
+    stationary: {
+      top: "Plan +Screws",
+      sub: "Alignment, PJK risk",
     },
   },
   {
-    id: "autonomous-accuracy",
-    title: "Accelerate autonomous resolution",
-    description: "Identify root-cause variance instantly with continuous biomechanical feedback loops.",
+    id: "febio-stress",
+    title: "Finite Element Stress",
+    description: "Autonomous FEBio multi-physics routing to evaluate anterior column load sharing and rod fatigue limits.",
     image: "/features/sphere.jpg",
-    metric: {
-      stackedTop: "9",
-      stackedBottom: "9",
-      suffix: ".2%",
-      label: "Autonomous touchless accuracy",
+    stationary: {
+      top: "FEBio Stress",
+      sub: "Rod strain & cage fatigue",
+    },
+  },
+  {
+    id: "vertebral-kinematics",
+    title: "Musculoskeletal Dynamics",
+    description: "Coupled OpenSim dynamic simulation tracking multi-level spine kinematics under physiological daily loads.",
+    image: "/features/caliper.jpg",
+    stationary: {
+      top: "MSK Dynamics",
+      sub: "Kinematics & trunk muscle forces",
     },
   },
 ];
 
+// Double array for seamless infinite circular loop
+const DISPLAY_CARDS = [...FEATURE_CARDS, ...FEATURE_CARDS];
+const TOTAL_CARDS = FEATURE_CARDS.length; // 5 rotational cards
+const ROTATION_INTERVAL_MS = 2800; // Faster rotational tempo
+
 export default function FeatureCarouselSection() {
   const [activeIndex, setActiveIndex] = useState(0);
+  const [virtualIndex, setVirtualIndex] = useState(0);
   const [isPaused, setIsPaused] = useState(false);
   const scrollRef = useRef<HTMLDivElement>(null);
   const isUserInteractingRef = useRef(false);
   const interactionTimeoutRef = useRef<NodeJS.Timeout | null>(null);
+  const isResettingRef = useRef(false);
 
   const basePath = process.env.NEXT_PUBLIC_BASE_PATH || "";
 
-  // Smoothly scroll the container to a specific card index
-  const scrollToIndex = useCallback((index: number) => {
+  // Helper to scroll to a specific virtual card index
+  const scrollToVirtual = useCallback((targetIndex: number, smooth = true) => {
     if (!scrollRef.current) return;
     const container = scrollRef.current;
-    const cards = container.children;
-    if (cards[index]) {
-      const card = cards[index] as HTMLElement;
+    const card = container.children[targetIndex] as HTMLElement;
+    if (!card) return;
+
+    if (smooth) {
       if (typeof card.scrollIntoView === "function") {
         card.scrollIntoView({
           behavior: "smooth",
@@ -97,23 +105,64 @@ export default function FeatureCarouselSection() {
           behavior: "smooth",
         });
       }
-      setActiveIndex(index);
+    } else {
+      if (typeof container.scrollTo === "function") {
+        container.scrollTo({
+          left: card.offsetLeft - container.offsetLeft,
+          behavior: "instant",
+        });
+      }
     }
+
+    setVirtualIndex(targetIndex);
+    setActiveIndex(targetIndex % TOTAL_CARDS);
   }, []);
 
-  const handleNext = () => {
-    const nextIdx = (activeIndex + 1) % FEATURE_CARDS.length;
-    scrollToIndex(nextIdx);
-  };
+  // Smoothly scroll to a specific base card index (from pagination dots)
+  const scrollToIndex = useCallback((targetIndex: number) => {
+    scrollToVirtual(targetIndex, true);
+  }, [scrollToVirtual]);
 
-  const handlePrev = () => {
-    const prevIdx = (activeIndex - 1 + FEATURE_CARDS.length) % FEATURE_CARDS.length;
-    scrollToIndex(prevIdx);
-  };
+  // Advance forward in a continuous circle
+  const handleNext = useCallback(() => {
+    const nextVirtual = virtualIndex + 1;
 
-  // Sync active index based on scroll position
+    if (nextVirtual >= TOTAL_CARDS) {
+      // Scroll into the cloned element for seamless forward animation
+      scrollToVirtual(nextVirtual, true);
+
+      // After the smooth transition completes, silently snap back to base index
+      setTimeout(() => {
+        isResettingRef.current = true;
+        const normalized = nextVirtual % TOTAL_CARDS;
+        scrollToVirtual(normalized, false);
+        setTimeout(() => {
+          isResettingRef.current = false;
+        }, 50);
+      }, 500);
+    } else {
+      scrollToVirtual(nextVirtual, true);
+    }
+  }, [virtualIndex, scrollToVirtual]);
+
+  // Move backward in a continuous circle
+  const handlePrev = useCallback(() => {
+    if (virtualIndex <= 0) {
+      // Instantly jump to cloned end, then smoothly scroll to previous card
+      scrollToVirtual(TOTAL_CARDS, false);
+      requestAnimationFrame(() => {
+        setTimeout(() => {
+          scrollToVirtual(TOTAL_CARDS - 1, true);
+        }, 30);
+      });
+    } else {
+      scrollToVirtual(virtualIndex - 1, true);
+    }
+  }, [virtualIndex, scrollToVirtual]);
+
+  // Sync active index based on user scrolling
   const handleScroll = () => {
-    if (!scrollRef.current) return;
+    if (isResettingRef.current || !scrollRef.current) return;
     const container = scrollRef.current;
     const scrollLeft = container.scrollLeft;
     const cards = Array.from(container.children) as HTMLElement[];
@@ -122,7 +171,7 @@ export default function FeatureCarouselSection() {
     let closestIndex = 0;
     let minDiff = Infinity;
     cards.forEach((card, idx) => {
-      if (idx >= FEATURE_CARDS.length) return;
+      if (idx >= DISPLAY_CARDS.length) return;
       const diff = Math.abs(card.offsetLeft - container.offsetLeft - scrollLeft);
       if (diff < minDiff) {
         minDiff = diff;
@@ -130,134 +179,83 @@ export default function FeatureCarouselSection() {
       }
     });
 
-    if (closestIndex !== activeIndex) {
-      setActiveIndex(closestIndex);
+    const normalizedIndex = closestIndex % TOTAL_CARDS;
+    if (normalizedIndex !== activeIndex) {
+      setActiveIndex(normalizedIndex);
     }
+    setVirtualIndex(closestIndex);
 
-    // Flag user interaction to temporarily pause auto-rolling
+    // Pause auto-rolling while user is actively interacting
     isUserInteractingRef.current = true;
     if (interactionTimeoutRef.current) {
       clearTimeout(interactionTimeoutRef.current);
     }
     interactionTimeoutRef.current = setTimeout(() => {
       isUserInteractingRef.current = false;
-    }, 4000);
+    }, 3500);
   };
 
-  // Gentle auto-roll every 5 seconds when not hovered or actively scrolled
+  // Faster auto-rolling in a continuous circle (every 2.8 seconds)
   useEffect(() => {
     if (isPaused) return;
 
     const interval = setInterval(() => {
       if (isUserInteractingRef.current) return;
-      setActiveIndex((prev) => {
-        const next = (prev + 1) % FEATURE_CARDS.length;
-        if (scrollRef.current) {
-          const container = scrollRef.current;
-          const targetCard = container.children[next] as HTMLElement;
-          if (targetCard) {
-            if (typeof targetCard.scrollIntoView === "function") {
-              targetCard.scrollIntoView({
-                behavior: "smooth",
-                inline: "start",
-                block: "nearest",
-              });
-            } else if (typeof container.scrollTo === "function") {
-              container.scrollTo({
-                left: targetCard.offsetLeft - container.offsetLeft,
-                behavior: "smooth",
-              });
-            }
-          }
-        }
-        return next;
-      });
-    }, 5000);
+      handleNext();
+    }, ROTATION_INTERVAL_MS);
 
     return () => clearInterval(interval);
-  }, [isPaused]);
+  }, [isPaused, handleNext]);
 
-  const activeMetric = FEATURE_CARDS[activeIndex].metric;
+  const activeCard = FEATURE_CARDS[activeIndex] || FEATURE_CARDS[0];
 
   return (
-    <section className="relative w-full bg-white py-20 md:py-28 overflow-hidden border-b border-stone-200/70">
-      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-14 items-start">
-          
-          {/* ================= LEFT STATION CARD ================= */}
-          <div className="lg:col-span-4 flex flex-col justify-between h-full min-h-[460px] sm:min-h-[500px] md:min-h-[530px] lg:sticky lg:top-28 pt-2">
+    <section className="relative w-full bg-white py-20 md:py-28 overflow-hidden border-b border-slate-200/80">
+      {/* Panoramic container matching lower Clinical Workbench bounding line */}
+      <div className="mx-auto w-full max-w-[1520px] 2xl:max-w-[1680px] px-4 sm:px-6 lg:px-10 xl:px-12">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-12 xl:gap-14 items-start">
+
+          {/* ================= LEFT STATION CARD (Desktop only) ================= */}
+          <div className="hidden lg:flex lg:col-span-4 flex-col justify-between h-full min-h-[460px] sm:min-h-[500px] md:min-h-[530px] lg:sticky lg:top-28 pt-2">
             <div>
-              {/* Main Headline with Serif Typography matching the screenshot */}
+              {/* Main Headline with Serif Typography matching user specification */}
               <h2
                 style={{ fontFamily: "'Newsreader', Georgia, ui-serif, Cambria, 'Times New Roman', serif" }}
-                className="text-4xl sm:text-5xl lg:text-[46px] leading-[1.12] text-[#1A1615] font-normal tracking-tight"
+                className="text-4xl sm:text-5xl lg:text-[46px] leading-[1.12] text-slate-900 font-normal tracking-tight"
               >
-                The rules of<br />
-                revenue cycle,<br />
-                rewritten
+                X-Ray in,<br />
+                Finite Element &<br />
+                MSK out<br />
               </h2>
 
-              {/* Dynamic Metric Display matching the screenshot's stacked design */}
+              {/* Dynamic Display Area: Big Top Word + Small Subtext */}
               <div className="mt-12 sm:mt-16">
-                <div
-                  style={{ fontFamily: "'Newsreader', Georgia, ui-serif, Cambria, 'Times New Roman', serif" }}
-                  className="flex items-center gap-1.5"
-                >
-                  {/* Stacked Digits Reel */}
-                  <div className="relative inline-flex flex-col items-center justify-between h-[68px] w-9 overflow-hidden py-0.5">
-                    <AnimatePresence mode="wait">
-                      <motion.div
-                        key={activeIndex}
-                        initial={{ y: 20, opacity: 0 }}
-                        animate={{ y: 0, opacity: 1 }}
-                        exit={{ y: -20, opacity: 0 }}
-                        transition={{ duration: 0.35, ease: [0.16, 1, 0.3, 1] }}
-                        className="flex flex-col items-center justify-between h-full leading-none"
-                      >
-                        <span className="text-xl sm:text-2xl text-stone-400 select-none">
-                          {activeMetric.stackedTop}
-                        </span>
-                        <span className="text-3xl sm:text-4xl text-[#1A1615] font-normal select-none">
-                          {activeMetric.stackedBottom}
-                        </span>
-                      </motion.div>
-                    </AnimatePresence>
-                  </div>
-
-                  {/* Suffix Number and % */}
-                  <AnimatePresence mode="wait">
-                    <motion.span
-                      key={activeMetric.suffix}
-                      initial={{ opacity: 0, y: 8 }}
-                      animate={{ opacity: 1, y: 0 }}
-                      exit={{ opacity: 0, y: -8 }}
-                      transition={{ duration: 0.35, ease: [0.16, 1, 0.3, 1] }}
-                      className="text-5xl sm:text-6xl lg:text-7xl text-[#1A1615] font-normal tracking-tight leading-none"
-                    >
-                      {activeMetric.suffix}
-                    </motion.span>
-                  </AnimatePresence>
-                </div>
-
-                {/* Subtitle / Stat Label */}
                 <AnimatePresence mode="wait">
-                  <motion.p
-                    key={activeMetric.label}
-                    initial={{ opacity: 0 }}
-                    animate={{ opacity: 1 }}
-                    exit={{ opacity: 0 }}
-                    transition={{ duration: 0.25 }}
-                    className="mt-2.5 text-sm sm:text-base text-stone-700 font-medium"
+                  <motion.div
+                    key={activeIndex}
+                    initial={{ y: 16, opacity: 0 }}
+                    animate={{ y: 0, opacity: 1 }}
+                    exit={{ y: -16, opacity: 0 }}
+                    transition={{ duration: 0.35, ease: [0.16, 1, 0.3, 1] }}
+                    className="flex flex-col"
                   >
-                    {activeMetric.label}
-                  </motion.p>
+                    <span
+                      style={{ fontFamily: "'Newsreader', Georgia, ui-serif, Cambria, 'Times New Roman', serif" }}
+                      className="text-4xl sm:text-5xl lg:text-[44px] text-slate-900 font-normal tracking-tight leading-tight"
+                    >
+                      {activeCard.stationary.top}
+                    </span>
+                    <span className="mt-3 text-sm sm:text-base text-slate-500 font-medium tracking-wide">
+                      {activeCard.stationary.sub}
+                    </span>
+                  </motion.div>
                 </AnimatePresence>
               </div>
             </div>
 
-            {/* Pagination Dots & Navigation Controls */}
+            {/* Pagination Dots & Navigation Controls (5 dots for 5 rotational cards) */}
             <div className="mt-8 sm:mt-12 flex items-center justify-between">
-              {/* Pagination Dots matching screenshot */}
+              {/* Pagination Dots */}
               <div className="flex items-center gap-2">
                 {FEATURE_CARDS.map((_, idx) => (
                   <button
@@ -266,8 +264,8 @@ export default function FeatureCarouselSection() {
                     aria-label={`Go to feature card ${idx + 1}`}
                     className={`transition-all duration-300 rounded-full ${
                       activeIndex === idx
-                        ? "w-7 h-1.5 bg-[#1A1615]"
-                        : "w-1.5 h-1.5 bg-stone-300 hover:bg-stone-500"
+                        ? "w-7 h-1.5 bg-slate-900"
+                        : "w-1.5 h-1.5 bg-slate-200 hover:bg-slate-400"
                     }`}
                   />
                 ))}
@@ -278,21 +276,21 @@ export default function FeatureCarouselSection() {
                 <button
                   onClick={handlePrev}
                   aria-label="Previous card"
-                  className="p-2 rounded-full border border-stone-200 text-stone-600 hover:bg-stone-100 transition-colors"
+                  className="p-2 rounded-full border border-slate-200 text-slate-600 hover:bg-slate-100 transition-colors"
                 >
                   <ChevronLeft className="w-4 h-4" />
                 </button>
                 <button
                   onClick={handleNext}
                   aria-label="Next card"
-                  className="p-2 rounded-full border border-stone-200 text-stone-600 hover:bg-stone-100 transition-colors"
+                  className="p-2 rounded-full border border-slate-200 text-slate-600 hover:bg-slate-100 transition-colors"
                 >
                   <ChevronRight className="w-4 h-4" />
                 </button>
                 <button
                   onClick={() => setIsPaused(!isPaused)}
                   aria-label={isPaused ? "Resume auto roll" : "Pause auto roll"}
-                  className="p-2 rounded-full border border-stone-200 text-stone-400 hover:text-stone-700 hover:bg-stone-100 transition-colors"
+                  className="p-2 rounded-full border border-slate-200 text-slate-400 hover:text-slate-700 hover:bg-slate-100 transition-colors"
                   title={isPaused ? "Resume auto-roll" : "Pause auto-roll"}
                 >
                   {isPaused ? <Play className="w-3.5 h-3.5" /> : <Pause className="w-3.5 h-3.5" />}
@@ -303,55 +301,95 @@ export default function FeatureCarouselSection() {
 
           {/* ================= RIGHT HORIZONTAL ROLLING CARDS ================= */}
           <div
-            className="lg:col-span-8 overflow-hidden"
+            className="w-full lg:col-span-8 overflow-hidden"
             onMouseEnter={() => setIsPaused(true)}
             onMouseLeave={() => setIsPaused(false)}
           >
             <div
               ref={scrollRef}
               onScroll={handleScroll}
-              className="flex gap-6 overflow-x-auto snap-x snap-mandatory pb-6 pt-2 scrollbar-none"
+              className="flex gap-4 sm:gap-6 overflow-x-auto snap-x snap-mandatory pb-4 pt-2 scrollbar-none"
               style={{
                 scrollbarWidth: "none",
                 msOverflowStyle: "none",
                 WebkitOverflowScrolling: "touch",
               }}
             >
-              {FEATURE_CARDS.map((card, idx) => (
+              {DISPLAY_CARDS.map((card, idx) => (
                 <div
-                  key={card.id}
-                  onClick={() => scrollToIndex(idx)}
-                  className={`snap-start shrink-0 w-[290px] sm:w-[350px] md:w-[380px] lg:w-[410px] h-[480px] sm:h-[510px] md:h-[530px] rounded-[32px] bg-[#FAF8F5] border transition-all duration-300 p-8 sm:p-9 flex flex-col justify-between cursor-pointer select-none group ${
-                    activeIndex === idx
-                      ? "border-stone-300/90 shadow-lg shadow-stone-900/5 ring-1 ring-stone-900/5"
-                      : "border-stone-200/70 hover:border-stone-300 hover:shadow-md"
+                  key={`${card.id}-${idx}`}
+                  onClick={() => scrollToVirtual(idx, true)}
+                  className={`snap-center lg:snap-start shrink-0 w-full min-w-full lg:min-w-[400px] lg:w-[400px] xl:min-w-[430px] xl:w-[430px] h-[480px] sm:h-[510px] md:h-[530px] rounded-[32px] bg-[#F4F6F9] border transition-all duration-300 p-7 sm:p-9 flex flex-col justify-between cursor-pointer select-none group shadow-xs ${
+                    activeIndex === (idx % TOTAL_CARDS)
+                      ? "border-slate-300/90 shadow-md shadow-slate-900/5 ring-1 ring-slate-900/5"
+                      : "border-slate-200/80 hover:border-slate-300 hover:shadow-md"
                   }`}
                 >
-                  {/* 3D Visual Asset Container */}
-                  <div className="relative w-full h-[250px] sm:h-[280px] md:h-[300px] flex items-center justify-center overflow-hidden rounded-2xl">
+                  {/* 3D Visual Asset Container with soft feathered blend */}
+                  <div
+                    className="relative w-full h-[250px] sm:h-[280px] md:h-[300px] flex items-center justify-center overflow-hidden rounded-2xl"
+                    style={{
+                      maskImage: "radial-gradient(ellipse at center, rgba(0,0,0,1) 50%, rgba(0,0,0,0) 95%)",
+                      WebkitMaskImage: "radial-gradient(ellipse at center, rgba(0,0,0,1) 50%, rgba(0,0,0,0) 95%)",
+                    }}
+                  >
                     <Image
                       src={`${basePath}${card.image}`}
                       alt={card.title}
                       fill
-                      sizes="(max-width: 640px) 290px, (max-width: 1024px) 380px, 410px"
-                      className="object-contain p-2 transition-transform duration-700 ease-out group-hover:scale-105"
+                      sizes="(max-width: 1024px) 100vw, 430px"
+                      className="object-contain p-1 transition-transform duration-700 ease-out group-hover:scale-105"
                       priority={idx < 2}
                     />
                   </div>
 
                   {/* Card Bottom Details */}
                   <div className="mt-6 flex flex-col">
-                    <h3 className="text-xl sm:text-[22px] font-semibold text-[#1A1615] tracking-tight leading-snug">
+                    <h3 className="text-xl sm:text-[22px] font-semibold text-slate-900 tracking-tight leading-snug">
                       {card.title}
                     </h3>
-                    <p className="mt-3 text-sm sm:text-base text-stone-600 leading-relaxed font-normal">
+                    <p className="mt-3 text-sm sm:text-base text-slate-600 leading-relaxed font-normal">
                       {card.description}
                     </p>
                   </div>
                 </div>
               ))}
-              {/* Extra spacing for end of scroll */}
-              <div className="shrink-0 w-8" />
+              {/* Extra spacing for end of scroll on desktop */}
+              <div className="hidden lg:block shrink-0 w-8" />
+            </div>
+
+            {/* Mobile Pagination Dots & Controls (only visible on small screens < lg) */}
+            <div className="flex lg:hidden items-center justify-between mt-4 px-1">
+              <div className="flex items-center gap-2">
+                {FEATURE_CARDS.map((_, idx) => (
+                  <button
+                    key={idx}
+                    onClick={() => scrollToIndex(idx)}
+                    aria-label={`Go to slide ${idx + 1}`}
+                    className={`transition-all duration-300 rounded-full ${
+                      activeIndex === idx
+                        ? "w-7 h-1.5 bg-slate-900"
+                        : "w-1.5 h-1.5 bg-slate-200 hover:bg-slate-400"
+                    }`}
+                  />
+                ))}
+              </div>
+              <div className="flex items-center gap-2">
+                <button
+                  onClick={handlePrev}
+                  aria-label="Previous slide"
+                  className="p-2 rounded-full border border-slate-200 text-slate-600 hover:bg-slate-100 transition-colors"
+                >
+                  <ChevronLeft className="w-4 h-4" />
+                </button>
+                <button
+                  onClick={handleNext}
+                  aria-label="Next slide"
+                  className="p-2 rounded-full border border-slate-200 text-slate-600 hover:bg-slate-100 transition-colors"
+                >
+                  <ChevronRight className="w-4 h-4" />
+                </button>
+              </div>
             </div>
           </div>
 
