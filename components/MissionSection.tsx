@@ -2,7 +2,7 @@
 
 import React, { useState } from "react";
 import Link from "next/link";
-import { ArrowRight, Calendar, Sparkles, CheckCircle2 } from "lucide-react";
+import { ArrowRight, Calendar, Sparkles } from "lucide-react";
 
 export default function MissionSection() {
   const [metricTab, setMetricTab] = useState<"clinical" | "foundry">("clinical");
@@ -55,6 +55,8 @@ export default function MissionSection() {
 
   const activeMetrics = metricTab === "clinical" ? clinicalMetrics : foundryMetrics;
 
+  const basePath = process.env.NEXT_PUBLIC_BASE_PATH || "";
+
   return (
     <section
       id="mission"
@@ -67,7 +69,7 @@ export default function MissionSection() {
         aria-hidden="true"
       >
         <img
-          src="/mission/torn-paper-right.jpg"
+          src={`${basePath}/mission/torn-paper-right.jpg`}
           alt=""
           className="w-full h-full object-cover object-left opacity-85 sm:opacity-90 md:opacity-95 mix-blend-multiply filter contrast-105"
         />
@@ -81,7 +83,7 @@ export default function MissionSection() {
         aria-hidden="true"
       >
         <img
-          src="/mission/torn-paper-bottom-left.jpg"
+          src={`${basePath}/mission/torn-paper-bottom-left.jpg`}
           alt=""
           className="w-full h-auto object-cover opacity-95 mix-blend-multiply filter contrast-110"
         />

@@ -4,13 +4,15 @@ const isGithubActions = process.env.GITHUB_ACTIONS === "true";
 const isCustomDomain = process.env.CUSTOM_DOMAIN === "true";
 // When deploying to GitHub Pages without a custom domain, GitHub serves from /<repo-name>
 const defaultBasePath = isGithubActions && !isCustomDomain ? "/spine-web" : "";
-const basePath = process.env.NEXT_PUBLIC_BASE_PATH ?? defaultBasePath;
+const rawBasePath = process.env.NEXT_PUBLIC_BASE_PATH || defaultBasePath;
+const basePath = rawBasePath === "/" ? "" : rawBasePath;
 
 const isExport = isGithubActions || process.env.NEXT_EXPORT === "true";
 
 const nextConfig: NextConfig = {
   output: isExport ? "export" : undefined,
   basePath: basePath ? basePath : undefined,
+  assetPrefix: basePath ? basePath : undefined,
   env: {
     NEXT_PUBLIC_BASE_PATH: basePath,
   },

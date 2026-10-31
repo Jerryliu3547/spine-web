@@ -1,6 +1,5 @@
 import React from "react";
 import type { Metadata } from "next";
-import Link from "next/link";
 import StickyBanner from "@/components/StickyBanner";
 import Navbar from "@/components/Navbar";
 import MissionSection from "@/components/MissionSection";
@@ -8,10 +7,7 @@ import TeamSection from "@/components/TeamSection";
 import LogoTicker from "@/components/LogoTicker";
 import BookingSection from "@/components/BookingSection";
 import Footer from "@/components/Footer";
-import {
-  Users,
-  Building2
-} from "lucide-react";
+import { Building2 } from "lucide-react";
 
 export const metadata: Metadata = {
   title: "About Us | Spine Suite - Scientific Leadership & Advisory",

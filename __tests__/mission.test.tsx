@@ -34,4 +34,12 @@ describe("MissionSection Component", () => {
     expect(screen.getByText("0.20s")).toBeInTheDocument();
     expect(screen.getByText("22 / 22")).toBeInTheDocument();
   });
+
+  it("renders torn paper side graphic images with correct src", () => {
+    const { container } = render(<MissionSection />);
+    const images = container.querySelectorAll("img");
+    const srcList = Array.from(images).map((img) => img.getAttribute("src"));
+    expect(srcList.some((src) => src?.includes("/mission/torn-paper-right.jpg"))).toBe(true);
+    expect(srcList.some((src) => src?.includes("/mission/torn-paper-bottom-left.jpg"))).toBe(true);
+  });
 });
