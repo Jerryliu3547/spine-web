@@ -1,30 +1,72 @@
-@import url('https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,300;0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,400&display=swap');
 @import "tailwindcss";
 
 :root {
   --background: #ffffff;
-  --foreground: #0f172a;
-  --benchling-white: #ffffff;
-  --benchling-slate-50: #f8fafc;
-  --benchling-slate-100: #f1f5f9;
-  --benchling-border: #e2e8f0;
-  --benchling-border-hover: rgba(110, 86, 207, 0.4);
+  --foreground: #1d1d1f;
+  
+  /* Apple Signature Palette */
+  --apple-black: #1d1d1f;
+  --apple-gray: #86868b;
+  --apple-light-gray: #f5f5f7;
+  --apple-border: #d2d2d7;
+  --apple-border-light: #e5e5e7;
+  --apple-blue: #007aff;
+  --apple-blue-hover: #0066d6;
+  --apple-blue-active: #005bb5;
+
+  /* Theme Accents */
   --benchling-purple: #6e56cf;
   --benchling-purple-hover: #5b45e0;
-  --benchling-purple-light: #f5f3ff;
-  --benchling-purple-text: #5b21b6;
-  --benchling-blue: #2563eb;
-  --benchling-cyan: #0284c7;
-  --benchling-emerald: #10b981;
 }
 
 body {
   background-color: var(--background);
   color: var(--foreground);
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "SF Pro Text", "SF Pro", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  letter-spacing: -0.011em;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
   overflow-x: hidden;
   selection-background-color: #ede9fe;
   selection-color: #4c1d95;
+}
+
+/* Apple Editorial Typography Stack */
+.font-apple-serif {
+  font-family: -apple-system-ui-serif, "New York", "Newsreader", "Charter", "Georgia", "Cambria", "Times New Roman", Times, serif;
+}
+
+/* Handwritten / Cursive Script for "Our Mission" */
+.font-mission-script {
+  font-family: "Caveat", "Brush Script MT", "Snell Roundhand", "Apple Chancery", cursive;
+}
+
+/* Apple Typography Utility System */
+.apple-title-lead {
+  color: #1d1d1f;
+  font-weight: 600;
+  letter-spacing: -0.022em;
+}
+
+.apple-title-muted {
+  color: #86868b;
+  font-weight: 600;
+  letter-spacing: -0.022em;
+}
+
+.apple-eyebrow {
+  font-size: 12px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: #86868b;
+}
+
+.apple-body {
+  color: #86868b;
+  font-size: 17px;
+  line-height: 1.55;
+  letter-spacing: -0.01em;
 }
 
 /* Benchling subtle white grid background */
@@ -57,21 +99,25 @@ body {
   transform: translateY(-2px);
 }
 
-/* Benchling signature CTA button */
+/* Apple Trade-In Blue CTA button ("Trade in your current device" signature blue) */
+.apple-cta-blue,
 .benchling-cta-purple {
-  background-color: #6e56cf;
+  background-color: #007aff;
   color: #ffffff;
   transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
-  box-shadow: 0 4px 14px 0 rgba(110, 86, 207, 0.25);
+  box-shadow: 0 4px 14px 0 rgba(0, 122, 255, 0.32);
 }
 
+.apple-cta-blue:hover,
 .benchling-cta-purple:hover {
-  background-color: #5b45e0;
-  box-shadow: 0 6px 20px 0 rgba(110, 86, 207, 0.4);
+  background-color: #0066d6;
+  box-shadow: 0 6px 20px 0 rgba(0, 122, 255, 0.45);
   transform: translateY(-1px);
 }
 
+.apple-cta-blue:active,
 .benchling-cta-purple:active {
+  background-color: #005bb5;
   transform: translateY(0);
 }
 

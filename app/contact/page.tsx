@@ -29,16 +29,16 @@ export default function ContactPage() {
       <Navbar />
 
       <main className="flex-1 py-12 md:py-20 px-4 sm:px-6 lg:px-8">
-        {/* Page Header */}
+        {/* Page Header: Apple Two-Tone Style */}
         <div className="max-w-4xl mx-auto text-center mb-10 md:mb-14">
-          <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-purple-50 border border-purple-200 text-purple-700 text-xs font-mono font-bold uppercase tracking-wider mb-4">
-            <Sparkles className="h-3.5 w-3.5" />
-            <span>Executive & Clinical Engagement</span>
-          </div>
-          <h1 className="text-3xl sm:text-5xl font-extrabold tracking-tight text-slate-900">
-            Contact Us & Schedule an Executive Review
+          <span className="text-[12px] font-semibold uppercase tracking-[0.06em] text-[#86868b] mb-4 block">
+            Executive & Clinical Engagement
+          </span>
+          <h1 className="text-3xl sm:text-5xl font-semibold tracking-[-0.025em]">
+            <span className="text-[#1d1d1f]">Contact Us.</span>{" "}
+            <span className="text-[#86868b]">Schedule an executive review.</span>
           </h1>
-          <p className="mt-4 text-base sm:text-lg text-slate-600 max-w-2xl mx-auto leading-relaxed">
+          <p className="mt-4 text-base sm:text-[17px] text-[#86868b] max-w-2xl mx-auto leading-relaxed font-normal">
             Connect directly with our leadership and founding biomechanics team. Pick a convenient time on the calendar below for a live walkthrough, or{" "}
             <a
               href="https://calendar.app.google/xuDw7PomLrF6Y6BW7"

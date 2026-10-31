@@ -13,19 +13,16 @@ export default function ValidationSection() {
   return (
     <section id="validation" className="py-20 md:py-28 bg-white border-t border-slate-200/80 benchling-grid-bg relative">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-        {/* Section Heading */}
+        {/* Section Heading: Apple Two-Tone Style */}
         <div className="flex flex-col items-center text-center max-w-3xl mx-auto mb-16">
-          <div className="inline-flex items-center gap-2 rounded-full border border-purple-200 bg-purple-50 px-3.5 py-1 text-xs font-mono text-purple-800 mb-4">
-            <ShieldCheck className="h-3.5 w-3.5 text-purple-600" />
-            <span>Benchling-Grade Scientific Rigor</span>
-          </div>
-          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold tracking-tight text-slate-900">
-            Transparent Validation &{" "}
-            <span className="bg-gradient-to-r from-purple-700 via-indigo-600 to-sky-600 bg-clip-text text-transparent">
-              Honest Platform Status
-            </span>
+          <span className="text-[12px] font-semibold uppercase tracking-[0.06em] text-[#86868b] block mb-3">
+            Scientific Rigor
+          </span>
+          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-semibold tracking-[-0.025em]">
+            <span className="text-[#1d1d1f]">Transparent Validation.</span>{" "}
+            <span className="text-[#86868b]">Honest platform verification.</span>
           </h2>
-          <p className="mt-4 text-base sm:text-lg text-slate-600 font-normal">
+          <p className="mt-4 text-base sm:text-[17px] text-[#86868b] font-normal leading-relaxed">
             We hold computational surgical models to the highest standard of verification, cadaver validation, and transparent limitations.
           </p>
         </div>

@@ -3,11 +3,6 @@ import Navbar from "@/components/Navbar";
 import Hero from "@/components/Hero";
 import FeatureCarouselSection from "@/components/FeatureCarouselSection";
 import ClinicalWorkbenchSection from "@/components/ClinicalWorkbenchSection";
-import LogoTicker from "@/components/LogoTicker";
-import PipelineSection from "@/components/PipelineSection";
-import ComparisonTable from "@/components/ComparisonTable";
-import ValidationSection from "@/components/ValidationSection";
-import BookingSection from "@/components/BookingSection";
 import Footer from "@/components/Footer";
 
 export default function Home() {
@@ -19,11 +14,6 @@ export default function Home() {
         <Hero />
         <FeatureCarouselSection />
         <ClinicalWorkbenchSection />
-        <LogoTicker />
-        <PipelineSection />
-        <ComparisonTable />
-        <ValidationSection />
-        <BookingSection />
       </main>
       <Footer />
     </div>

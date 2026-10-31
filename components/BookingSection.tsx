@@ -53,19 +53,16 @@ export default function BookingSection() {
   return (
     <section id="booking" className="py-20 md:py-28 bg-white border-t border-slate-200/80 benchling-grid-bg relative">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-        {/* Section Heading */}
+        {/* Section Heading: Apple Two-Tone Style */}
         <div className="flex flex-col items-center text-center max-w-3xl mx-auto mb-16">
-          <div className="inline-flex items-center gap-2 rounded-full border border-purple-200 bg-purple-50 px-3.5 py-1 text-xs font-mono text-purple-800 mb-4">
-            <Calendar className="h-3.5 w-3.5 text-purple-600" />
-            <span>Direct Clinical Calendar Access</span>
-          </div>
-          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold tracking-tight text-slate-900">
-            Schedule a Clinical Review &{" "}
-            <span className="bg-gradient-to-r from-purple-700 via-indigo-600 to-sky-600 bg-clip-text text-transparent">
-              Technical Demo
-            </span>
+          <span className="text-[12px] font-semibold uppercase tracking-[0.06em] text-[#86868b] block mb-3">
+            Clinical Calendar
+          </span>
+          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-semibold tracking-[-0.025em]">
+            <span className="text-[#1d1d1f]">Schedule a Clinical Review.</span>{" "}
+            <span className="text-[#86868b]">Direct technical demo.</span>
           </h2>
-          <p className="mt-4 text-base sm:text-lg text-slate-600 font-normal">
+          <p className="mt-4 text-base sm:text-[17px] text-[#86868b] font-normal leading-relaxed">
             Book directly with the founding scientists or submit your institution&apos;s specific surgical simulation requirements.
           </p>
         </div>
@@ -73,7 +70,7 @@ export default function BookingSection() {
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
           {/* Left: 3 Direct Calendar Booking Cards */}
           <div className="lg:col-span-7 space-y-4">
-            <span className="text-xs font-mono uppercase tracking-wider text-purple-700 font-bold block mb-2">
+            <span className="text-[12px] font-semibold uppercase tracking-[0.06em] text-[#86868b] block mb-3">
               Select a Team Member to Book Directly:
             </span>
 
@@ -97,13 +94,13 @@ export default function BookingSection() {
                     href={`mailto:${contact.email}?subject=Spine%20Suite%20Clinical%20Demo`}
                     className="inline-flex items-center gap-1.5 text-slate-500 hover:text-slate-800 transition-colors font-mono"
                   >
-                    <Mail className="h-3.5 w-3.5 text-purple-600" />
+                    <Mail className="h-3.5 w-3.5 text-[#007aff]" />
                     <span>{contact.email}</span>
                   </a>
 
                   <a
                     href={`mailto:${contact.email}?subject=Book%20Clinical%20Demo%20with%20${encodeURIComponent(contact.name)}`}
-                    className="benchling-cta-purple inline-flex items-center gap-1.5 rounded-xl px-4 py-2 font-semibold text-white shadow-xs"
+                    className="apple-cta-blue bg-[#007aff] hover:bg-[#0066d6] inline-flex items-center gap-1.5 rounded-xl px-4 py-2 font-semibold text-white shadow-xs shadow-[#007aff]/20"
                   >
                     <Calendar className="h-3.5 w-3.5" />
                     <span>Book 30-Min Call</span>
@@ -121,7 +118,7 @@ export default function BookingSection() {
                 <h3 className="text-lg font-bold text-slate-900">General Clinical Inquiries</h3>
                 <p className="text-xs text-slate-500 mt-0.5">Custom pilot datasets & device integrations</p>
               </div>
-              <span className="p-2 rounded-xl bg-purple-50 text-purple-700 border border-purple-200">
+              <span className="p-2 rounded-xl bg-blue-50 text-[#007aff] border border-blue-200">
                 <Sparkles className="h-5 w-5" />
               </span>
             </div>
@@ -201,7 +198,7 @@ export default function BookingSection() {
 
                 <button
                   type="submit"
-                  className="benchling-cta-purple w-full mt-2 flex items-center justify-center gap-2 rounded-xl py-3 text-xs font-semibold uppercase tracking-wider text-white shadow-md shadow-purple-600/20"
+                  className="apple-cta-blue bg-[#007aff] hover:bg-[#0066d6] w-full mt-2 flex items-center justify-center gap-2 rounded-xl py-3 text-xs font-semibold uppercase tracking-wider text-white shadow-md shadow-[#007aff]/25"
                 >
                   <Send className="h-3.5 w-3.5" />
                   <span>Submit Clinical Inquiry</span>

@@ -57,19 +57,16 @@ export default function ComparisonTable() {
   return (
     <section id="comparison" className="py-20 md:py-28 bg-[#FAFAFC] border-t border-slate-200/80 relative">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-        {/* Section Heading */}
+        {/* Section Heading: Apple Two-Tone Style */}
         <div className="flex flex-col items-center text-center max-w-3xl mx-auto mb-12">
-          <div className="inline-flex items-center gap-2 rounded-full border border-purple-200 bg-purple-50 px-3.5 py-1 text-xs font-mono text-purple-800 mb-4">
-            <BarChart3 className="h-3.5 w-3.5 text-purple-600" />
-            <span>Multi-Physics Comparative Matrix</span>
-          </div>
-          <h2 className="text-3xl sm:text-4xl font-extrabold text-slate-900 tracking-tight">
-            Compare Candidate Constructs in{" "}
-            <span className="bg-gradient-to-r from-purple-700 via-indigo-600 to-sky-600 bg-clip-text text-transparent">
-              FEBio & OpenSim
-            </span>
+          <span className="text-[12px] font-semibold uppercase tracking-[0.06em] text-[#86868b] block mb-3">
+            Multi-Physics Matrix
+          </span>
+          <h2 className="text-3xl sm:text-4xl font-semibold tracking-[-0.022em]">
+            <span className="text-[#1d1d1f]">Compare Candidate Constructs.</span>{" "}
+            <span className="text-[#86868b]">FEBio & OpenSim verification.</span>
           </h2>
-          <p className="mt-4 text-base text-slate-600 leading-relaxed font-normal">
+          <p className="mt-4 text-base sm:text-[17px] text-[#86868b] leading-relaxed font-normal">
             Side-by-side verification of fused motion rigidity, titanium rod fatigue safety margins, and adjacent segment stress across the three simulated plans.
           </p>
         </div>

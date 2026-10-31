@@ -160,19 +160,16 @@ export default function PipelineSection() {
   return (
     <section id="pipeline" className="relative py-20 md:py-28 bg-white border-t border-slate-200/80 benchling-grid-bg">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-        {/* Section Heading */}
+        {/* Section Heading: Apple Two-Tone Style */}
         <div className="flex flex-col items-center text-center max-w-3xl mx-auto">
-          <div className="inline-flex items-center gap-2 rounded-full border border-purple-200 bg-purple-50 px-3.5 py-1 text-xs font-mono text-purple-800 mb-4">
-            <Cpu className="h-3.5 w-3.5 text-purple-600" />
-            <span>The 11-Stage Surgical Engine</span>
-          </div>
-          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold tracking-tight text-slate-900">
-            One Lateral X-Ray In, a{" "}
-            <span className="bg-gradient-to-r from-purple-700 via-indigo-600 to-sky-600 bg-clip-text text-transparent">
-              Simulated Plan Out
-            </span>
+          <span className="text-[12px] font-semibold uppercase tracking-[0.06em] text-[#86868b] block mb-3">
+            The 11-Stage Surgical Engine
+          </span>
+          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-semibold tracking-[-0.025em]">
+            <span className="text-[#1d1d1f]">One Lateral X-Ray In.</span>{" "}
+            <span className="text-[#86868b]">A simulated plan out.</span>
           </h2>
-          <p className="mt-4 text-base sm:text-lg text-slate-600 font-normal">
+          <p className="mt-4 text-base sm:text-[17px] text-[#86868b] font-normal leading-relaxed">
             A cohesive staged surgical pipeline where every intermediate parameter is surgeon-editable. Co-piloted by the graphical planner and autonomous multi-physics Spine Agent.
           </p>
         </div>

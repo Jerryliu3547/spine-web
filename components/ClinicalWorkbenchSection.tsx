@@ -1,420 +1,272 @@
 "use client";
 
-import React, { useState } from "react";
-import { 
-  Sparkles, 
-  Cpu, 
-  Activity, 
-  Stethoscope, 
-  ShieldCheck, 
-  ChevronLeft, 
-  ChevronRight, 
-  ChevronDown,
-  ArrowRight,
-  Layers,
-  Settings2,
-  Play
-} from "lucide-react";
+import React from "react";
+import Image from "next/image";
 
 export default function ClinicalWorkbenchSection() {
-  const [selectedCase, setSelectedCase] = useState<"c31" | "c42" | "c18">("c31");
-  const [activeConsoleTab, setActiveConsoleTab] = useState<"views" | "parameters">("views");
-  const [screwTrajToggle, setScrewTrajToggle] = useState(true);
-  const [stressHeatmapToggle, setStressHeatmapToggle] = useState(true);
-  const [facetToggle, setFacetToggle] = useState(false);
-  const [activeSlide, setActiveSlide] = useState(0);
-
-  const cases = {
-    c31: {
-      name: "C31",
-      fullTitle: "C31 · L3–S1 Fusion + Cages",
-      details: "Anatomical medical visual and dynamic 3D analysis that evaluates patient-specific kinematic parameters and anterior column load sharing for dynamic biomechanical analysis.",
-      stress: "34.1 MPa",
-      motion: "-99.6%",
-    },
-    c42: {
-      name: "C42",
-      fullTitle: "C42 · L3–S1 Posterior Rods Only",
-      details: "Multi-level posterior instrumentation without anterior interbody load support, tracking fatigue limits at the lumbosacral junction.",
-      stress: "58.4 MPa",
-      motion: "-97.8%",
-    },
-    c18: {
-      name: "C18",
-      fullTitle: "C18 · L4–S1 Short Construct",
-      details: "Segment-sparing lumbar construct preserving L3–L4 motion while assessing compensatory proximal junctional bending moments.",
-      stress: "66.2 MPa",
-      motion: "-93.4%",
-    },
-  };
-
-  const handleNext = () => {
-    setActiveSlide((prev) => (prev + 1) % 3);
-  };
-
-  const handlePrev = () => {
-    setActiveSlide((prev) => (prev - 1 + 3) % 3);
-  };
+  const basePath = process.env.NEXT_PUBLIC_BASE_PATH || "";
 
   return (
-    <section id="workbench" className="py-16 md:py-24 bg-[#FAFAFC] border-t border-slate-200/80 relative overflow-hidden">
+    <section id="workbench" className="py-16 md:py-24 bg-[#F5F5F7] border-t border-[#E5E5E7] relative overflow-hidden">
       {/* Soft Ambient Light Glows */}
-      <div className="absolute top-1/3 left-1/4 w-[750px] h-[450px] bg-purple-200/30 blur-[140px] rounded-full pointer-events-none -z-10" />
-      <div className="absolute top-1/2 right-1/4 w-[600px] h-[400px] bg-indigo-200/25 blur-[130px] rounded-full pointer-events-none -z-10" />
+      <div className="absolute top-1/4 left-1/4 w-[750px] h-[450px] bg-blue-200/20 blur-[140px] rounded-full pointer-events-none -z-10" />
+      <div className="absolute bottom-1/4 right-1/4 w-[600px] h-[400px] bg-indigo-200/20 blur-[130px] rounded-full pointer-events-none -z-10" />
 
-      {/* Expanded Panoramic Container: Wider than the max-w-7xl navbar */}
-      <div className="mx-auto w-full max-w-[1520px] 2xl:max-w-[1680px] px-4 sm:px-6 lg:px-10 xl:px-12">
-        {/* Top Split Section: Large Workbench Card (Left) + 2 Stacked Cards (Right) */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-8 items-stretch mb-8">
-          {/* Main Large Card: Interactive Clinical Workbench (7-8 Cols on wide screens) */}
-          <div className="lg:col-span-7 xl:col-span-8 rounded-3xl border border-purple-100/80 bg-white p-5 sm:p-7 xl:p-8 shadow-lg shadow-purple-100/40 hover:shadow-xl transition-all flex flex-col justify-between">
-            {/* The Embedded Miniature Console UI Container */}
-            <div className="rounded-2xl border border-slate-200/90 bg-white shadow-sm overflow-hidden text-slate-800">
-              {/* Console Top Navigation Bar */}
-              <div className="bg-slate-50/90 border-b border-slate-200 px-3.5 py-2.5 flex items-center justify-between">
-                <div className="flex items-center gap-2">
-                  <div className="h-5 w-5 rounded-md bg-purple-600 flex items-center justify-center text-white text-[10px] font-bold">
-                    S
-                  </div>
-                  <span className="text-xs font-bold text-slate-900 font-sans tracking-tight">
-                    Spine Suite
-                  </span>
-                </div>
-
-                <div className="hidden sm:flex items-center gap-4 text-[11px] font-medium text-slate-500">
-                  <span className="text-purple-700 font-semibold border-b-2 border-purple-600 pb-0.5">Solutions</span>
-                  <span className="hover:text-slate-800 cursor-pointer">Simulations</span>
-                  <span className="hover:text-slate-800 cursor-pointer">Biomechanical</span>
-                  <span className="hover:text-slate-800 cursor-pointer">Configure</span>
-                </div>
-
-                <button
-                  type="button"
-                  className="rounded-lg bg-purple-600 text-white px-3 py-1 text-[11px] font-semibold shadow-xs hover:bg-purple-700 transition-colors flex items-center gap-1"
-                >
-                  <span>Launch Case</span>
-                </button>
-              </div>
-
-              {/* Console Inner Controls & Viewport Layout */}
-              <div className="p-3 sm:p-4 bg-slate-50/40">
-                <div className="grid grid-cols-12 gap-3">
-                  {/* Left Mini Sidebar with Toggles */}
-                  <div className="col-span-12 sm:col-span-3 rounded-xl bg-white border border-slate-200/80 p-2.5 flex flex-col justify-between text-[10px] font-mono">
-                    <div className="space-y-2">
-                      <div className="flex gap-1 border-b border-slate-100 pb-1.5">
-                        <button
-                          type="button"
-                          onClick={() => setActiveConsoleTab("views")}
-                          className={`flex-1 py-0.5 rounded text-center font-bold ${
-                            activeConsoleTab === "views" ? "bg-purple-100 text-purple-800" : "text-slate-500"
-                          }`}
-                        >
-                          Views
-                        </button>
-                        <button
-                          type="button"
-                          onClick={() => setActiveConsoleTab("parameters")}
-                          className={`flex-1 py-0.5 rounded text-center font-bold ${
-                            activeConsoleTab === "parameters" ? "bg-purple-100 text-purple-800" : "text-slate-500"
-                          }`}
-                        >
-                          Params
-                        </button>
-                      </div>
-
-                      <div className="space-y-1.5">
-                        <div className="flex items-center justify-between">
-                          <span className="text-slate-600">Screw Traj</span>
-                          <button
-                            type="button"
-                            onClick={() => setScrewTrajToggle(!screwTrajToggle)}
-                            className={`w-6 h-3.5 rounded-full relative transition-colors ${
-                              screwTrajToggle ? "bg-purple-600" : "bg-slate-300"
-                            }`}
-                          >
-                            <span className={`block w-2.5 h-2.5 rounded-full bg-white transition-transform ${screwTrajToggle ? "translate-x-3" : "translate-x-0.5"}`} />
-                          </button>
-                        </div>
-
-                        <div className="flex items-center justify-between">
-                          <span className="text-slate-600">FEBio Heatmap</span>
-                          <button
-                            type="button"
-                            onClick={() => setStressHeatmapToggle(!stressHeatmapToggle)}
-                            className={`w-6 h-3.5 rounded-full relative transition-colors ${
-                              stressHeatmapToggle ? "bg-purple-600" : "bg-slate-300"
-                            }`}
-                          >
-                            <span className={`block w-2.5 h-2.5 rounded-full bg-white transition-transform ${stressHeatmapToggle ? "translate-x-3" : "translate-x-0.5"}`} />
-                          </button>
-                        </div>
-
-                        <div className="flex items-center justify-between">
-                          <span className="text-slate-600">Facet Release</span>
-                          <button
-                            type="button"
-                            onClick={() => setFacetToggle(!facetToggle)}
-                            className={`w-6 h-3.5 rounded-full relative transition-colors ${
-                              facetToggle ? "bg-purple-600" : "bg-slate-300"
-                            }`}
-                          >
-                            <span className={`block w-2.5 h-2.5 rounded-full bg-white transition-transform ${facetToggle ? "translate-x-3" : "translate-x-0.5"}`} />
-                          </button>
-                        </div>
-                      </div>
-                    </div>
-
-                    <div className="pt-2 border-t border-slate-100 text-[9px] text-slate-500 space-y-0.5">
-                      <div>GAP: <strong className="text-purple-700">5 / 13</strong></div>
-                      <div>PI: <strong className="text-slate-800">38.4°</strong></div>
-                    </div>
-                  </div>
-
-                  {/* Center Viewports: Dual 3D Spine Simulation Screens */}
-                  <div className="col-span-12 sm:col-span-9 space-y-3">
-                    <div className="grid grid-cols-2 gap-2.5">
-                      {/* Viewport 1: Lateral Spine Screen */}
-                      <div className="rounded-xl bg-slate-950 p-2 text-white flex flex-col justify-between h-36 relative overflow-hidden border border-slate-800">
-                        <div className="flex items-center justify-between text-[9px] font-mono text-slate-400">
-                          <span>Lateral Kinematics</span>
-                          <span className="text-emerald-400">T1–L5</span>
-                        </div>
-                        
-                        {/* Simulation Spine Visual Representation */}
-                        <div className="my-auto flex flex-col items-center">
-                          <div className="w-3.5 h-4.5 rounded-xs bg-slate-600/80 my-0.5" />
-                          <div className="w-4 h-5 rounded-xs bg-slate-600/80 my-0.5" />
-                          <div className="w-4.5 h-6 rounded-xs bg-purple-600 my-0.5 relative">
-                            {screwTrajToggle && <span className="absolute -left-2.5 top-1.5 w-2.5 h-1 bg-emerald-400 rounded-xs" />}
-                          </div>
-                          <div className="w-5 h-6 rounded-xs bg-rose-500 my-0.5 relative">
-                            {screwTrajToggle && <span className="absolute -left-2.5 top-1.5 w-2.5 h-1 bg-emerald-400 rounded-xs" />}
-                            {stressHeatmapToggle && <span className="absolute inset-0 bg-amber-400/30 animate-pulse rounded-xs" />}
-                          </div>
-                          <div className="w-5.5 h-7 rounded-xs bg-purple-700 my-0.5" />
-                        </div>
-
-                        <div className="text-[9px] font-mono text-slate-400 flex justify-between">
-                          <span>Schwab Grade 0</span>
-                          <span className="text-purple-300">0.20s</span>
-                        </div>
-                      </div>
-
-                      {/* Viewport 2: Coronal / Posterior Spine Screen */}
-                      <div className="rounded-xl bg-slate-900 p-2 text-white flex flex-col justify-between h-36 relative overflow-hidden border border-slate-800">
-                        <div className="flex items-center justify-between text-[9px] font-mono text-slate-400">
-                          <span>Posterior Construct</span>
-                          <span className="text-purple-400">34.1 MPa</span>
-                        </div>
-
-                        {/* Bilateral Rods & Screws Visual Representation */}
-                        <div className="my-auto flex flex-col items-center">
-                          <div className="flex gap-1.5 my-0.5">
-                            <span className="w-1.5 h-4 bg-sky-400 rounded-xs" />
-                            <span className="w-4 h-4 bg-slate-700 rounded-xs" />
-                            <span className="w-1.5 h-4 bg-sky-400 rounded-xs" />
-                          </div>
-                          <div className="flex gap-1.5 my-0.5">
-                            <span className="w-1.5 h-5 bg-purple-400 rounded-xs" />
-                            <span className="w-5 h-5 bg-purple-800 rounded-xs border border-purple-400" />
-                            <span className="w-1.5 h-5 bg-purple-400 rounded-xs" />
-                          </div>
-                          <div className="flex gap-1.5 my-0.5">
-                            <span className="w-1.5 h-6 bg-purple-400 rounded-xs" />
-                            <span className="w-6 h-6 bg-purple-900 rounded-xs border border-purple-400" />
-                            <span className="w-1.5 h-6 bg-purple-400 rounded-xs" />
-                          </div>
-                        </div>
-
-                        <div className="text-[9px] font-mono text-slate-400 flex justify-between">
-                          <span>Anterior Cages</span>
-                          <span className="text-emerald-400">-99.6%</span>
-                        </div>
-                      </div>
-                    </div>
-
-                    {/* Bottom Dynamic Graphs matching screenshot */}
-                    <div className="grid grid-cols-2 gap-2 bg-white rounded-xl p-2 border border-slate-200/80">
-                      <div>
-                        <span className="text-[9px] font-mono text-slate-500 uppercase">Correction Lordosis Angle</span>
-                        <div className="h-9 mt-1 flex items-end gap-1 px-1">
-                          <span className="flex-1 bg-purple-200 h-2 rounded-t-xs" />
-                          <span className="flex-1 bg-purple-300 h-3.5 rounded-t-xs" />
-                          <span className="flex-1 bg-purple-400 h-5.5 rounded-t-xs" />
-                          <span className="flex-1 bg-purple-500 h-7 rounded-t-xs" />
-                          <span className="flex-1 bg-purple-600 h-8 rounded-t-xs" />
-                        </div>
-                      </div>
-                      <div>
-                        <span className="text-[9px] font-mono text-slate-500 uppercase">Stress Attenuation Curve</span>
-                        <div className="h-9 mt-1 flex items-end gap-1 px-1">
-                          <span className="flex-1 bg-sky-500 h-8 rounded-t-xs" />
-                          <span className="flex-1 bg-sky-400 h-6.5 rounded-t-xs" />
-                          <span className="flex-1 bg-sky-300 h-4.5 rounded-t-xs" />
-                          <span className="flex-1 bg-emerald-400 h-3 rounded-t-xs" />
-                          <span className="flex-1 bg-emerald-500 h-2 rounded-t-xs" />
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            {/* Large Card Bottom Footer with Caption and Arrow Buttons */}
-            <div className="mt-5 pt-4 border-t border-slate-100 flex items-center justify-between">
-              <div>
-                <h3 className="text-base sm:text-lg font-bold text-slate-900">
-                  Interactive Clinical Workbench
-                </h3>
-                <p className="text-xs text-slate-500 mt-0.5">
-                  Miniature clinical visualization video during dynamic biomechanical analysis.
-                </p>
-              </div>
-
-              {/* Navigation circle buttons matching screenshot */}
-              <div className="flex items-center gap-2 shrink-0">
-                <button
-                  type="button"
-                  onClick={handlePrev}
-                  aria-label="Previous view"
-                  className="flex h-8 w-8 items-center justify-center rounded-full bg-slate-100 hover:bg-slate-200 text-slate-600 transition-colors cursor-pointer"
-                >
-                  <ChevronLeft className="h-4 w-4" />
-                </button>
-                <button
-                  type="button"
-                  onClick={handleNext}
-                  aria-label="Next view"
-                  className="flex h-8 w-8 items-center justify-center rounded-full bg-purple-600 hover:bg-purple-700 text-white transition-colors shadow-xs cursor-pointer"
-                >
-                  <ChevronRight className="h-4 w-4" />
-                </button>
-              </div>
-            </div>
-          </div>
-
-          {/* Right Stacked 2 Cards (5 Cols on lg, 4 Cols on xl) */}
-          <div className="lg:col-span-5 xl:col-span-4 flex flex-col gap-6">
-            {/* Top Right Card: AI-Driven Planning */}
-            <div className="flex-1 rounded-3xl border border-slate-200/90 bg-white p-6 sm:p-7 shadow-sm hover:shadow-md transition-all flex flex-col justify-between">
-              <div>
-                {/* Purple rounded icon badge matching screenshot */}
-                <div className="h-11 w-11 rounded-2xl bg-purple-50 border border-purple-200 flex items-center justify-center text-purple-700 mb-4 shadow-xs">
-                  <Cpu className="h-5 w-5 text-purple-600" />
-                </div>
-                <h3 className="text-xl font-bold text-slate-900">
-                  AI-Driven Planning
-                </h3>
-                <p className="mt-2 text-xs sm:text-sm text-slate-600 leading-relaxed font-normal">
-                  Manage medical simulation pipeline & mechanism planning during biomechanical analysis; autonomous dynamic biomechanical constraints.
-                </p>
-              </div>
-
-              <div className="mt-4 pt-3 border-t border-slate-100 flex items-center justify-between text-xs font-mono text-purple-700 font-semibold">
-                <span>3,800 candidate plans scored in 0.20s</span>
-              </div>
-            </div>
-
-            {/* Bottom Right Card: Data Results with Dropdown */}
-            <div className="flex-1 rounded-3xl border border-slate-200/90 bg-white p-6 sm:p-7 shadow-sm hover:shadow-md transition-all flex flex-col justify-between">
-              <div>
-                <h3 className="text-xl font-bold text-slate-900 mb-3">
-                  Data Results
-                </h3>
-
-                {/* Dropdown pill matching screenshot: ● C31 ∨ */}
-                <div className="inline-block mb-3">
-                  <div className="relative">
-                    <select
-                      value={selectedCase}
-                      onChange={(e) => setSelectedCase(e.target.value as "c31" | "c42" | "c18")}
-                      className="appearance-none rounded-xl border border-purple-200 bg-purple-50/80 pl-3 pr-8 py-1.5 text-xs font-mono font-bold text-purple-800 cursor-pointer focus:outline-none focus:ring-2 focus:ring-purple-400"
-                    >
-                      <option value="c31">● C31</option>
-                      <option value="c42">● C42</option>
-                      <option value="c18">● C18</option>
-                    </select>
-                    <ChevronDown className="h-3.5 w-3.5 text-purple-700 absolute right-2.5 top-1/2 -translate-y-1/2 pointer-events-none" />
-                  </div>
-                </div>
-
-                <p className="text-xs sm:text-sm text-slate-600 leading-relaxed font-normal">
-                  {cases[selectedCase].details}
-                </p>
-              </div>
-
-              {/* "Learn more >" link matching screenshot */}
-              <div className="mt-4 pt-3 border-t border-slate-100 flex items-center justify-between">
-                <a
-                  href="#comparison"
-                  className="inline-flex items-center gap-1 text-xs font-bold text-purple-700 hover:text-purple-900 font-sans transition-colors"
-                >
-                  <span>Learn more</span>
-                  <ChevronRight className="h-3.5 w-3.5" />
-                </a>
-                <span className="text-[11px] font-mono text-slate-400 font-medium">
-                  {cases[selectedCase].stress} · {cases[selectedCase].motion}
-                </span>
-              </div>
-            </div>
-          </div>
+      {/* Container */}
+      <div className="mx-auto w-full max-w-[1360px] px-4 sm:px-6 lg:px-8">
+        {/* Section Heading: Apple Two-Tone Style */}
+        <div className="mb-8 md:mb-10">
+          <h2 className="text-2xl sm:text-3xl lg:text-[34px] font-semibold tracking-[-0.022em]">
+            <span className="text-[#1d1d1f]">Features.</span>{" "}
+            <span className="text-[#86868b]">The Spine Suite difference.</span>
+          </h2>
         </div>
 
-        {/* Bottom Row: 4 Bento Feature Cards matching screenshot */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-          {/* Card 1: AI-Driven Planning */}
-          <div className="benchling-card benchling-card-hover rounded-2xl p-6 bg-white border border-slate-200 transition-all flex flex-col justify-between">
+        {/* 10-Card Bento Grid */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5 lg:gap-6 items-stretch">
+          
+          {/* Card 1: X-ray (Apple Dodger Blue #007aff) */}
+          <div className="group bg-white rounded-[26px] border border-slate-200/80 shadow-[0_2px_10px_rgba(0,0,0,0.03)] p-6 sm:p-7 flex flex-col items-start min-h-[220px] lg:col-start-1 lg:row-start-1 cursor-pointer transition-all duration-300 ease-out hover:-translate-y-2 hover:shadow-[0_18px_38px_-6px_rgba(0,122,255,0.16),0_4px_12px_rgba(0,0,0,0.03)] hover:border-[#007aff]/40">
+            <div className="w-10 h-10 rounded-xl bg-[#007aff]/10 border border-[#007aff]/20 flex items-center justify-center text-[#007aff] mb-6 transition-all duration-300 ease-out group-hover:scale-110 group-hover:-translate-y-0.5 group-hover:shadow-xs group-hover:bg-[#007aff]/15">
+              <svg className="w-5 h-5 stroke-[1.8]" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                <rect x="6" y="4" width="12" height="16" rx="2" />
+                <path d="M12 9v6m-2.5-2.5 2.5 2.5 2.5-2.5" strokeLinecap="round" strokeLinejoin="round" />
+              </svg>
+            </div>
+            <h3 className="text-[19px] sm:text-[20px] font-semibold tracking-[-0.015em] leading-snug text-[#1d1d1f]">
+              <span className="text-[#007aff]">X-ray.</span> Lateral view.
+            </h3>
+            <p className="mt-2 text-[13px] text-[#86868b] font-normal leading-snug">
+              Calibrated lateral radiograph ingestion with automated scaling.
+            </p>
+          </div>
+
+          {/* Card 2: Landmark detection (Apple Fire-Engine Red #ff3b30) */}
+          <div className="group bg-white rounded-[26px] border border-slate-200/80 shadow-[0_2px_10px_rgba(0,0,0,0.03)] p-6 sm:p-7 flex flex-col items-start min-h-[220px] lg:col-start-2 lg:row-start-1 cursor-pointer transition-all duration-300 ease-out hover:-translate-y-2 hover:shadow-[0_18px_38px_-6px_rgba(255,59,48,0.16),0_4px_12px_rgba(0,0,0,0.03)] hover:border-[#ff3b30]/40">
+            <div className="w-10 h-10 rounded-xl bg-[#ff3b30]/10 border border-[#ff3b30]/20 flex items-center justify-center text-[#ff3b30] mb-6 transition-all duration-300 ease-out group-hover:scale-110 group-hover:-translate-y-0.5 group-hover:shadow-xs group-hover:bg-[#ff3b30]/15">
+              <svg className="w-5 h-5 stroke-[1.8]" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                <path d="M4 8V6a2 2 0 0 1 2-2h2" strokeLinecap="round" strokeLinejoin="round" />
+                <path d="M16 4h2a2 2 0 0 1 2 2v2" strokeLinecap="round" strokeLinejoin="round" />
+                <path d="M20 16v2a2 2 0 0 1-2 2h-2" strokeLinecap="round" strokeLinejoin="round" />
+                <path d="M8 20H6a2 2 0 0 1-2-2v-2" strokeLinecap="round" strokeLinejoin="round" />
+                <circle cx="12" cy="12" r="2.5" strokeLinecap="round" strokeLinejoin="round" />
+              </svg>
+            </div>
+            <h3 className="text-[19px] sm:text-[20px] font-semibold tracking-[-0.015em] leading-snug text-[#1d1d1f]">
+              <span className="text-[#ff3b30]">Landmark detection.</span> YOLO model trained on 300 manually labeled images.
+            </h3>
+          </div>
+
+          {/* Card 3: PATIENT-SPECIFIC FE analysis (Tall Dark Hero Card - Spans 2 Rows) */}
+          <div className="group bg-[#0B0F19] text-white rounded-[26px] border border-slate-800 shadow-[0_4px_24px_rgba(0,0,0,0.22)] p-6 sm:p-7 flex flex-col justify-between lg:col-start-3 lg:row-start-1 lg:row-span-2 min-h-[480px] cursor-pointer transition-all duration-300 ease-out hover:-translate-y-2 hover:shadow-[0_24px_48px_-8px_rgba(0,0,0,0.55),0_0_40px_-8px_rgba(56,189,248,0.25)] hover:border-slate-700">
             <div>
-              <h4 className="text-base font-bold text-slate-900 mb-2">AI-Driven Planning</h4>
-              <p className="text-xs text-slate-600 leading-relaxed font-normal">
-                Autonomous planning algorithm optimizes continuous spinal curvature and prevents kinematic collision.
+              <div className="flex items-center gap-2 mb-3">
+                <span className="w-2 h-2 rounded-full bg-[#38bdf8] animate-pulse" />
+                <span className="text-[11px] font-mono tracking-widest text-[#38bdf8] font-bold uppercase">
+                  PATIENT-SPECIFIC
+                </span>
+              </div>
+              <h3 className="text-[24px] sm:text-[26px] font-semibold tracking-[-0.02em] leading-tight text-white">
+                <span className="text-[#38bdf8]">FE analysis.</span> T1–S1 non-linear spine finite element model.
+              </h3>
+              <p className="mt-2 text-[13px] text-slate-300 leading-snug font-normal">
+                Patient-specific multi-physics simulation calibrated to physiological boundary conditions.
               </p>
             </div>
-            <div className="mt-4 pt-3 border-t border-slate-100 text-[11px] font-mono text-purple-700 font-medium">
-              Kinematic mechanism solver
+
+            {/* 3D Translucent Spine Model Render */}
+            <div className="relative my-4 w-full h-[240px] sm:h-[260px] rounded-2xl overflow-hidden bg-black flex items-center justify-center border border-slate-800/80 shadow-inner">
+              <Image
+                src={`${basePath}/features/fe-analysis-spine.jpg`}
+                alt="T1–S1 non-linear spine FE model"
+                fill
+                sizes="(max-width: 1024px) 100vw, 360px"
+                className="object-contain p-2 transition-transform duration-500 ease-out group-hover:scale-[1.03]"
+                priority
+              />
+            </div>
+
+            {/* Bullet Points */}
+            <div className="space-y-2 text-[13px] text-slate-300 font-normal pt-1">
+              <div className="flex items-center gap-2.5">
+                <span className="w-1.5 h-1.5 rounded-full bg-[#38bdf8]" />
+                <span>Disc + rod stress</span>
+              </div>
+              <div className="flex items-center gap-2.5">
+                <span className="w-1.5 h-1.5 rounded-full bg-[#38bdf8]" />
+                <span>Intact vs fused</span>
+              </div>
+              <div className="flex items-center gap-2.5">
+                <span className="w-1.5 h-1.5 rounded-full bg-[#38bdf8]" />
+                <span>PLIF cages, Ti / PEEK</span>
+              </div>
             </div>
           </div>
 
-          {/* Card 2: Biomechanics Insights */}
-          <div className="benchling-card benchling-card-hover rounded-2xl p-6 bg-white border border-slate-200 transition-all flex flex-col justify-between">
+          {/* Card 4: 3D visualization (Apple Violet / Purple #af52de) */}
+          <div className="group bg-white rounded-[26px] border border-slate-200/80 shadow-[0_2px_10px_rgba(0,0,0,0.03)] p-6 sm:p-7 flex flex-col items-start min-h-[220px] lg:col-start-4 lg:row-start-1 cursor-pointer transition-all duration-300 ease-out hover:-translate-y-2 hover:shadow-[0_18px_38px_-6px_rgba(175,82,222,0.16),0_4px_12px_rgba(0,0,0,0.03)] hover:border-[#af52de]/40">
+            <div className="w-10 h-10 rounded-xl bg-[#af52de]/10 border border-[#af52de]/20 flex items-center justify-center text-[#af52de] mb-6 transition-all duration-300 ease-out group-hover:scale-110 group-hover:-translate-y-0.5 group-hover:shadow-xs group-hover:bg-[#af52de]/15">
+              <svg className="w-5 h-5 stroke-[1.8]" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                <path d="m21 16-9 5-9-5V8l9-5 9 5v8Z" strokeLinecap="round" strokeLinejoin="round" />
+                <path d="m3.3 7.8 8.7 5.2 8.7-5.2" strokeLinecap="round" strokeLinejoin="round" />
+                <path d="M12 13v9" strokeLinecap="round" strokeLinejoin="round" />
+              </svg>
+            </div>
+            <h3 className="text-[19px] sm:text-[20px] font-semibold tracking-[-0.015em] leading-snug text-[#1d1d1f]">
+              <span className="text-[#af52de]">3D visualization.</span> Interactive vertebrae, fixation rods, and stress.
+            </h3>
+            <p className="mt-2 text-[13px] text-[#86868b] font-normal leading-snug">
+              Interactive vertebrae, fixation rods, screws, stress and displacement.
+            </p>
+          </div>
+
+          {/* Card 5: Agentic AI interface (Spans 2 columns - Apple Blue #007aff) */}
+          <div className="group bg-white rounded-[26px] border border-slate-200/80 shadow-[0_2px_10px_rgba(0,0,0,0.03)] p-6 sm:p-7 flex flex-col justify-between min-h-[220px] md:col-span-2 lg:col-start-1 lg:col-span-2 lg:row-start-2 cursor-pointer transition-all duration-300 ease-out hover:-translate-y-2 hover:shadow-[0_18px_38px_-6px_rgba(0,122,255,0.16),0_4px_12px_rgba(0,0,0,0.03)] hover:border-[#007aff]/40">
             <div>
-              <h4 className="text-base font-bold text-slate-900 mb-2">Biomechanics Insights</h4>
-              <p className="text-xs text-slate-600 leading-relaxed font-normal">
-                Coupled musculoskeletal forces and non-linear finite element contact equilibrium across vertebral levels.
+              <div className="w-10 h-10 rounded-xl bg-[#007aff]/10 border border-[#007aff]/20 flex items-center justify-center text-[#007aff] mb-6 transition-all duration-300 ease-out group-hover:scale-110 group-hover:-translate-y-0.5 group-hover:shadow-xs group-hover:bg-[#007aff]/15">
+                <svg className="w-5 h-5 stroke-[1.8]" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                  <rect x="4" y="8" width="16" height="12" rx="3" />
+                  <path d="M12 4v4m-4 8v.01m8-.01v.01M9 13h6" strokeLinecap="round" strokeLinejoin="round" />
+                </svg>
+              </div>
+              <h3 className="text-[20px] sm:text-[22px] font-semibold tracking-[-0.015em] leading-snug text-[#1d1d1f]">
+                <span className="text-[#007aff]">Agentic AI interface.</span> Automates surgical planning and clinical reports.
+              </h3>
+              <p className="mt-2 text-[13px] text-[#86868b] font-normal leading-snug max-w-lg">
+                Automates surgical planning, generates clinical reports and supports case investigation.
               </p>
             </div>
-            <div className="mt-4 pt-3 border-t border-slate-100 text-[11px] font-mono text-sky-700 font-medium">
-              552 trunk muscles solved
+            <div className="mt-6">
+              <span className="inline-flex items-center gap-1.5 px-5 py-2.5 rounded-full bg-[#007aff] hover:bg-[#0066d6] text-white text-[13px] font-medium shadow-sm shadow-[#007aff]/25 transition-all duration-200 group-hover:shadow-md group-hover:shadow-[#007aff]/35 group-hover:scale-[1.02] cursor-pointer select-none">
+                &ldquo;Fuse L4–S1 and compare the loads&rdquo;
+              </span>
             </div>
           </div>
 
-          {/* Card 3: Clinical Case Studies */}
-          <div className="benchling-card benchling-card-hover rounded-2xl p-6 bg-white border border-slate-200 transition-all flex flex-col justify-between">
+          {/* Card 6: Fixation rod design (Apple Forest Green #34c759) */}
+          <div className="group bg-white rounded-[26px] border border-slate-200/80 shadow-[0_2px_10px_rgba(0,0,0,0.03)] p-6 sm:p-7 flex flex-col items-start min-h-[220px] lg:col-start-4 lg:row-start-2 cursor-pointer transition-all duration-300 ease-out hover:-translate-y-2 hover:shadow-[0_18px_38px_-6px_rgba(52,199,89,0.16),0_4px_12px_rgba(0,0,0,0.03)] hover:border-[#34c759]/40">
+            <div className="w-10 h-10 rounded-xl bg-[#34c759]/10 border border-[#34c759]/20 flex items-center justify-center text-[#34c759] mb-6 transition-all duration-300 ease-out group-hover:scale-110 group-hover:-translate-y-0.5 group-hover:shadow-xs group-hover:bg-[#34c759]/15">
+              <svg className="w-5 h-5 stroke-[1.8]" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                <path d="M6.5 17.5 C 10 17.5, 14 6.5, 17.5 6.5" strokeLinecap="round" />
+                <circle cx="6.5" cy="17.5" r="1.75" />
+                <circle cx="17.5" cy="6.5" r="1.75" />
+              </svg>
+            </div>
+            <h3 className="text-[19px] sm:text-[20px] font-semibold tracking-[-0.015em] leading-snug text-[#1d1d1f]">
+              <span className="text-[#34c759]">Fixation rod design.</span> Patient-specific multi-planar curvature.
+            </h3>
+            <p className="mt-2 text-[13px] text-[#86868b] font-normal leading-snug">
+              Patient-specific rods with optimized multi-planar curvature.
+            </p>
+          </div>
+
+          {/* Card 7: PJK risk estimation (Apple Persimmon / Red-Orange #ea5418) */}
+          <div className="group bg-white rounded-[26px] border border-slate-200/80 shadow-[0_2px_10px_rgba(0,0,0,0.03)] p-6 sm:p-7 flex flex-col items-start min-h-[220px] lg:col-start-1 lg:row-start-3 cursor-pointer transition-all duration-300 ease-out hover:-translate-y-2 hover:shadow-[0_18px_38px_-6px_rgba(234,84,24,0.16),0_4px_12px_rgba(0,0,0,0.03)] hover:border-[#ea5418]/40">
+            <div className="w-10 h-10 rounded-xl bg-[#ea5418]/10 border border-[#ea5418]/20 flex items-center justify-center text-[#ea5418] mb-6 transition-all duration-300 ease-out group-hover:scale-110 group-hover:-translate-y-0.5 group-hover:shadow-xs group-hover:bg-[#ea5418]/15">
+              <svg className="w-5 h-5 stroke-[1.8]" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                <path d="m21.73 18-8-14a2 2 0 0 0-3.48 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3Z" strokeLinecap="round" strokeLinejoin="round" />
+                <line x1="12" y1="9" x2="12" y2="13" strokeLinecap="round" />
+                <circle cx="12" cy="17" r="0.5" fill="currentColor" />
+              </svg>
+            </div>
+            <h3 className="text-[19px] sm:text-[20px] font-semibold tracking-[-0.015em] leading-snug text-[#1d1d1f]">
+              <span className="text-[#ea5418]">PJK risk estimation.</span> Machine learning prediction.
+            </h3>
+            <p className="mt-2 text-[13px] text-[#86868b] font-normal leading-snug">
+              Predicts proximal junctional kyphosis risk with machine learning.
+            </p>
+          </div>
+
+          {/* Card 8: Alignment (Apple Steel Teal #08827c) */}
+          <div className="group bg-white rounded-[26px] border border-slate-200/80 shadow-[0_2px_10px_rgba(0,0,0,0.03)] p-6 sm:p-7 flex flex-col justify-between min-h-[220px] lg:col-start-2 lg:row-start-3 cursor-pointer transition-all duration-300 ease-out hover:-translate-y-2 hover:shadow-[0_18px_38px_-6px_rgba(8,130,124,0.16),0_4px_12px_rgba(0,0,0,0.03)] hover:border-[#08827c]/40">
             <div>
-              <h4 className="text-base font-bold text-slate-900 mb-2">Clinical Case Studies</h4>
-              <p className="text-xs text-slate-600 leading-relaxed font-normal">
-                Concrete operative clinical data, biomechanical comparisons for surgical planning, and risk mitigation.
+              <div className="w-10 h-10 rounded-xl bg-[#08827c]/10 border border-[#08827c]/20 flex items-center justify-center text-[#08827c] mb-6 font-semibold text-base font-serif transition-all duration-300 ease-out group-hover:scale-110 group-hover:-translate-y-0.5 group-hover:shadow-xs group-hover:bg-[#08827c]/15">
+                Å
+              </div>
+              <h3 className="text-[19px] sm:text-[20px] font-semibold tracking-[-0.015em] leading-snug text-[#1d1d1f]">
+                <span className="text-[#08827c]">Alignment.</span> Spino-pelvic parameters.
+              </h3>
+              <p className="mt-2 text-[13px] text-[#86868b] font-normal leading-snug">
+                Real-time pelvic incidence, lumbar lordosis, and sagittal balance calculations.
               </p>
             </div>
-            <div className="mt-4 pt-3 border-t border-slate-100 text-[11px] font-mono text-emerald-700 font-medium">
-              Stanford & UT Health cohorts
+            <div className="mt-4 flex items-center gap-2">
+              <span className="px-3 py-1 rounded-full border border-[#08827c]/25 bg-[#08827c]/10 text-[11px] font-semibold text-[#08827c] shadow-2xs transition-transform duration-200 group-hover:scale-105">
+                PI
+              </span>
+              <span className="px-3 py-1 rounded-full border border-[#08827c]/25 bg-[#08827c]/10 text-[11px] font-semibold text-[#08827c] shadow-2xs transition-transform duration-200 group-hover:scale-105">
+                LL
+              </span>
+              <span className="px-3 py-1 rounded-full border border-[#08827c]/25 bg-[#08827c]/10 text-[11px] font-semibold text-[#08827c] shadow-2xs transition-transform duration-200 group-hover:scale-105">
+                SVA
+              </span>
             </div>
           </div>
 
-          {/* Card 4: Regulatory Compliance */}
-          <div className="benchling-card benchling-card-hover rounded-2xl p-6 bg-white border border-slate-200 transition-all flex flex-col justify-between">
+          {/* Card 9: Planning score (Apple Saffron Amber #d97706) */}
+          <div className="group bg-white rounded-[26px] border border-slate-200/80 shadow-[0_2px_10px_rgba(0,0,0,0.03)] p-6 sm:p-7 flex flex-col items-start min-h-[220px] lg:col-start-3 lg:row-start-3 cursor-pointer transition-all duration-300 ease-out hover:-translate-y-2 hover:shadow-[0_18px_38px_-6px_rgba(217,119,6,0.16),0_4px_12px_rgba(0,0,0,0.03)] hover:border-[#d97706]/40">
+            <div className="w-10 h-10 rounded-xl bg-[#f59e0b]/10 border border-[#f59e0b]/20 flex items-center justify-center text-[#d97706] mb-6 transition-all duration-300 ease-out group-hover:scale-110 group-hover:-translate-y-0.5 group-hover:shadow-xs group-hover:bg-[#f59e0b]/15">
+              <svg className="w-5 h-5 stroke-[1.8]" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                <path d="M5 16 A 8.5 8.5 0 1 1 19 16" strokeLinecap="round" />
+                <path d="m12 12 3.5-3.5" strokeLinecap="round" strokeLinejoin="round" />
+              </svg>
+            </div>
+            <h3 className="text-[19px] sm:text-[20px] font-semibold tracking-[-0.015em] leading-snug text-[#1d1d1f]">
+              <span className="text-[#d97706]">Planning score.</span> Biomechanical safety verification.
+            </h3>
+            <p className="mt-2 text-[13px] text-[#86868b] font-normal leading-snug">
+              Verifies the plan&apos;s biomechanical safety and alignment.
+            </p>
+          </div>
+
+          {/* Card 10: Musculoskeletal model (Apple Deep Cerise / Rose #ec348c) */}
+          <div className="group bg-white rounded-[26px] border border-slate-200/80 shadow-[0_2px_10px_rgba(0,0,0,0.03)] p-6 sm:p-7 flex flex-col justify-between min-h-[220px] lg:col-start-4 lg:row-start-3 cursor-pointer transition-all duration-300 ease-out hover:-translate-y-2 hover:shadow-[0_18px_38px_-6px_rgba(236,52,140,0.16),0_4px_12px_rgba(0,0,0,0.03)] hover:border-[#ec348c]/40">
             <div>
-              <h4 className="text-base font-bold text-slate-900 mb-2">Regulatory Compliance</h4>
-              <p className="text-xs text-slate-600 leading-relaxed font-normal">
-                Regulatory compliance and ASME V&V 40 verification procedures for medical AI decision support.
+              <div className="w-10 h-10 rounded-xl bg-[#ec348c]/10 border border-[#ec348c]/20 flex items-center justify-center text-[#ec348c] mb-4 transition-all duration-300 ease-out group-hover:scale-110 group-hover:-translate-y-0.5 group-hover:shadow-xs group-hover:bg-[#ec348c]/15">
+                <svg className="w-5 h-5 stroke-[1.8]" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                  <circle cx="12" cy="5" r="2" />
+                  <path d="M12 7v7m0 0-3 6m3-6 3 6M7 10h10" strokeLinecap="round" strokeLinejoin="round" />
+                </svg>
+              </div>
+              <h3 className="text-[19px] sm:text-[20px] font-semibold tracking-[-0.015em] leading-snug text-[#1d1d1f]">
+                <span className="text-[#ec348c]">Musculoskeletal model.</span> Thoracolumbar dynamics.
+              </h3>
+              <p className="mt-1 text-[13px] text-[#86868b] font-normal leading-snug">
+                Thoracolumbar model, 500+ muscles, 51 DoF.
               </p>
             </div>
-            <div className="mt-4 pt-3 border-t border-slate-100 text-[11px] font-mono text-indigo-700 font-medium">
-              ASME V&V 40 & FDA 21 CFR Part 11
+
+            {/* Compression Chart (matching screenshot) */}
+            <div className="mt-4 rounded-xl bg-[#0B0F19] p-3 border border-slate-800 text-[8px] font-mono shadow-xs">
+              <div className="text-slate-200 font-bold mb-0.5">Compression</div>
+              <div className="text-[7.5px] text-slate-400 mb-2 leading-tight">
+                Along each vertebra&apos;s own axis, reaction on the upper vertebra.
+              </div>
+              <div className="space-y-0.5">
+                {[
+                  { level: "T1–T2", blue: 40, orange: 28 },
+                  { level: "T2–T3", blue: 46, orange: 34 },
+                  { level: "T3–T4", blue: 53, orange: 42 },
+                  { level: "T4–T5", blue: 61, orange: 50 },
+                  { level: "T5–T6", blue: 68, orange: 58 },
+                  { level: "T6–T7", blue: 75, orange: 66 },
+                  { level: "T7–T8", blue: 82, orange: 74 },
+                  { level: "T8–T9", blue: 88, orange: 80 },
+                  { level: "T9–T10", blue: 93, orange: 86 },
+                  { level: "T10–T11", blue: 98, orange: 92 },
+                ].map((row, idx) => (
+                  <div key={idx} className="flex items-center gap-1.5">
+                    <span className="w-7 text-[7px] text-slate-400 font-mono shrink-0">{row.level}</span>
+                    <div className="flex-1 flex flex-col gap-0.5">
+                      <div className="h-0.5 rounded-full bg-[#38BDF8]" style={{ width: `${row.blue}%` }} />
+                      <div className="h-0.5 rounded-full bg-[#F59E0B]" style={{ width: `${row.orange}%` }} />
+                    </div>
+                  </div>
+                ))}
+              </div>
             </div>
           </div>
+
         </div>
       </div>
     </section>

@@ -58,7 +58,7 @@ describe("Demo Page, Contact Page, and CalBookingWidget", () => {
 
   it("renders the /contact page with header and direct channels", () => {
     render(<ContactPage />);
-    expect(screen.getByText(/Contact Us & Schedule an Executive Review/i)).toBeInTheDocument();
+    expect(screen.getByRole("heading", { name: /Contact Us/i })).toBeInTheDocument();
     expect(screen.getByText(/Direct Institutional Contact Channels/i)).toBeInTheDocument();
   });
 });

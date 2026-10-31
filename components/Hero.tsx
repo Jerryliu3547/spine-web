@@ -52,26 +52,26 @@ export default function Hero() {
           {/* Subtle localized dark halo behind hero text for guaranteed legibility across all video frames */}
           <div className="absolute -top-6 left-1/2 -translate-x-1/2 w-full max-w-3xl h-[280px] bg-slate-950/25 blur-3xl rounded-full pointer-events-none -z-10" />
 
-          {/* High-Contrast Hero Title */}
-          <h1 className="max-w-4xl text-3xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight text-white leading-[1.14] drop-shadow-[0_2px_12px_rgba(0,0,0,0.85)]">
+          {/* Apple Typography Hero Title */}
+          <h1 className="max-w-4xl text-3xl sm:text-5xl lg:text-6xl font-semibold tracking-[-0.025em] text-white leading-[1.12] drop-shadow-[0_2px_12px_rgba(0,0,0,0.85)]">
             From One Lateral X-Ray to a{" "}
-            <span className="bg-gradient-to-r from-purple-300 via-indigo-200 to-sky-300 bg-clip-text text-transparent drop-shadow-[0_2px_14px_rgba(168,85,247,0.45)]">
-              Simulated Spine Surgery
+            <span className="text-slate-300/95 font-semibold">
+              Simulated Spine Surgery.
             </span>
           </h1>
 
-          {/* Subheadline with high contrast against the video */}
-          <p className="mt-6 max-w-2xl text-base sm:text-lg text-slate-100 leading-relaxed font-medium drop-shadow-[0_1px_8px_rgba(0,0,0,0.9)]">
+          {/* Subheadline with clean Apple body tracking */}
+          <p className="mt-6 max-w-2xl text-base sm:text-[19px] text-slate-200/90 leading-relaxed font-normal tracking-[-0.01em] drop-shadow-[0_1px_8px_rgba(0,0,0,0.9)]">
             An infinite biomechanics program team for surgical R&D. Autonomous multi-physics routing across finite element stress and musculoskeletal loading in seconds.
           </p>
 
-          {/* Benchling Signature CTA */}
+          {/* Apple Trade In Blue CTA */}
           <div className="mt-8 flex flex-wrap items-center justify-center gap-4">
             <a
               href="https://calendar.app.google/xuDw7PomLrF6Y6BW7"
               target="_blank"
               rel="noopener noreferrer"
-              className="benchling-cta-purple inline-flex items-center justify-center gap-2.5 rounded-xl px-7 py-3.5 text-sm font-semibold text-white transition-all shadow-md shadow-purple-600/25 hover:shadow-lg hover:shadow-purple-600/35 hover:-translate-y-0.5"
+              className="apple-cta-blue bg-[#007aff] hover:bg-[#0066d6] inline-flex items-center justify-center gap-2.5 rounded-xl px-7 py-3.5 text-sm font-semibold text-white transition-all shadow-md shadow-[#007aff]/35 hover:shadow-lg hover:shadow-[#007aff]/50 hover:-translate-y-0.5 active:translate-y-0"
             >
               <span>Request Clinical Demo</span>
               <ArrowRight className="h-4 w-4" />

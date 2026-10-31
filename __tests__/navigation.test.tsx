@@ -2,7 +2,7 @@ import { render, screen } from "@testing-library/react";
 import { describe, it, expect, vi } from "vitest";
 import Navbar from "@/components/Navbar";
 import ProductPage from "@/app/product/page";
-import MissionPage from "@/app/mission/page";
+import AboutPage from "@/app/about/page";
 import TeamPage from "@/app/team/page";
 import ContactPage from "@/app/contact/page";
 
@@ -12,31 +12,31 @@ vi.mock("next/navigation", () => ({
 }));
 
 describe("New Navigation & Pages", () => {
-  it("renders Product, Mission, Team, and Contact navigation links", () => {
+  it("renders Product, About Us, and Contact navigation links, and omits Mission", () => {
     render(<Navbar />);
     expect(screen.getByRole("link", { name: /^product$/i })).toHaveAttribute("href", "/product");
-    expect(screen.getByRole("link", { name: /^mission$/i })).toHaveAttribute("href", "/mission");
-    expect(screen.getByRole("link", { name: /^team$/i })).toHaveAttribute("href", "/team");
+    expect(screen.getByRole("link", { name: /^about us$/i })).toHaveAttribute("href", "/about");
     expect(screen.getByRole("link", { name: /^contact$/i })).toHaveAttribute("href", "/contact");
+    expect(screen.queryByRole("link", { name: /^mission$/i })).not.toBeInTheDocument();
   });
 
   it("renders the Product page properly", () => {
     render(<ProductPage />);
-    expect(screen.getByText(/autonomous biomechanics for/i)).toBeInTheDocument();
+    expect(screen.getByText(/autonomous biomechanics/i)).toBeInTheDocument();
   });
 
-  it("renders the Mission page properly", () => {
-    render(<MissionPage />);
-    expect(screen.getByText(/engineering zero-failure/i)).toBeInTheDocument();
+  it("renders the About Us page properly", () => {
+    render(<AboutPage />);
+    expect(screen.getByText(/pioneering computational/i)).toBeInTheDocument();
   });
 
-  it("renders the Team page properly", () => {
+  it("renders the Team alias page properly", () => {
     render(<TeamPage />);
     expect(screen.getByText(/pioneering computational/i)).toBeInTheDocument();
   });
 
   it("renders the Contact page properly", () => {
     render(<ContactPage />);
-    expect(screen.getByText(/Contact Us & Schedule an Executive Review/i)).toBeInTheDocument();
+    expect(screen.getByText(/Contact Us\./i)).toBeInTheDocument();
   });
 });

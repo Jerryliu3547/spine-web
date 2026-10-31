@@ -21,7 +21,7 @@ const FEATURE_CARDS: FeatureCard[] = [
     id: "xray-sagittal",
     title: "X-Ray Sagittal Analysis",
     description: "Automated landmark localization and spinopelvic sagittal parameter calculation from a single lateral radiograph.",
-    image: "/features/metronome.jpg",
+    image: "/features/xray-sagittal.jpg",
     stationary: {
       top: "X-Ray",
       sub: "Sagittal",
@@ -31,7 +31,7 @@ const FEATURE_CARDS: FeatureCard[] = [
     id: "shape-registration",
     title: "3D Spine Shape Model",
     description: "Reconstructing patient-specific 3D spine shape models and vertebral morphometry from planar imaging.",
-    image: "/features/prism.jpg",
+    image: "/features/spine-shape-model.jpg",
     stationary: {
       top: "Shape Registration",
       sub: "spine shape model",
@@ -41,7 +41,7 @@ const FEATURE_CARDS: FeatureCard[] = [
     id: "plan-screws",
     title: "Plan + Screws Construct",
     description: "Patient-specific pedicle screw trajectory optimization, lordosis restoration, and PJK risk mitigation.",
-    image: "/features/balance.jpg",
+    image: "/features/plan-screws.jpg",
     stationary: {
       top: "Plan +Screws",
       sub: "Alignment, PJK risk",
@@ -51,9 +51,9 @@ const FEATURE_CARDS: FeatureCard[] = [
     id: "febio-stress",
     title: "Finite Element Stress",
     description: "Autonomous FEBio multi-physics routing to evaluate anterior column load sharing and rod fatigue limits.",
-    image: "/features/sphere.jpg",
+    image: "/features/febio-stress.jpg",
     stationary: {
-      top: "FEBio Stress",
+      top: "Finite Element Analysis",
       sub: "Rod strain & cage fatigue",
     },
   },
@@ -61,7 +61,7 @@ const FEATURE_CARDS: FeatureCard[] = [
     id: "vertebral-kinematics",
     title: "Musculoskeletal Dynamics",
     description: "Coupled OpenSim dynamic simulation tracking multi-level spine kinematics under physiological daily loads.",
-    image: "/features/caliper.jpg",
+    image: "/features/msk-dynamics.jpg",
     stationary: {
       top: "MSK Dynamics",
       sub: "Kinematics & trunk muscle forces",
@@ -72,12 +72,14 @@ const FEATURE_CARDS: FeatureCard[] = [
 // Double array for seamless infinite circular loop
 const DISPLAY_CARDS = [...FEATURE_CARDS, ...FEATURE_CARDS];
 const TOTAL_CARDS = FEATURE_CARDS.length; // 5 rotational cards
-const ROTATION_INTERVAL_MS = 2800; // Faster rotational tempo
+const ROTATION_INTERVAL_MS = 2800; // Auto-rolling tempo (2.8 seconds)
 
 export default function FeatureCarouselSection() {
   const [activeIndex, setActiveIndex] = useState(0);
   const [virtualIndex, setVirtualIndex] = useState(0);
   const [isPaused, setIsPaused] = useState(false);
+  const [isInView, setIsInView] = useState(true);
+  const sectionRef = useRef<HTMLElement>(null);
   const scrollRef = useRef<HTMLDivElement>(null);
   const isUserInteractingRef = useRef(false);
   const interactionTimeoutRef = useRef<NodeJS.Timeout | null>(null);
@@ -85,32 +87,46 @@ export default function FeatureCarouselSection() {
 
   const basePath = process.env.NEXT_PUBLIC_BASE_PATH || "";
 
-  // Helper to scroll to a specific virtual card index
+  // Pause auto-rolling when section is scrolled out of view to avoid affecting users reading other sections
+  useEffect(() => {
+    if (!sectionRef.current || typeof IntersectionObserver === "undefined") return;
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        setIsInView(entry.isIntersecting);
+      },
+      { threshold: 0.1 }
+    );
+    observer.observe(sectionRef.current);
+    return () => observer.disconnect();
+  }, []);
+
+  // Helper to scroll strictly within the horizontal container without affecting window scrolling
   const scrollToVirtual = useCallback((targetIndex: number, smooth = true) => {
     if (!scrollRef.current) return;
     const container = scrollRef.current;
     const card = container.children[targetIndex] as HTMLElement;
     if (!card) return;
 
+    // Use container.scrollTo to isolate scrolling to the horizontal carousel container
+    const targetLeft = card.offsetLeft - container.offsetLeft;
+
     if (smooth) {
-      if (typeof card.scrollIntoView === "function") {
-        card.scrollIntoView({
-          behavior: "smooth",
-          inline: "start",
-          block: "nearest",
-        });
-      } else if (typeof container.scrollTo === "function") {
+      if (typeof container.scrollTo === "function") {
         container.scrollTo({
-          left: card.offsetLeft - container.offsetLeft,
+          left: targetLeft,
           behavior: "smooth",
         });
+      } else {
+        container.scrollLeft = targetLeft;
       }
     } else {
       if (typeof container.scrollTo === "function") {
         container.scrollTo({
-          left: card.offsetLeft - container.offsetLeft,
+          left: targetLeft,
           behavior: "instant",
         });
+      } else {
+        container.scrollLeft = targetLeft;
       }
     }
 
@@ -195,9 +211,9 @@ export default function FeatureCarouselSection() {
     }, 3500);
   };
 
-  // Faster auto-rolling in a continuous circle (every 2.8 seconds)
+  // Auto-rolling in a continuous circle (every 2.8 seconds) only when visible on screen
   useEffect(() => {
-    if (isPaused) return;
+    if (isPaused || !isInView) return;
 
     const interval = setInterval(() => {
       if (isUserInteractingRef.current) return;
@@ -205,12 +221,12 @@ export default function FeatureCarouselSection() {
     }, ROTATION_INTERVAL_MS);
 
     return () => clearInterval(interval);
-  }, [isPaused, handleNext]);
+  }, [isPaused, isInView, handleNext]);
 
   const activeCard = FEATURE_CARDS[activeIndex] || FEATURE_CARDS[0];
 
   return (
-    <section className="relative w-full bg-white py-20 md:py-28 overflow-hidden border-b border-slate-200/80">
+    <section ref={sectionRef} className="relative w-full bg-white py-20 md:py-28 overflow-hidden border-b border-slate-200/80">
       {/* Panoramic container matching lower Clinical Workbench bounding line */}
       <div className="mx-auto w-full max-w-[1520px] 2xl:max-w-[1680px] px-4 sm:px-6 lg:px-10 xl:px-12">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-12 xl:gap-14 items-start">
@@ -218,18 +234,14 @@ export default function FeatureCarouselSection() {
           {/* ================= LEFT STATION CARD (Desktop only) ================= */}
           <div className="hidden lg:flex lg:col-span-4 flex-col justify-between h-full min-h-[460px] sm:min-h-[500px] md:min-h-[530px] lg:sticky lg:top-28 pt-2">
             <div>
-              {/* Main Headline with Serif Typography matching user specification */}
-              <h2
-                style={{ fontFamily: "'Newsreader', Georgia, ui-serif, Cambria, 'Times New Roman', serif" }}
-                className="text-4xl sm:text-5xl lg:text-[46px] leading-[1.12] text-slate-900 font-normal tracking-tight"
-              >
-                X-Ray in,<br />
-                Finite Element &<br />
-                MSK out<br />
+              {/* Main Headline: Apple Two-Tone Typography */}
+              <h2 className="text-4xl sm:text-5xl lg:text-[46px] leading-[1.08] font-semibold tracking-[-0.025em]">
+                <span className="text-[#1d1d1f]">X-Ray in,</span><br />
+                <span className="text-[#86868b]">Finite Element &<br />MSK out.</span>
               </h2>
 
-              {/* Dynamic Display Area: Big Top Word + Small Subtext */}
-              <div className="mt-12 sm:mt-16">
+              {/* Dynamic Display Area: Apple Eyebrow + Bold Title + Gray Subtext */}
+              <div className="mt-10 sm:mt-14">
                 <AnimatePresence mode="wait">
                   <motion.div
                     key={activeIndex}
@@ -239,13 +251,13 @@ export default function FeatureCarouselSection() {
                     transition={{ duration: 0.35, ease: [0.16, 1, 0.3, 1] }}
                     className="flex flex-col"
                   >
-                    <span
-                      style={{ fontFamily: "'Newsreader', Georgia, ui-serif, Cambria, 'Times New Roman', serif" }}
-                      className="text-4xl sm:text-5xl lg:text-[44px] text-slate-900 font-normal tracking-tight leading-tight"
-                    >
+                    <span className="text-[12px] font-semibold text-[#86868b] uppercase tracking-[0.06em]">
                       {activeCard.stationary.top}
                     </span>
-                    <span className="mt-3 text-sm sm:text-base text-slate-500 font-medium tracking-wide">
+                    <span className="mt-1.5 text-3xl sm:text-4xl lg:text-[40px] text-[#1d1d1f] font-semibold tracking-tight leading-tight">
+                      {activeCard.title}
+                    </span>
+                    <span className="mt-2 text-sm sm:text-base text-[#86868b] font-normal leading-relaxed">
                       {activeCard.stationary.sub}
                     </span>
                   </motion.div>
@@ -262,11 +274,10 @@ export default function FeatureCarouselSection() {
                     key={idx}
                     onClick={() => scrollToIndex(idx)}
                     aria-label={`Go to feature card ${idx + 1}`}
-                    className={`transition-all duration-300 rounded-full ${
-                      activeIndex === idx
-                        ? "w-7 h-1.5 bg-slate-900"
-                        : "w-1.5 h-1.5 bg-slate-200 hover:bg-slate-400"
-                    }`}
+                    className={`transition-all duration-300 rounded-full ${activeIndex === idx
+                      ? "w-7 h-1.5 bg-slate-900"
+                      : "w-1.5 h-1.5 bg-slate-200 hover:bg-slate-400"
+                      }`}
                   />
                 ))}
               </div>
@@ -319,11 +330,10 @@ export default function FeatureCarouselSection() {
                 <div
                   key={`${card.id}-${idx}`}
                   onClick={() => scrollToVirtual(idx, true)}
-                  className={`snap-center lg:snap-start shrink-0 w-full min-w-full lg:min-w-[400px] lg:w-[400px] xl:min-w-[430px] xl:w-[430px] h-[480px] sm:h-[510px] md:h-[530px] rounded-[32px] bg-[#F4F6F9] border transition-all duration-300 p-7 sm:p-9 flex flex-col justify-between cursor-pointer select-none group shadow-xs ${
-                    activeIndex === (idx % TOTAL_CARDS)
-                      ? "border-slate-300/90 shadow-md shadow-slate-900/5 ring-1 ring-slate-900/5"
-                      : "border-slate-200/80 hover:border-slate-300 hover:shadow-md"
-                  }`}
+                  className={`snap-center lg:snap-start shrink-0 w-full min-w-full lg:min-w-[400px] lg:w-[400px] xl:min-w-[430px] xl:w-[430px] h-[480px] sm:h-[510px] md:h-[530px] rounded-[32px] bg-[#F4F6F9] border transition-all duration-300 p-7 sm:p-9 flex flex-col justify-between cursor-pointer select-none group shadow-xs ${activeIndex === (idx % TOTAL_CARDS)
+                    ? "border-slate-300/90 shadow-md shadow-slate-900/5 ring-1 ring-slate-900/5"
+                    : "border-slate-200/80 hover:border-slate-300 hover:shadow-md"
+                    }`}
                 >
                   {/* 3D Visual Asset Container with soft feathered blend */}
                   <div
@@ -343,12 +353,12 @@ export default function FeatureCarouselSection() {
                     />
                   </div>
 
-                  {/* Card Bottom Details */}
+                  {/* Card Bottom Details - Apple Card Typography */}
                   <div className="mt-6 flex flex-col">
-                    <h3 className="text-xl sm:text-[22px] font-semibold text-slate-900 tracking-tight leading-snug">
+                    <h3 className="text-xl sm:text-[22px] font-semibold text-[#1d1d1f] tracking-tight leading-snug">
                       {card.title}
                     </h3>
-                    <p className="mt-3 text-sm sm:text-base text-slate-600 leading-relaxed font-normal">
+                    <p className="mt-2.5 text-sm sm:text-[15px] text-[#86868b] leading-relaxed font-normal">
                       {card.description}
                     </p>
                   </div>
@@ -366,11 +376,10 @@ export default function FeatureCarouselSection() {
                     key={idx}
                     onClick={() => scrollToIndex(idx)}
                     aria-label={`Go to slide ${idx + 1}`}
-                    className={`transition-all duration-300 rounded-full ${
-                      activeIndex === idx
-                        ? "w-7 h-1.5 bg-slate-900"
-                        : "w-1.5 h-1.5 bg-slate-200 hover:bg-slate-400"
-                    }`}
+                    className={`transition-all duration-300 rounded-full ${activeIndex === idx
+                      ? "w-7 h-1.5 bg-slate-900"
+                      : "w-1.5 h-1.5 bg-slate-200 hover:bg-slate-400"
+                      }`}
                   />
                 ))}
               </div>

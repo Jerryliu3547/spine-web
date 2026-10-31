@@ -16,8 +16,7 @@ export default function Navbar() {
 
   const navLinks = [
     { label: "Product", href: "/product" },
-    { label: "Mission", href: "/mission" },
-    { label: "Team", href: "/team" },
+    { label: "About Us", href: "/about" },
     { label: "Contact", href: "/contact" },
   ];
 
@@ -26,43 +25,41 @@ export default function Navbar() {
       <div className="mx-auto flex max-w-7xl items-center justify-between px-4 sm:px-6 lg:px-8 h-18">
         {/* Brand / Logo */}
         <Link href="/" className="flex items-center gap-2.5 group">
-          <div className="flex h-9 w-9 items-center justify-center rounded-xl bg-purple-50 border border-purple-200 text-purple-700 group-hover:border-purple-300 group-hover:scale-105 transition-all shadow-xs">
-            <Activity className="h-5 w-5 text-purple-600" />
+          <div className="flex h-9 w-9 items-center justify-center rounded-xl bg-blue-50 border border-blue-100 text-[#007aff] group-hover:border-blue-200 group-hover:scale-105 transition-all shadow-xs">
+            <Activity className="h-5 w-5 text-[#007aff]" />
           </div>
-          <span className="text-base sm:text-lg font-bold tracking-tight text-slate-900 group-hover:text-purple-700 transition-colors">
+          <span className="text-base sm:text-lg font-semibold tracking-[-0.02em] text-[#1d1d1f] group-hover:text-[#007aff] transition-colors">
             Spine Suite
           </span>
         </Link>
 
-        {/* Desktop Navigation Links */}
-        <nav className="hidden lg:flex items-center gap-8">
+        {/* Desktop Navigation Tabs (Apple Segmented Capsule Style) */}
+        <nav className="hidden md:flex items-center p-1 rounded-full bg-slate-100/95 border border-slate-200/90 shadow-xs backdrop-blur-md">
           {navLinks.map((link) => {
-            const isActive = pathname === link.href;
+            const isActive = pathname === link.href || (link.href === "/about" && pathname === "/team");
             return (
               <Link
                 key={link.label}
                 href={link.href}
-                className={`relative text-xs font-semibold uppercase tracking-wider transition-colors py-2 ${isActive
-                    ? "text-purple-700 font-bold"
-                    : "text-slate-600 hover:text-purple-700"
-                  }`}
+                className={`relative px-5 py-2 text-[14px] font-medium tracking-tight rounded-full transition-all duration-200 ${
+                  isActive
+                    ? "bg-white text-[#1d1d1f] font-semibold shadow-xs ring-1 ring-black/[0.08]"
+                    : "text-slate-800 hover:text-[#1d1d1f] hover:bg-white/90 active:scale-98"
+                }`}
               >
                 <span>{link.label}</span>
-                {isActive && (
-                  <span className="absolute bottom-0 left-0 right-0 h-0.5 rounded-full bg-purple-600" />
-                )}
               </Link>
             );
           })}
         </nav>
 
-        {/* Action Button (Benchling style) */}
+        {/* Action Button (Apple Trade In Blue style) */}
         <div className="hidden md:flex items-center gap-4">
           <a
             href="https://calendar.app.google/xuDw7PomLrF6Y6BW7"
             target="_blank"
             rel="noopener noreferrer"
-            className="benchling-cta-purple inline-flex items-center justify-center gap-2 rounded-xl px-4 py-2.5 text-xs font-semibold uppercase tracking-wider text-white active:scale-95 transition-all shadow-xs"
+            className="apple-cta-blue bg-[#007aff] hover:bg-[#0066d6] inline-flex items-center justify-center gap-2 rounded-xl px-4 py-2.5 text-xs font-semibold uppercase tracking-wider text-white active:scale-95 transition-all shadow-sm shadow-[#007aff]/30"
           >
             <span>Request Demo</span>
             <ArrowRight className="h-3.5 w-3.5" />
@@ -70,7 +67,7 @@ export default function Navbar() {
         </div>
 
         {/* Mobile menu button */}
-        <div className="flex lg:hidden">
+        <div className="flex md:hidden">
           <button
             type="button"
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
@@ -84,25 +81,34 @@ export default function Navbar() {
 
       {/* Mobile Drawer */}
       {mobileMenuOpen && (
-        <div className="lg:hidden border-b border-slate-200 bg-white px-4 pt-3 pb-6 space-y-3 shadow-lg">
-          {navLinks.map((link) => (
-            <Link
-              key={link.label}
-              href={link.href}
-              onClick={() => setMobileMenuOpen(false)}
-              className="flex items-center justify-between py-2.5 text-sm font-medium text-slate-700 hover:text-purple-700 border-b border-slate-100"
-            >
-              <span>{link.label}</span>
-              <ArrowRight className="h-4 w-4 text-slate-400" />
-            </Link>
-          ))}
-          <div className="pt-3">
+        <div className="md:hidden border-b border-slate-200 bg-white px-4 pt-3 pb-6 space-y-3 shadow-lg">
+          <div className="p-1 rounded-2xl bg-slate-100/90 border border-slate-200/90 space-y-1">
+            {navLinks.map((link) => {
+              const isActive = pathname === link.href || (link.href === "/about" && pathname === "/team");
+              return (
+                <Link
+                  key={link.label}
+                  href={link.href}
+                  onClick={() => setMobileMenuOpen(false)}
+                  className={`flex items-center justify-between px-4 py-2.5 rounded-xl text-sm font-medium transition-all ${
+                    isActive
+                      ? "bg-white text-[#1d1d1f] font-semibold shadow-xs"
+                      : "text-slate-800 hover:text-[#1d1d1f] hover:bg-white/90"
+                  }`}
+                >
+                  <span>{link.label}</span>
+                  <ArrowRight className={`h-4 w-4 ${isActive ? "text-[#007aff]" : "text-slate-400"}`} />
+                </Link>
+              );
+            })}
+          </div>
+          <div className="pt-2">
             <a
               href="https://calendar.app.google/xuDw7PomLrF6Y6BW7"
               target="_blank"
               rel="noopener noreferrer"
               onClick={() => setMobileMenuOpen(false)}
-              className="benchling-cta-purple flex w-full items-center justify-center gap-2 rounded-xl py-3 text-sm font-semibold text-white shadow-md shadow-purple-600/20"
+              className="apple-cta-blue bg-[#007aff] hover:bg-[#0066d6] flex w-full items-center justify-center gap-2 rounded-xl py-3 text-sm font-semibold text-white shadow-md shadow-[#007aff]/30"
             >
               <span>Request Clinical Demo</span>
               <ArrowRight className="h-4 w-4" />

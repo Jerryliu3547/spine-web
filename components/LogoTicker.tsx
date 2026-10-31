@@ -74,11 +74,12 @@ export default function LogoTicker() {
   return (
     <section className="border-y border-slate-200/80 bg-[#F8FAFC] py-12 sm:py-16 relative overflow-hidden">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 mb-8 sm:mb-10 text-center">
-        <p className="text-xs font-mono font-semibold uppercase tracking-widest text-purple-700 mb-2">
+        <span className="text-[12px] font-semibold uppercase tracking-[0.06em] text-[#86868b] block mb-2">
           Clinical Pedigree & Research Validation
-        </p>
-        <h2 className="text-xl sm:text-2xl font-bold text-slate-900 tracking-tight">
-          Backed by Clinical Research & Academic Excellence Across Leading Centers
+        </span>
+        <h2 className="text-2xl sm:text-3xl font-semibold tracking-[-0.022em]">
+          <span className="text-[#1d1d1f]">Backed by Clinical Research.</span>{" "}
+          <span className="text-[#86868b]">Academic excellence across leading centers.</span>
         </h2>
       </div>
 

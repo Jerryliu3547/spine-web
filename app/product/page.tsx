@@ -74,36 +74,35 @@ export default function ProductPage() {
 
           <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 relative z-10">
             <div className="flex flex-col items-center text-center max-w-3xl mx-auto">
-              <div className="inline-flex items-center gap-2 rounded-full border border-purple-200 bg-purple-50 px-3.5 py-1 text-xs font-mono text-purple-800 mb-6 shadow-xs">
-                <Sparkles className="h-3.5 w-3.5 text-purple-600" />
-                <span>SPINE SUITE MULTI-PHYSICS PLATFORM</span>
-              </div>
+              <span className="text-[12px] font-semibold uppercase tracking-[0.06em] text-[#86868b] mb-4 block">
+                SPINE SUITE MULTI-PHYSICS PLATFORM
+              </span>
 
-              <h1 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight text-slate-900 leading-[1.12]">
-                Autonomous Biomechanics for{" "}
-                <span className="bg-gradient-to-r from-purple-700 via-indigo-600 to-sky-600 bg-clip-text text-transparent">
-                  Surgical R&D
-                </span>
+              <h1 className="text-4xl sm:text-5xl lg:text-6xl font-semibold tracking-[-0.025em] leading-[1.1]">
+                <span className="text-[#1d1d1f]">Autonomous Biomechanics.</span>{" "}
+                <span className="text-[#86868b]">Built for surgical R&D.</span>
               </h1>
 
-              <p className="mt-6 text-base sm:text-lg text-slate-600 leading-relaxed font-normal">
+              <p className="mt-6 text-base sm:text-[18px] text-[#86868b] leading-relaxed font-normal">
                 A single unified software suite transforming standard 2D lateral radiographs into patient-specific 3D digital twins, 552-muscle neuromuscular dynamics, and non-linear FEBio finite element simulations in minutes.
               </p>
 
               <div className="mt-8 flex flex-wrap items-center justify-center gap-4">
                 <a
-                  href="#pipeline"
-                  className="benchling-cta-purple inline-flex items-center justify-center gap-2.5 rounded-xl px-7 py-3.5 text-sm font-semibold text-white shadow-md shadow-purple-600/25"
-                >
-                  <span>Explore 11-Stage Workflow</span>
-                  <ArrowRight className="h-4 w-4" />
-                </a>
-                <Link
-                  href="/contact"
-                  className="inline-flex items-center justify-center gap-2 rounded-xl border border-slate-300 bg-white px-6 py-3.5 text-sm font-medium text-slate-700 hover:bg-slate-50 hover:border-slate-400 transition-all shadow-xs"
+                  href="https://calendar.app.google/xuDw7PomLrF6Y6BW7"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="apple-cta-blue bg-[#007aff] hover:bg-[#0066d6] inline-flex items-center justify-center gap-2.5 rounded-xl px-7 py-3.5 text-sm font-semibold text-white shadow-md shadow-[#007aff]/30 hover:shadow-lg hover:shadow-[#007aff]/45"
                 >
                   <span>Request Clinical Demo</span>
-                </Link>
+                  <ArrowRight className="h-4 w-4" />
+                </a>
+                <a
+                  href="#pipeline"
+                  className="inline-flex items-center justify-center gap-2 rounded-xl border border-slate-300 bg-white px-6 py-3.5 text-sm font-medium text-slate-700 hover:bg-slate-50 hover:border-slate-400 transition-all shadow-xs"
+                >
+                  <span>Explore 11-Stage Workflow</span>
+                </a>
               </div>
             </div>
 
