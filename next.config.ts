@@ -1,10 +1,17 @@
 import type { NextConfig } from "next";
 
+import fs from "node:fs";
+import path from "node:path";
+
+const hasCname = fs.existsSync(path.join(process.cwd(), "public", "CNAME"));
 const isGithubActions = process.env.GITHUB_ACTIONS === "true";
-const isCustomDomain = process.env.CUSTOM_DOMAIN === "true";
+const isCustomDomain = process.env.CUSTOM_DOMAIN === "true" || hasCname;
 // When deploying to GitHub Pages without a custom domain, GitHub serves from /<repo-name>
+// When a custom domain is configured, the base path is root ("")
 const defaultBasePath = isGithubActions && !isCustomDomain ? "/spine-web" : "";
-const rawBasePath = process.env.NEXT_PUBLIC_BASE_PATH || defaultBasePath;
+const rawBasePath = process.env.NEXT_PUBLIC_BASE_PATH !== undefined && process.env.NEXT_PUBLIC_BASE_PATH !== ""
+  ? process.env.NEXT_PUBLIC_BASE_PATH
+  : defaultBasePath;
 const basePath = rawBasePath === "/" ? "" : rawBasePath;
 
 const isExport = isGithubActions || process.env.NEXT_EXPORT === "true";

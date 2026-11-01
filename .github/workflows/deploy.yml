@@ -43,6 +43,7 @@ jobs:
         run: npm run build
         env:
           GITHUB_ACTIONS: "true"
+          CUSTOM_DOMAIN: "true"
           NEXT_PUBLIC_BASE_PATH: ${{ steps.pages.outputs.base_path }}
 
       - name: Prevent Jekyll processing on GitHub Pages
