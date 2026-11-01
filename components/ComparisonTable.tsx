@@ -64,7 +64,7 @@ export default function ComparisonTable() {
           </span>
           <h2 className="text-3xl sm:text-4xl font-semibold tracking-[-0.022em]">
             <span className="text-[#1d1d1f]">Compare Candidate Constructs.</span>{" "}
-            <span className="text-[#86868b]">FEBio & OpenSim verification.</span>
+            <span className="text-[#86868b]">Finite element & musculoskeletal verification.</span>
           </h2>
           <p className="mt-4 text-base sm:text-[17px] text-[#86868b] leading-relaxed font-normal">
             Side-by-side verification of fused motion rigidity, titanium rod fatigue safety margins, and adjacent segment stress across the three simulated plans.
@@ -191,13 +191,13 @@ export default function ComparisonTable() {
           <div className="p-4 sm:p-6 bg-slate-50 border-t border-slate-200 flex flex-wrap items-center justify-between gap-4 text-xs font-mono text-slate-600">
             <div className="flex items-center gap-2">
               <span className="h-2 w-2 rounded-full bg-emerald-500"></span>
-              <span>Based on FEBio 4.2 von Mises analysis (pure moment 7.5 N·m + 500 N preload)</span>
+              <span>Based on finite element von Mises analysis (pure moment 7.5 N·m + 500 N preload)</span>
             </div>
             <a
               href="#booking"
               className="text-purple-700 hover:text-purple-900 font-semibold flex items-center gap-1"
             >
-              <span>Download DICOM & FEBio Case Files</span>
+              <span>Download DICOM & Simulation Case Files</span>
               <ArrowRight className="h-3.5 w-3.5" />
             </a>
           </div>

@@ -17,7 +17,7 @@
   - Unit tests: Vitest test suite (`__tests__/hero.test.tsx`) covering headline, badge, and tab state transitions passed 100% (4 of 4 tests).
   - Chrome UI verification: Subagent clicked through all 4 prompt tabs ("X-Ray to Plan", "Conversational Agent", "Photo-to-Loads", "Zero-Shot Sweep"), verifying smooth DOM transitions, natural language clinical instructions, execution time/cost badges, and quantitative telemetry.
 - **Implementation & Traceability Notes**:
-  - *How it was achieved*: Created `components/Navbar.tsx` with Esklash Labs / Spine Suite branding, Medtronic POC badge, and responsive mobile menu. Implemented `components/Hero.tsx` in Benchling style featuring 4 key stats (250 subject models, 126 activities, minutes-to-solve, <1¢ cost), and an interactive 4-capability prompt switcher simulating real-time OpenSim and FEBio dispatch pipelines.
+  - *How it was achieved*: Created `components/Navbar.tsx` with Esklash Labs / SpineTwin branding, Medtronic POC badge, and responsive mobile menu. Implemented `components/Hero.tsx` in Benchling style featuring 4 key stats (250 subject models, 126 activities, minutes-to-solve, <1¢ cost), and an interactive 4-capability prompt switcher simulating real-time musculoskeletal and finite element dispatch pipelines.
   - *Review & Rollback Context*: Component changes isolated in `components/Navbar.tsx` and `components/Hero.tsx`.
 
 ### [x] TASK-003: Implement Institutional Logo Ticker & 4-Card Pipeline Section
@@ -31,13 +31,13 @@
   - *Review & Rollback Context*: All unit tests passing.
 
 ### [x] TASK-004: Build Comparative Surgical Plan Matrix & Validation Section
-- **Scope**: Create `ComparisonTable.tsx` for the 3 test plans (`L4–S1 rods`, `L3–S1 rods`, `L3–S1 rods + cages`) and `ValidationSection.tsx` summarizing FEBio verification/validation and Anderson lab MSK metrics.
+- **Scope**: Create `ComparisonTable.tsx` for the 3 test plans (`L4–S1 rods`, `L3–S1 rods`, `L3–S1 rods + cages`) and `ValidationSection.tsx` summarizing finite element verification/validation and Anderson lab MSK metrics.
 - **Dependencies**: TASK-003
 - **TDD & Verification**:
   - Unit tests: Table renders all metric rows correctly without clipping.
   - Chrome UI verification: Verified visual alignment and contrast of stress reduction percentages and validation numbers in Chrome.
 - **Implementation & Traceability Notes**:
-  - *How it was achieved*: Implemented `components/ComparisonTable.tsx` with interactive plan switcher and von Mises stress metrics. Built `components/ValidationSection.tsx` covering ASME V&V 40, 22/22 FEBio checks, and transparent capabilities roadmap.
+  - *How it was achieved*: Implemented `components/ComparisonTable.tsx` with interactive plan switcher and von Mises stress metrics. Built `components/ValidationSection.tsx` covering ASME V&V 40, finite element checks, and transparent capabilities roadmap.
   - *Review & Rollback Context*: Full test suite passing.
 
 ### [x] TASK-005: Build Founders, Advisory Board & Direct Booking Sections

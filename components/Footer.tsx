@@ -1,31 +1,30 @@
 "use client";
 
 import React from "react";
+import Image from "next/image";
 import Link from "next/link";
-import { Activity, ExternalLink } from "lucide-react";
+import { ExternalLink } from "lucide-react";
 
 export default function Footer() {
+  const basePath = process.env.NEXT_PUBLIC_BASE_PATH || "";
+
   return (
     <footer className="border-t border-slate-200 bg-[#F8FAFC] text-slate-600 text-xs font-sans">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-16">
         <div className="grid grid-cols-2 md:grid-cols-5 gap-8 lg:gap-12">
           {/* Brand Col */}
           <div className="col-span-2">
-            <Link href="/" className="flex items-center gap-3 group mb-4">
-              <div className="flex h-9 w-9 items-center justify-center rounded-xl bg-blue-50 border border-blue-100 text-[#007aff]">
-                <Activity className="h-5 w-5 text-[#007aff]" />
-              </div>
-              <div className="flex flex-col">
-                <span className="font-mono text-[10px] tracking-widest text-[#007aff] font-bold uppercase">
-                  Esklash Labs
-                </span>
-                <span className="text-sm font-semibold tracking-[-0.01em] text-[#1d1d1f]">
-                  SPINE SUITE
-                </span>
-              </div>
+            <Link href="/" className="inline-flex items-center group mb-4" aria-label="SpineTwin Home">
+              <Image
+                src={`${basePath}/logos/spinetwin-horizontal.png`}
+                alt="SpineTwin"
+                width={180}
+                height={82}
+                className="h-8 sm:h-9 w-auto object-contain transition-transform group-hover:scale-[1.02]"
+              />
             </Link>
             <p className="text-xs text-slate-500 max-w-sm leading-relaxed mb-6 font-normal">
-              The autonomous biomechanical foundry for spine surgery. Transforming lateral radiographs into validated FEBio and OpenSim multi-physics simulations in minutes.
+              The autonomous biomechanical foundry for spine surgery. Transforming X-rays into validated finite element and musculoskeletal simulations in minutes.
             </p>
 
           </div>
@@ -39,8 +38,8 @@ export default function Footer() {
               <li><Link href="/product" className="hover:text-[#1d1d1f] transition-colors">Product Overview</Link></li>
               <li><Link href="/product#pipeline" className="hover:text-[#1d1d1f] transition-colors">11-Stage Pipeline</Link></li>
               <li><Link href="/product#comparison" className="hover:text-[#1d1d1f] transition-colors">Platform Comparison</Link></li>
-              <li><Link href="/product#validation" className="hover:text-[#1d1d1f] transition-colors">FEBio Finite Element</Link></li>
-              <li><Link href="/product#validation" className="hover:text-[#1d1d1f] transition-colors">OpenSim 552 Muscles</Link></li>
+              <li><Link href="/product#validation" className="hover:text-[#1d1d1f] transition-colors">Finite Element Analysis</Link></li>
+              <li><Link href="/product#validation" className="hover:text-[#1d1d1f] transition-colors">552-Muscle Musculoskeletal</Link></li>
             </ul>
           </div>
 
@@ -51,7 +50,7 @@ export default function Footer() {
             </h4>
             <ul className="space-y-2.5 text-[13px] text-[#86868b]">
               <li><Link href="/product#validation" className="hover:text-[#1d1d1f] transition-colors">Zero-Failure Biomechanics</Link></li>
-              <li><Link href="/product#validation" className="hover:text-[#1d1d1f] transition-colors">22/22 FEBio Benchmarks</Link></li>
+              <li><Link href="/product#validation" className="hover:text-[#1d1d1f] transition-colors">Finite Element Verification</Link></li>
               <li><Link href="/product#validation" className="hover:text-[#1d1d1f] transition-colors">Cadaver Motion Verification</Link></li>
               <li><Link href="/product#validation" className="hover:text-[#1d1d1f] transition-colors">ASME V&V 40 Compliance</Link></li>
               <li><Link href="/product#validation" className="hover:text-[#1d1d1f] transition-colors">FDA 21 CFR Part 11</Link></li>

@@ -16,9 +16,9 @@ const basePath = process.env.NEXT_PUBLIC_BASE_PATH || "";
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://spinetwin.tech"),
-  title: "Spine Suite | Autonomous Surgical AI & Biomechanical Foundries",
+  title: "SpineTwin | Autonomous Surgical AI & Biomechanical Foundries",
   description:
-    "An infinite biomechanics team for spine surgery. Autonomous surgical planning, FEBio finite element, and OpenSim musculoskeletal simulation.",
+    "An infinite biomechanics team for spine surgery. Autonomous surgical planning, finite element analysis, and musculoskeletal simulation.",
   icons: {
     icon: [
       { url: `${basePath}/favicon.ico`, sizes: "any" },

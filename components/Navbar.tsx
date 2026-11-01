@@ -1,10 +1,10 @@
 "use client";
 
 import React, { useState } from "react";
+import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import {
-  Activity,
   Menu,
   X,
   ArrowRight
@@ -13,6 +13,7 @@ import {
 export default function Navbar() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const pathname = usePathname();
+  const basePath = process.env.NEXT_PUBLIC_BASE_PATH || "";
 
   const navLinks = [
     { label: "Product", href: "/product" },
@@ -24,13 +25,15 @@ export default function Navbar() {
     <header className="sticky top-0 z-40 w-full border-b border-slate-200/80 bg-white/90 backdrop-blur-md">
       <div className="mx-auto flex max-w-7xl items-center justify-between px-4 sm:px-6 lg:px-8 h-18">
         {/* Brand / Logo */}
-        <Link href="/" className="flex items-center gap-2.5 group">
-          <div className="flex h-9 w-9 items-center justify-center rounded-xl bg-blue-50 border border-blue-100 text-[#007aff] group-hover:border-blue-200 group-hover:scale-105 transition-all shadow-xs">
-            <Activity className="h-5 w-5 text-[#007aff]" />
-          </div>
-          <span className="text-base sm:text-lg font-semibold tracking-[-0.02em] text-[#1d1d1f] group-hover:text-[#007aff] transition-colors">
-            Spine Suite
-          </span>
+        <Link href="/" className="flex items-center group py-1" aria-label="SpineTwin Home">
+          <Image
+            src={`${basePath}/logos/spinetwin-horizontal.png`}
+            alt="SpineTwin"
+            width={200}
+            height={91}
+            className="h-9 sm:h-10 w-auto object-contain transition-transform duration-200 group-hover:scale-[1.02]"
+            priority
+          />
         </Link>
 
         {/* Desktop Navigation Tabs (Apple Segmented Capsule Style) */}

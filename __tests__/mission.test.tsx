@@ -11,13 +11,13 @@ describe("MissionSection Component", () => {
       screen.getByText(/Biomechanical guesswork shouldn’t stand between spine surgeons/i)
     ).toBeInTheDocument();
     expect(
-      screen.getByText(/Spine Suite exists to help healthcare teams eliminate mechanical failure/i)
+      screen.getByText(/SpineTwin exists to help healthcare teams eliminate mechanical failure/i)
     ).toBeInTheDocument();
   });
 
-  it("renders 'Spine Suite in numbers' and default clinical metrics", () => {
+  it("renders 'SpineTwin in numbers' and default clinical metrics", () => {
     render(<MissionSection />);
-    expect(screen.getByText(/Spine Suite in/i)).toBeInTheDocument();
+    expect(screen.getByText(/SpineTwin in/i)).toBeInTheDocument();
     expect(screen.getByText("22%+")).toBeInTheDocument();
     expect(screen.getByText("50%+")).toBeInTheDocument();
     expect(screen.getByText("60%+")).toBeInTheDocument();
@@ -32,7 +32,7 @@ describe("MissionSection Component", () => {
     expect(screen.getByText("552")).toBeInTheDocument();
     expect(screen.getByText("14×")).toBeInTheDocument();
     expect(screen.getByText("0.20s")).toBeInTheDocument();
-    expect(screen.getByText("22 / 22")).toBeInTheDocument();
+    expect(screen.getByText("85+")).toBeInTheDocument();
   });
 
   it("renders torn paper side graphic images with correct src", () => {

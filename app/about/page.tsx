@@ -10,8 +10,8 @@ import Footer from "@/components/Footer";
 import { Building2 } from "lucide-react";
 
 export const metadata: Metadata = {
-  title: "About Us | Spine Suite - Scientific Leadership & Advisory",
-  description: "Meet the scientists, biomechanists, and AI architects behind Spine Suite, with roots across Polytechnique Montréal, McGill, UBC, and Stanford.",
+  title: "About Us | SpineTwin - Scientific Leadership & Advisory",
+  description: "Meet the scientists, biomechanists, and AI architects behind SpineTwin, with roots across Polytechnique Montréal, McGill, UBC, and Stanford.",
 };
 
 export default function AboutPage() {

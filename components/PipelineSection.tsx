@@ -22,8 +22,8 @@ export default function PipelineSection() {
       title: "Read the X-Ray",
       buttonText: "Read the X-Ray",
       headline: "AI finds 17 vertebrae with 8 editable corners each",
-      tagline: "From raw lateral radiograph to full spinopelvic sagittal parameters in under 2 seconds.",
-      engine: "YOLO v11 Landmark Network",
+      tagline: "From raw X-ray to full spinopelvic sagittal parameters in under 2 seconds.",
+      engine: "Machine Learning Landmark Network",
       icon: Scan,
       badgeColor: "text-purple-700 border-purple-200 bg-purple-50",
       keyStats: [
@@ -102,7 +102,7 @@ export default function PipelineSection() {
         { label: "Rod Bend Relief", value: "214° → 124° (-42%)" },
       ],
       details: [
-        "A 42-spine statistical shape model dynamically morphs to match the lateral radiograph corners with ±1.9 mm surface precision.",
+        "A 42-spine statistical shape model dynamically morphs to match the X-ray landmark corners with ±1.9 mm surface precision.",
         "Published Straightforward Trajectory Pedicle (STP) method (Sci Rep 2025): every screw is individually editable in 6 degrees of freedom.",
         "Automated cortical bone breach calculation: identifies tight cortex or breach hazard before the patient enters the operating theatre.",
         "Titanium (Ti-6Al-4V) or Cobalt-Chrome (CoCr) rods (4.5 mm – 6.35 mm): algorithmic contour optimization cuts acute rod bend angles from 214° to 124°, minimizing notch fatigue.",
@@ -124,31 +124,31 @@ export default function PipelineSection() {
       stepIndex: "04",
       title: "Multi-Physics Simulation",
       buttonText: "Multi-Physics Simulation",
-      headline: "How the construct carries physiological loads in FEBio & OpenSim",
+      headline: "How the construct carries physiological loads in finite element & musculoskeletal simulation",
       tagline: "Finite element stresses and musculoskeletal muscle forces solved side-by-side.",
-      engine: "FEBio 4.2 Solver + OpenSim 4.5 Static Optimization",
+      engine: "Finite Element Solver + Musculoskeletal Optimization",
       icon: Activity,
       badgeColor: "text-emerald-700 border-emerald-200 bg-emerald-50",
       keyStats: [
-        { label: "FEBio Mesh Morph", value: "1.3–2.5 mm precision" },
-        { label: "Active Muscles", value: "552 in OpenSim" },
+        { label: "FE Mesh Morph", value: "1.3–2.5 mm precision" },
+        { label: "Active Muscles", value: "552 muscle lines" },
         { label: "Solve Runtime", value: "FE: 3–8 min | MSK: ~40s" },
-        { label: "Verification Score", value: "22/22 FE checks passed" },
+        { label: "Verification Score", value: "ASME V&V 40 standard" },
       ],
       details: [
-        "FEBio finite element solver: validated 16-segment whole-spine mesh morphed onto patient anatomy, capturing disc pressures and bone-screw interfaces.",
+        "Finite element solver: validated 16-segment whole-spine mesh morphed onto patient anatomy, capturing disc pressures and bone-screw interfaces.",
         "Intact vs. instrumented comparison: solves flexion, extension, lateral bending, and axial rotation under 7.5 N·m pure moment and compressive preloads.",
-        "OpenSim musculoskeletal solver: 552 trunk muscles matched against 250 Framingham CT subject-specific models by stature, mass, and spinal curvature.",
+        "Musculoskeletal solver: 552 trunk muscles matched against 250 Framingham CT subject-specific models by stature, mass, and spinal curvature.",
         "Pre-op vs. post-op fusion modeling: fused levels are welded into a single rigid body, predicting muscle recruitment alterations and adjacent segment compensation.",
       ],
       interactiveSnippet: {
-        header: "FEBio & OpenSim Biomechanical Telemetry",
+        header: "Finite Element & Musculoskeletal Telemetry",
         data: [
           { name: "Fused Levels Motion (FE)", val: "-97% to -99.9%", status: "rigid stabilization" },
           { name: "Rod Peak von Mises Stress", val: "34 MPa (cages) / 62 MPa", status: "safety factor 14×–25×" },
           { name: "Adjacent Level L2–L3 Load", val: "582 N (standing)", status: "-3% extensor relief" },
-          { name: "OpenSim Muscle Equilibrium", val: "Sub-maximal", status: "converged in 38s" },
-          { name: "Verification Checks", val: "22 / 22 Passed", status: "analytical equilibrium verified" },
+          { name: "Musculoskeletal Equilibrium", val: "Sub-maximal", status: "converged in 38s" },
+          { name: "Verification Checks", val: "ASME V&V 40", status: "analytical equilibrium verified" },
         ],
       },
     },
@@ -166,7 +166,7 @@ export default function PipelineSection() {
             The 11-Stage Surgical Engine
           </span>
           <h2 className="text-3xl sm:text-4xl lg:text-5xl font-semibold tracking-[-0.025em]">
-            <span className="text-[#1d1d1f]">One Lateral X-Ray In.</span>{" "}
+            <span className="text-[#1d1d1f]">X-Ray In.</span>{" "}
             <span className="text-[#86868b]">A simulated plan out.</span>
           </h2>
           <p className="mt-4 text-base sm:text-[17px] text-[#86868b] font-normal leading-relaxed">

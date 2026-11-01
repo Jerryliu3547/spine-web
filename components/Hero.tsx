@@ -54,10 +54,7 @@ export default function Hero() {
 
           {/* Apple Typography Hero Title */}
           <h1 className="max-w-4xl text-3xl sm:text-5xl lg:text-6xl font-semibold tracking-[-0.025em] text-white leading-[1.12] drop-shadow-[0_2px_12px_rgba(0,0,0,0.85)]">
-            From One Lateral X-Ray to a{" "}
-            <span className="text-slate-300/95 font-semibold">
-              Simulated Spine Surgery.
-            </span>
+            From X-Ray to Simulated Surgery
           </h1>
 
           {/* Subheadline with clean Apple body tracking */}

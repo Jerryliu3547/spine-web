@@ -5,8 +5,8 @@ from typing import Optional
 from datetime import datetime, timezone
 
 app = FastAPI(
-    title="Spine Suite API",
-    description="Backend services for Esklash Labs Spine Suite surgical planning and simulation platform",
+    title="SpineTwin API",
+    description="Backend services for Esklash Labs SpineTwin surgical planning and simulation platform",
     version="0.1.0",
 )
 
@@ -41,7 +41,7 @@ class ContactResponse(BaseModel):
 def health_check():
     return HealthResponse(
         status="ok",
-        app="Spine Suite API",
+        app="SpineTwin API",
         version="0.1.0",
         timestamp=datetime.now(timezone.utc).isoformat(),
     )

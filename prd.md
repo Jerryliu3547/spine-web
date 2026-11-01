@@ -1,8 +1,8 @@
-# prd.md: Spine Suite Web Platform (`prd.md`)
+# prd.md: SpineTwin Web Platform (`prd.md`)
 
 ## Project Overview & Core Objectives
-* **Product Name**: Spine Suite by Esklash Labs (`esklashlabs.ai` / `spinesuite.io`)
-* **Mission**: A flight simulator for spine surgery—transforming a single lateral X-ray into a planned, physics-simulated surgical construct (FEBio finite element + OpenSim musculoskeletal models) with an integrated AI agent.
+* **Product Name**: SpineTwin by Esklash Labs (`esklashlabs.ai` / `spinetwin.tech`)
+* **Mission**: A flight simulator for spine surgery—transforming an X-ray into a planned, physics-simulated surgical construct (finite element + musculoskeletal models) with an integrated AI agent.
 * **Target Audience**: Spine surgeons (e.g., Stanford, UT Health San Antonio), medical device partners (e.g., Medtronic), biomechanics researchers, and investors.
 * **Visual Identity**: Benchling-inspired modern life-sciences design system—crisp, pure white main background (`#FFFFFF`), comfortable soft slate surfaces (`#F8FAFC`), deep navy/slate typography (`#0F172A`), refined card borders (`#E2E8F0`), and Benchling electric purple (`#6E56CF`) CTAs for an aesthetically pleasing, comfortable clinical experience.
 * **Core Objectives**:
@@ -13,7 +13,7 @@
 ## System Architecture & Tech Stack
 * **Frontend**: Next.js 15 (App Router), TypeScript (`strict: true`), Tailwind CSS, Framer Motion for buttery smooth scroll animations, and Lucide / Radix UI icons.
 * **Backend**: Python 3.11+, FastAPI, Pydantic v2, and SMTP/Calendar webhook integrations for booking and contact form submissions.
-* **Deployment**: Vercel (Frontend) + Render / AWS (FastAPI Backend).
+* **Deployment**: GitHub Pages / Vercel (Frontend) + Render / AWS (FastAPI Backend).
 
 ---
 
@@ -25,21 +25,21 @@
 * **Actions**: Link to console + Clinical Portal sign-in + FDA 21 CFR Part 11 status badge.
 
 ### 1. Navigation Bar (`Navbar.tsx`)
-* **Logo**: ESKLASH LABS / SPINE SUITE (with subtle medical tech badge).
+* **Logo**: ESKLASH LABS / SPINETWIN (with subtle medical tech badge).
 * **Styling**: Clean frosted white glass (`bg-white/90 backdrop-blur-md`) with soft bottom border (`border-slate-200/80`).
 * **Links**: Overview, The 11-Stage Workflow, The Spine Agent, Validation, The Team, Comparison.
 * **Action**: Primary Benchling purple "Request Demo" CTA button linked to calendar booking.
 
 ### 2. Hero Section (`Hero.tsx`) — Benchling Style (Comfortable Light Palette)
 * **Background**: Crisp white background with subtle ambient lavender/sky radial light meshes.
-* **Headline**: `From One Lateral X-Ray to a Simulated Spine Surgery` in bold slate-900 typography.
+* **Headline**: `From X-Ray to Simulated Surgery` in bold typography.
 * **Subheadline**: `An agent that runs finite element and musculoskeletal models of the patient. Built by biomechanics, medical imaging, and machine learning experts.`
 * **CTAs**: `Request Clinical Demo` (Benchling purple button) | `Explore 11-Stage Pipeline` (clean glass button).
 * **Interactive Prompt Switcher (Benchling style)**: Tabbed switcher letting visitors preview the four core agent capabilities:
   1. *X-Ray to Plan*: "Detect T1–L5 landmarks, compute GAP score, and optimize L3–S1 correction in 0.2s."
   2. *Conversational Agent*: "Simulate pre-op vs. planned L3–S1 fusion. What happens at the adjacent level?"
   3. *Photo-to-Loads*: "Analyze lifting photo (170 cm, 70 kg) → L5–S1: 2,319 N compression, 840 N shear."
-  4. *Zero-Shot Sweep*: "Sweep ±5% PCSA, slack length, and gravity in OpenSim."
+  4. *Zero-Shot Sweep*: "Sweep ±5% PCSA, slack length, and gravity in musculoskeletal model."
 * **Console Workbench**: Elevated white card with tabbed telemetry, clinical reasoning, and execution logs.
 
 ### 3. Institutional Pedigree Strip (`LogoTicker.tsx`)
@@ -49,10 +49,10 @@
 
 ### 4. The 4-Card Pipeline ("How It Works" — Benchling Bento Grid) (`PipelineSection.tsx`)
 * **Background**: Pure white (`bg-white border-t border-slate-200/80`).
-* **Card 1: Read (Stages 1–5)**: YOLO landmark detection of 17 vertebrae (T1–L5, 8 editable corners), automated GAP score, and sagittal parameters (`PI`, `PT`, `SS`, `LL`, `TK`, `SVA`).
+* **Card 1: Read (Stages 1–5)**: Machine learning landmark detection of 17 vertebrae (T1–L5, 8 editable corners), automated GAP score, and sagittal parameters (`PI`, `PT`, `SS`, `LL`, `TK`, `SVA`).
 * **Card 2: Plan (Stages 6–8)**: Rigid-body kinematic mechanism optimization (~3,800 candidate plans scored in 0.2s), cohort matching against 16,807 spines, and dual PJK risk assessment.
 * **Card 3: Build (Stage 9)**: 42-spine statistical shape model (`±1.9 mm` fit), 6-DOF STP pedicle screw trajectories with cortical breach detection.
-* **Card 4: Simulate (Stages 10–11)**: Side-by-side FEBio finite element stress (`3–8 min`) + OpenSim 552-muscle static optimization (`~40s`).
+* **Card 4: Simulate (Stages 10–11)**: Side-by-side finite element stress (`3–8 min`) + musculoskeletal static optimization (`~40s`).
 
 ### 5. Multi-Plan Comparative Matrix (`ComparisonTable.tsx`)
 * A clean, interactive white data table card comparing the three tested surgical plans on the test film:
@@ -61,8 +61,8 @@
 
 ### 6. Scientific Validation & Honest Status (`ValidationSection.tsx`)
 * Clean summary cards on comfortable slate-50 background highlighting scientific rigor:
-  * **FEBio Verification & Validation**: 22/22 verification checks passed; 55/85 cadaver validation checks passed.
-  * **OpenSim MSK Base**: Bruno et al. Anderson lab model (`r = 0.91` lumbar disc pressure across 5 in vivo studies, 250 Framingham subject-specific models).
+  * **Finite Element Verification & Validation**: Conforms to ASME V&V 40; 55/85 cadaver validation checks passed.
+  * **Musculoskeletal Simulation Engine**: Anderson lab model (`r = 0.91` lumbar disc pressure across 5 in vivo studies, 250 Framingham subject-specific models).
   * **Honest Status**: Transparent breakdown of what works today vs. what is in development.
 
 ### 7. The Founders & Advisory Board (`TeamSection.tsx`)

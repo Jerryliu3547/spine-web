@@ -17,7 +17,7 @@ import {
 } from "lucide-react";
 
 export const metadata: Metadata = {
-  title: "Contact Us | Spine Suite & Cesara Executive Consultation",
+  title: "Contact Us | SpineTwin & Cesara Executive Consultation",
   description:
     "Schedule an executive conversation, payer recovery briefing, or clinical demonstration. Direct access to our biomechanics leadership and AI architects.",
 };
@@ -78,16 +78,16 @@ export default function ContactPage() {
                 </div>
                 <h3 className="text-base font-bold text-slate-900 mb-1">Clinical Deployments</h3>
                 <p className="text-xs text-slate-600 leading-relaxed mb-4">
-                  Request pilot evaluations on your hospital&apos;s anonymized lateral radiographs or surgical telemetry series.
+                  Request pilot evaluations on your hospital&apos;s anonymized X-rays or surgical telemetry series.
                 </p>
               </div>
               <div className="pt-4 border-t border-slate-100 text-xs font-mono space-y-1.5">
                 <a
-                  href="mailto:clinical@spinesuite.com"
+                  href="mailto:clinical@spinetwin.tech"
                   className="flex items-center gap-2 text-purple-700 hover:text-purple-900 font-semibold transition-colors"
                 >
                   <Mail className="h-3.5 w-3.5" />
-                  <span>clinical@spinesuite.com</span>
+                  <span>clinical@spinetwin.tech</span>
                 </a>
                 <div className="flex items-center gap-2 text-slate-500">
                   <Clock className="h-3.5 w-3.5" />
@@ -135,11 +135,11 @@ export default function ContactPage() {
               </div>
               <div className="pt-4 border-t border-slate-100 text-xs font-mono space-y-1.5">
                 <a
-                  href="mailto:compliance@spinesuite.com"
+                  href="mailto:compliance@spinetwin.tech"
                   className="flex items-center gap-2 text-emerald-700 hover:text-emerald-900 font-semibold transition-colors"
                 >
                   <Mail className="h-3.5 w-3.5" />
-                  <span>compliance@spinesuite.com</span>
+                  <span>compliance@spinetwin.tech</span>
                 </a>
                 <div className="flex items-center gap-2 text-slate-500">
                   <MapPin className="h-3.5 w-3.5" />

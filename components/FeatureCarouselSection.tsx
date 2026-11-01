@@ -20,7 +20,7 @@ const FEATURE_CARDS: FeatureCard[] = [
   {
     id: "xray-sagittal",
     title: "X-Ray Sagittal Analysis",
-    description: "Automated landmark localization and spinopelvic sagittal parameter calculation from a single lateral radiograph.",
+    description: "Automated landmark localization and spinopelvic sagittal parameter calculation from an X-ray.",
     image: "/features/xray-sagittal.jpg",
     stationary: {
       top: "X-Ray",
@@ -48,9 +48,9 @@ const FEATURE_CARDS: FeatureCard[] = [
     },
   },
   {
-    id: "febio-stress",
+    id: "finite-element-stress",
     title: "Finite Element Stress",
-    description: "Autonomous FEBio multi-physics routing to evaluate anterior column load sharing and rod fatigue limits.",
+    description: "Autonomous finite element multi-physics routing to evaluate anterior column load sharing and rod fatigue limits.",
     image: "/features/febio-stress.jpg",
     stationary: {
       top: "Finite Element Analysis",
@@ -60,7 +60,7 @@ const FEATURE_CARDS: FeatureCard[] = [
   {
     id: "vertebral-kinematics",
     title: "Musculoskeletal Dynamics",
-    description: "Coupled OpenSim dynamic simulation tracking multi-level spine kinematics under physiological daily loads.",
+    description: "Coupled musculoskeletal dynamic simulation tracking multi-level spine kinematics under physiological daily loads.",
     image: "/features/msk-dynamics.jpg",
     stationary: {
       top: "MSK Dynamics",

@@ -40,7 +40,7 @@ describe("PipelineSection Component", () => {
     // Switch to Stages 10-11
     const simButton = screen.getByRole("button", { name: /multi-physics simulation/i });
     fireEvent.click(simButton);
-    expect(screen.getAllByText(/febio/i).length).toBeGreaterThan(0);
-    expect(screen.getAllByText(/opensim/i).length).toBeGreaterThan(0);
+    expect(screen.getAllByText(/finite element/i).length).toBeGreaterThan(0);
+    expect(screen.getAllByText(/musculoskeletal/i).length).toBeGreaterThan(0);
   });
 });

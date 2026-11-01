@@ -7,7 +7,7 @@ describe("Hero Component", () => {
     render(<Hero />);
     expect(
       screen.getByRole("heading", {
-        name: /from one lateral x-ray to a simulated spine surgery/i,
+        name: /from x-ray to simulated surgery/i,
       })
     ).toBeInTheDocument();
   });

@@ -18,7 +18,7 @@ export default function ClinicalWorkbenchSection() {
         <div className="mb-8 md:mb-10">
           <h2 className="text-2xl sm:text-3xl lg:text-[34px] font-semibold tracking-[-0.022em]">
             <span className="text-[#1d1d1f]">Features.</span>{" "}
-            <span className="text-[#86868b]">The Spine Suite difference.</span>
+            <span className="text-[#86868b]">The SpineTwin difference.</span>
           </h2>
         </div>
 
@@ -34,10 +34,10 @@ export default function ClinicalWorkbenchSection() {
               </svg>
             </div>
             <h3 className="text-[19px] sm:text-[20px] font-semibold tracking-[-0.015em] leading-snug text-[#1d1d1f]">
-              <span className="text-[#007aff]">X-ray.</span> Lateral view.
+              <span className="text-[#007aff]">X-ray.</span> Sagittal view.
             </h3>
             <p className="mt-2 text-[13px] text-[#86868b] font-normal leading-snug">
-              Calibrated lateral radiograph ingestion with automated scaling.
+              Calibrated X-ray ingestion with automated scaling.
             </p>
           </div>
 
@@ -53,7 +53,7 @@ export default function ClinicalWorkbenchSection() {
               </svg>
             </div>
             <h3 className="text-[19px] sm:text-[20px] font-semibold tracking-[-0.015em] leading-snug text-[#1d1d1f]">
-              <span className="text-[#ff3b30]">Landmark detection.</span> YOLO model trained on 300 manually labeled images.
+              <span className="text-[#ff3b30]">Landmark detection.</span> Machine learning model trained on 300 manually labeled images.
             </h3>
           </div>
 

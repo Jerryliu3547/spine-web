@@ -30,14 +30,14 @@ export default function BookingSection() {
     {
       name: "Farshid Ghezelbash, PhD",
       role: "Biomechanics & Modeling Review",
-      description: "Discuss FEBio mesh morphing, cadaver kinematics validation, and OpenSim trunk model calibrations.",
+      description: "Discuss finite element mesh morphing, cadaver kinematics validation, and musculoskeletal model calibrations.",
       email: "farshid@esklashlabs.ai",
       calText: "Schedule 30-min Clinical Biomechanics Deep Dive",
     },
     {
       name: "Amir Hossein Eskandari, PhD",
       role: "Clinical Imaging & STP Screws",
-      description: "Evaluate YOLO landmark detection on your center's X-ray films and cortical bone breach safety algorithms.",
+      description: "Evaluate machine learning landmark detection on your center's X-rays and cortical bone breach safety algorithms.",
       email: "amir@esklashlabs.ai",
       calText: "Schedule 30-min Imaging & Implant Trajectory Review",
     },

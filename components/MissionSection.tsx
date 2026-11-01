@@ -47,8 +47,8 @@ export default function MissionSection() {
       tag: "Zero-Latency AI",
     },
     {
-      value: "22 / 22",
-      label: "Peer-reviewed FEBio and in-vitro cadaveric kinematic validation cases",
+      value: "85+",
+      label: "Peer-reviewed finite element and in-vitro cadaveric kinematic validation cases",
       tag: "Scientific Pedigree",
     },
   ];
@@ -123,7 +123,7 @@ export default function MissionSection() {
               Biomechanical guesswork shouldn’t stand between spine surgeons and the care they deliver.
             </span>
             <span className="block mt-6 sm:mt-8 text-[#1d1d1f]">
-              Spine Suite exists to help healthcare teams eliminate mechanical failure with computational certainty.
+              SpineTwin exists to help healthcare teams eliminate mechanical failure with computational certainty.
             </span>
           </h1>
 
@@ -151,13 +151,13 @@ export default function MissionSection() {
           </div>
         </div>
 
-        {/* Bottom Section: "Spine Suite in numbers" + Tabular Metrics Rows */}
+        {/* Bottom Section: "SpineTwin in numbers" + Tabular Metrics Rows */}
         <div className="mt-20 sm:mt-28 md:mt-36 pt-10 sm:pt-14 border-t border-slate-200/80">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-14 items-start">
             {/* Left Header Column */}
             <div className="lg:col-span-4 pl-0 sm:pl-2">
               <h2 className="font-apple-serif text-2xl sm:text-3xl md:text-[34px] font-normal text-[#1d1d1f] leading-snug">
-                Spine Suite in<br />numbers
+                SpineTwin in<br />numbers
               </h2>
               <p className="mt-3 text-xs sm:text-sm text-slate-500 font-normal leading-relaxed max-w-xs">
                 Empirical clinical validation and biomechanical scale across North American research hospitals.

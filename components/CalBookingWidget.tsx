@@ -40,10 +40,10 @@ interface CalBookingWidgetProps {
 }
 
 export default function CalBookingWidget({
-  brandLogo = "Spine Suite",
+  brandLogo = "SpineTwin",
   defaultHost = "Jerry Liu",
-  defaultTitle = "Executive conversation with Spine Suite (Spinal Consultation)",
-  defaultDescription = "Interactive clinical walkthrough of YOLO v11 2D-to-3D X-ray reconstruction, OpenSim trunk dynamics, and FEBio finite element simulations.",
+  defaultTitle = "Executive conversation with SpineTwin (Spinal Consultation)",
+  defaultDescription = "Interactive clinical walkthrough of machine learning 2D-to-3D X-ray reconstruction, musculoskeletal dynamics, and finite element simulations.",
   calendarUrl = "https://calendar.app.google/xuDw7PomLrF6Y6BW7",
 }: CalBookingWidgetProps) {
   // Calendar state

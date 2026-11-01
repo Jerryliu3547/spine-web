@@ -7,9 +7,9 @@ import CalBookingWidget from "@/components/CalBookingWidget";
 import { ShieldCheck, Cpu, Database, Activity, ExternalLink } from "lucide-react";
 
 export const metadata: Metadata = {
-  title: "Request a Demo | Spine Suite - Executive & Clinical Review",
+  title: "Request a Demo | SpineTwin - Executive & Clinical Review",
   description:
-    "Schedule an executive conversation and clinical walkthrough with Spine Suite. Live 2D-to-3D X-ray reconstruction, FEBio multi-physics routing, and OpenSim simulations.",
+    "Schedule an executive conversation and clinical walkthrough with SpineTwin. Live 2D-to-3D X-ray reconstruction, finite element routing, and musculoskeletal simulations.",
 };
 
 export default function DemoPage() {
@@ -57,7 +57,7 @@ export default function DemoPage() {
               </div>
               <h3 className="text-sm font-bold text-slate-900 mb-2">Live Multi-Physics Sweep</h3>
               <p className="text-xs text-slate-600 leading-relaxed">
-                Watch Spine Agent ingest raw lateral radiographs and run coupled FEBio 4.2 finite element stress tests and OpenSim 4.5 muscle load optimizations in under 45 seconds.
+                Watch Spine Agent ingest raw X-rays and run coupled finite element stress tests and musculoskeletal muscle load optimizations in under 45 seconds.
               </p>
             </div>
 
@@ -67,7 +67,7 @@ export default function DemoPage() {
               </div>
               <h3 className="text-sm font-bold text-slate-900 mb-2">Custom Center Validation</h3>
               <p className="text-xs text-slate-600 leading-relaxed">
-                Evaluate YOLO v11 landmark detection and statistical shape modeling accuracy on your institution&apos;s anonymized pilot case series or implants catalog.
+                Evaluate machine learning landmark detection and statistical shape modeling accuracy on your institution&apos;s anonymized pilot case series or implants catalog.
               </p>
             </div>
 

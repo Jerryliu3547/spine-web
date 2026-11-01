@@ -18,7 +18,7 @@ export default function TeamSection() {
       role: "Co-Founder · Medical Imaging & Biomechanics",
       affiliations: "UBC Radiology · IRSST · Torus Biomedical",
       metrics: "h-index 14 · STP Pedicle Screw Trajectory Lead",
-      bio: "Expert in deep learning radiograph segmentation, statistical shape modeling, and robot-assisted cortical bone breach prevention algorithms.",
+      bio: "Expert in deep learning X-ray segmentation, statistical shape modeling, and robot-assisted cortical bone breach prevention algorithms.",
       tag: "Founding Engineer",
     },
     {

@@ -18,8 +18,8 @@ import {
 } from "lucide-react";
 
 export const metadata: Metadata = {
-  title: "Product Platform | Spine Suite Surgical AI & Multi-Physics Foundries",
-  description: "Explore the Spine Suite platform: automated 2D-to-3D spine reconstruction, 552-muscle OpenSim dynamics, and FEBio finite element stress analysis.",
+  title: "Product Platform | SpineTwin Surgical AI & Multi-Physics Foundries",
+  description: "Explore the SpineTwin platform: automated 2D-to-3D spine reconstruction, 552-muscle musculoskeletal dynamics, and finite element stress analysis.",
 };
 
 export default function ProductPage() {
@@ -29,14 +29,14 @@ export default function ProductPage() {
       title: "Automated 2D-to-3D Reconstruction",
       subtitle: "Stages 1–8 · Real-Time Inference",
       description:
-        "Deep learning landmark detection (YOLO v11) maps 17 vertebrae with 136 anatomical corner landmarks from standard lateral X-rays to reconstruct millimeter-accurate 3D spinal geometries.",
+        "Machine learning landmark detection maps 17 vertebrae with 136 anatomical corner landmarks from standard X-rays to reconstruct millimeter-accurate 3D spinal geometries.",
       metric: "< 0.85 mm",
       metricLabel: "CT residual accuracy",
     },
     {
       icon: Activity,
       title: "Musculoskeletal Dynamics",
-      subtitle: "Stage 10 · OpenSim Trunk Engine",
+      subtitle: "Stage 10 · Musculoskeletal Engine",
       description:
         "Solves 552 individual muscle actuators and kinematic force vectors during upright standing, flexion, and complex occupational lifting tasks to calculate physiological loading.",
       metric: "552 Muscles",
@@ -44,7 +44,7 @@ export default function ProductPage() {
     },
     {
       icon: Cpu,
-      title: "FEBio Finite Element Stress",
+      title: "Finite Element Stress",
       subtitle: "Stage 11 · Non-Linear Solvers",
       description:
         "Automatically meshes hexahedral solid volumes and performs non-linear contact analysis across instrumented pedicle screws, rods, and adjacent intervertebral discs.",
@@ -75,7 +75,7 @@ export default function ProductPage() {
           <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 relative z-10">
             <div className="flex flex-col items-center text-center max-w-3xl mx-auto">
               <span className="text-[12px] font-semibold uppercase tracking-[0.06em] text-[#86868b] mb-4 block">
-                SPINE SUITE MULTI-PHYSICS PLATFORM
+                SPINETWIN MULTI-PHYSICS PLATFORM
               </span>
 
               <h1 className="text-4xl sm:text-5xl lg:text-6xl font-semibold tracking-[-0.025em] leading-[1.1]">
@@ -84,7 +84,7 @@ export default function ProductPage() {
               </h1>
 
               <p className="mt-6 text-base sm:text-[18px] text-[#86868b] leading-relaxed font-normal">
-                A single unified software suite transforming standard 2D lateral radiographs into patient-specific 3D digital twins, 552-muscle neuromuscular dynamics, and non-linear FEBio finite element simulations in minutes.
+                A single unified software platform transforming standard 2D X-rays into patient-specific 3D digital twins, 552-muscle musculoskeletal dynamics, and non-linear finite element simulations in minutes.
               </p>
 
               <div className="mt-8 flex flex-wrap items-center justify-center gap-4">

@@ -29,7 +29,7 @@ export default function ValidationSection() {
 
         {/* 3 Core Scientific Trust Cards (Clean White Theme) */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-          {/* Card 1: FEBio V&V */}
+          {/* Card 1: Finite Element V&V */}
           <div className="benchling-card benchling-card-hover rounded-3xl p-6 sm:p-8 flex flex-col justify-between">
             <div>
               <div className="flex items-center justify-between mb-4">
@@ -37,18 +37,18 @@ export default function ValidationSection() {
                   <ShieldCheck className="h-6 w-6" />
                 </span>
                 <span className="text-xs font-mono font-bold text-emerald-800 bg-emerald-50 border border-emerald-200 px-2.5 py-1 rounded-full">
-                  22/22 Checks Passed
+                  ASME V&amp;V 40 Standard
                 </span>
               </div>
-              <h3 className="text-xl font-bold text-slate-900 mb-2">FEBio Verification & Validation</h3>
+              <h3 className="text-xl font-bold text-slate-900 mb-2">Finite Element Verification &amp; Validation</h3>
               <p className="text-xs sm:text-sm text-slate-600 leading-relaxed">
-                Subjected to 22 analytical benchmark equilibrium tests (beam bending, linear elasticity, contact mechanics) and 85 cadaver kinematic benchmarks.
+                Subjected to analytical benchmark equilibrium tests (beam bending, linear elasticity, contact mechanics) and 85 cadaver kinematic benchmarks.
               </p>
 
               <div className="mt-5 space-y-2 pt-3 border-t border-slate-100 text-xs text-slate-700">
                 <div className="flex items-center justify-between font-mono">
                   <span>Analytical Equilibrium:</span>
-                  <strong className="text-emerald-700 font-bold">22 / 22 (100%)</strong>
+                  <strong className="text-emerald-700 font-bold">100% Passed</strong>
                 </div>
                 <div className="flex items-center justify-between font-mono">
                   <span>Cadaver Checks Passed:</span>
@@ -63,11 +63,11 @@ export default function ValidationSection() {
 
             <div className="mt-6 pt-4 border-t border-slate-100 text-[11px] text-slate-500 flex items-center gap-1.5 font-mono">
               <CheckCircle2 className="h-3.5 w-3.5 text-emerald-600 shrink-0" />
-              <span>Conforms to ASME V&V 40 medical device standards</span>
+              <span>Conforms to ASME V&amp;V 40 medical device standards</span>
             </div>
           </div>
 
-          {/* Card 2: OpenSim MSK Base */}
+          {/* Card 2: Musculoskeletal Simulation Engine */}
           <div className="benchling-card benchling-card-hover rounded-3xl p-6 sm:p-8 flex flex-col justify-between">
             <div>
               <div className="flex items-center justify-between mb-4">
@@ -78,9 +78,9 @@ export default function ValidationSection() {
                   r = 0.91 In Vivo
                 </span>
               </div>
-              <h3 className="text-xl font-bold text-slate-900 mb-2">OpenSim Musculoskeletal Engine</h3>
+              <h3 className="text-xl font-bold text-slate-900 mb-2">Musculoskeletal Simulation Engine</h3>
               <p className="text-xs sm:text-sm text-slate-600 leading-relaxed">
-                Powered by the Bruno et al. Anderson Lab model. Correlated against in vivo telemetry sensors (Wilke et al.) with 552 calibrated muscle lines.
+                Powered by the Anderson Lab musculoskeletal model. Correlated against in vivo telemetry sensors (Wilke et al.) with 552 calibrated muscle lines.
               </p>
 
               <div className="mt-5 space-y-2 pt-3 border-t border-slate-100 text-xs text-slate-700">
