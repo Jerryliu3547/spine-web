@@ -56,9 +56,9 @@ describe("Demo Page, Contact Page, and CalBookingWidget", () => {
     expect(screen.getByText(/Live Multi-Physics Sweep/i)).toBeInTheDocument();
   });
 
-  it("renders the /contact page with header and direct channels", () => {
+  it("renders the /contact page with Book an appointment form", () => {
     render(<ContactPage />);
     expect(screen.getByRole("heading", { name: /Contact Us/i })).toBeInTheDocument();
-    expect(screen.getByText(/Direct Institutional Contact Channels/i)).toBeInTheDocument();
+    expect(screen.getByRole("heading", { name: /Book an appointment/i })).toBeInTheDocument();
   });
 });

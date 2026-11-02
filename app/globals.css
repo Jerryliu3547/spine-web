@@ -27,8 +27,11 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   overflow-x: hidden;
-  selection-background-color: #ede9fe;
-  selection-color: #4c1d95;
+}
+
+::selection {
+  background-color: #b4d5fe;
+  color: #1d1d1f;
 }
 
 /* Apple Editorial Typography Stack */

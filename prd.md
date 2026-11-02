@@ -20,9 +20,9 @@
 ## Page Structure & User Flows
 
 ### 0. Top Announcement Banner (`StickyBanner.tsx`)
-* **Background**: Soft lavender/indigo tint (`bg-indigo-50/80`) with fine hairline border (`border-indigo-100`).
+* **Background**: Apple light gray (`bg-[#F5F5F7]`) with fine hairline border (`border-[#E5E5E7]`).
 * **Content**: `Introducing Spine Agent 2.4: Autonomous multi-physics routing for surgical biomechanics.`
-* **Actions**: Link to console + Clinical Portal sign-in + FDA 21 CFR Part 11 status badge.
+* **Actions**: Link to console in Apple blue (`#0071e3`) + Clinical Portal sign-in + FDA 21 CFR Part 11 status badge.
 
 ### 1. Navigation Bar (`Navbar.tsx`)
 * **Logo**: ESKLASH LABS / SPINETWIN (with subtle medical tech badge).

@@ -28,43 +28,43 @@ export default function TeamSection() {
       id: "farshid",
       name: "Farshid Ghezelbash, PhD",
       role: "Co-Founder · Biomechanics & AI",
-      affiliations: "Polytechnique Montréal · McGill · Georgia Tech",
-      metrics: "h-index 19 · 40+ Peer-Reviewed Publications",
+      affiliations: "Georgia Tech · Polytechnique Montréal · McGill",
+      metrics: "h-index 19 · MITACS Fellow · 40+ Publications",
       tag: "Founding Scientist",
       image: `${basePath}/team/farshid.jpg`,
       quote: "Physics-based simulation brings mathematical certainty to the operating room.",
       bioParagraph1:
-        "Dr. Farshid Ghezelbash has spent over a decade advancing computational biomechanics, trunk musculoskeletal modeling, and patient-specific spinal finite element simulations. Holding a PhD from Polytechnique Montréal and having conducted advanced research across McGill University and Georgia Tech, his work bridges theoretical solid mechanics and direct clinical translation.",
+        "Dr. Farshid Ghezelbash is a computational biomechanics researcher and biomedical engineer specializing in patient-specific spinal finite element modeling, trunk musculoskeletal simulations, and physics-informed AI. Holding a PhD in Biomechanics from Polytechnique Montréal and having conducted advanced research across the Georgia Institute of Technology and McGill University, his work bridges theoretical solid mechanics with direct surgical translation.",
       bioParagraph2:
-        "With an h-index of 19 and more than 40 peer-reviewed journal publications, Farshid pioneered nonlinear multi-physics solvers that simulate internal spinal stresses, disc kinematics, and load-sharing dynamics in real time. At SpineTwin, he leads the biomechanical engine that converts patient radiological scans into validated digital twins before incision.",
+        "A MITACS Postdoctoral Fellow with an h-index of 19 and more than 40 peer-reviewed journal publications, Farshid pioneered nonlinear multi-physics solvers that model internal spinal stresses, disc kinematics, and load-sharing dynamics in real time. At SpineTwin, he leads the biomechanical engine that converts patient radiological scans into validated digital twins before incision.",
     },
     {
       id: "amir",
       name: "Amir Hossein Eskandari, PhD",
       role: "Co-Founder · Medical Imaging & Biomechanics",
-      affiliations: "UBC Radiology · IRSST · Torus Biomedical",
-      metrics: "h-index 14 · STP Pedicle Screw Trajectory Lead",
+      affiliations: "Torus Biomedical · UBC Radiology · Polytechnique Montréal",
+      metrics: "Health Research BC Award · Orthopedic Fixation Patents",
       tag: "Founding Engineer",
       image: `${basePath}/team/amir.jpg`,
-      quote: "Precise anatomical landmark detection transforms 2D X-rays into 3D surgical confidence.",
+      quote: "Precise anatomical landmark detection and intraoperative pose correction transform 2D imaging into 3D surgical confidence.",
       bioParagraph1:
-        "Dr. Amir Hossein Eskandari specializes in the intersection of deep learning computer vision, statistical shape modeling, and robot-assisted orthopedic instrumentation. Having completed advanced research fellowships at UBC Radiology and IRSST, Amir led algorithm development for automated landmark extraction and cortical bone breach prevention at Torus Biomedical.",
+        "Dr. Amir Hossein Eskandari is a biomedical engineer and data scientist with over a decade of research and industry leadership in spine mechanics, musculoskeletal modeling, and medical image processing. Holding a PhD from Polytechnique Montréal and an engineering background from Sharif University of Technology, followed by an advanced research fellowship at UBC Radiology, Amir led algorithm development for intraoperative measurements, automated landmark extraction, and computer-assisted surgical navigation at Torus Biomedical Solutions.",
       bioParagraph2:
-        "His research encompasses automated 2D-to-3D spine reconstruction, pedicle screw trajectory optimization, and automated sagittal balance profiling. At SpineTwin, Amir directs our medical imaging pipelines, ensuring sub-millimeter precision in anatomical segmentation and implant placement planning.",
+        "Recipient of the 2024 Health Research BC – Mitacs Industry-Based Award and holder of patents in orthopedic fixation systems, Amir has published extensively on subject-specific finite element spine modeling, bio-signal processing, and AI in healthcare. At SpineTwin, he directs our medical imaging and computer vision pipelines, powering automated 2D-to-3D spine reconstruction and sub-millimeter anatomical segmentation.",
     },
     {
       id: "dianze",
       name: "Dianze Liu",
       role: "Co-Founder · Machine Learning & Software",
-      affiliations: "Georgia Tech Design Intelligence Lab · WCB 2026",
-      metrics: "First Author WCB 2026 · LoRA Initializations",
+      affiliations: "Georgia Tech Design Intelligence Lab · OpenSim",
+      metrics: "First Author WCB 2026 · OpenSim & AI Agents",
       tag: "AI Architecture",
       image: `${basePath}/team/dianze.jpg`,
       quote: "Autonomous AI agents and browser-scale kinematics make complex biomechanics instantaneous.",
       bioParagraph1:
-        "Dianze Liu is an AI architect and systems engineer from the Georgia Tech Design Intelligence Lab. A specialist in autonomous agent architectures, zero-shot parameter sweeps, and distributed kinematic solvers, Dianze is the first author on cutting-edge spine mechanics simulation research presented at the World Congress of Biomechanics (WCB 2026).",
+        "Dianze Liu is an engineer, entrepreneur, and AI architect from the Georgia Institute of Technology. Conducting research at the Design Intelligence Lab, his expertise spans autonomous AI agents, OpenSim musculoskeletal modeling, and domain-adapted LLM fine-tuning (LoRA). Dianze is the first author on cutting-edge spine mechanics simulation research presented at the World Congress of Biomechanics (WCB 2026).",
       bioParagraph2:
-        "At SpineTwin, Dianze architects the zero-latency web simulation infrastructure, orchestrating high-performance WebAssembly solvers, multi-agent clinical Sanity Check LLMs, and hospital EHR integration pipelines that bring finite-element precision directly to surgeon browsers.",
+        "Holding professional specializations spanning AI engineering, full-stack systems, and distributed computing, Dianze architects SpineTwin's zero-latency web simulation infrastructure. He leads the development of in-browser WebAssembly kinematic solvers, multi-agent clinical verification pipelines, and hospital EHR workflows that bring patient-specific finite element precision directly into surgeon browsers.",
     },
     {
       id: "kelly",
@@ -82,17 +82,17 @@ export default function TeamSection() {
     },
     {
       id: "hills",
-      name: "Jeff Hills, MD",
-      role: "Clinical Advisor · Spine Surgeon",
-      affiliations: "UT Health San Antonio",
-      metrics: "UT Health · Construct Failure Prevention",
+      name: "Jeffrey M. Hills, MD, MSCI-TS",
+      role: "Clinical Advisor · Orthopaedic Spine Surgeon",
+      affiliations: "UT Health San Antonio · WashU Spine · Vanderbilt",
+      metrics: "UT Health San Antonio · Adult Deformity & Revision",
       tag: "Clinical Advisory",
       image: `${basePath}/team/hills.jpg`,
-      quote: "Pre-operative simulation prevents revision surgeries before the first cut is made.",
+      quote: "Improving patient outcomes and reducing complications starts with incorporating predictive analytics into routine clinical practice.",
       bioParagraph1:
-        "Dr. Jeff Hills is a practicing orthopedic spine surgeon and clinical investigator at UT Health San Antonio. His surgical expertise spans minimally invasive spine surgery, cervical spine trauma, and complex lumbar fusion procedures.",
+        "Dr. Jeffrey M. Hills is an orthopaedic spine surgeon and Assistant Professor of Orthopaedics at UT Health San Antonio (Long School of Medicine). Graduating with honors in Biochemistry from the University of Kansas and earning his medical degree from the KU School of Medicine, he completed his Orthopaedic Surgery residency at Vanderbilt University Medical Center in Nashville, followed by a fellowship in spine surgery at Washington University School of Medicine / Barnes-Jewish Hospital in St. Louis.",
       bioParagraph2:
-        "Dr. Hills's research investigates biomechanical failure modes in pedicle screw constructs and bone-screw interface longevity. At SpineTwin, Dr. Hills provides continuous clinical feedback on surgical workflow integration, ensuring our planning tools deliver actionable insights that surgeons trust in the OR.",
+        "Extensively trained in adult and pediatric spinal deformity and complex revision spine surgery, Dr. Hills treats a wide spectrum of cervical, thoracic, and lumbar conditions. Holding a Master of Science in Clinical Investigation and Translational Science (MSCI-TS), he is actively involved across international spine study groups and advises SpineTwin on translating predictive analytics and biomechanical simulation into routine preoperative planning.",
     },
   ];
 
