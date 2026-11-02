@@ -15,7 +15,6 @@ interface TeamMember {
   quote: string;
   bioParagraph1: string;
   bioParagraph2: string;
-  linkedin: string;
 }
 
 export default function TeamSection() {
@@ -38,7 +37,6 @@ export default function TeamSection() {
         "Dr. Farshid Ghezelbash has spent over a decade advancing computational biomechanics, trunk musculoskeletal modeling, and patient-specific spinal finite element simulations. Holding a PhD from Polytechnique Montréal and having conducted advanced research across McGill University and Georgia Tech, his work bridges theoretical solid mechanics and direct clinical translation.",
       bioParagraph2:
         "With an h-index of 19 and more than 40 peer-reviewed journal publications, Farshid pioneered nonlinear multi-physics solvers that simulate internal spinal stresses, disc kinematics, and load-sharing dynamics in real time. At SpineTwin, he leads the biomechanical engine that converts patient radiological scans into validated digital twins before incision.",
-      linkedin: "https://www.linkedin.com",
     },
     {
       id: "amir",
@@ -53,7 +51,6 @@ export default function TeamSection() {
         "Dr. Amir Hossein Eskandari specializes in the intersection of deep learning computer vision, statistical shape modeling, and robot-assisted orthopedic instrumentation. Having completed advanced research fellowships at UBC Radiology and IRSST, Amir led algorithm development for automated landmark extraction and cortical bone breach prevention at Torus Biomedical.",
       bioParagraph2:
         "His research encompasses automated 2D-to-3D spine reconstruction, pedicle screw trajectory optimization, and automated sagittal balance profiling. At SpineTwin, Amir directs our medical imaging pipelines, ensuring sub-millimeter precision in anatomical segmentation and implant placement planning.",
-      linkedin: "https://www.linkedin.com",
     },
     {
       id: "dianze",
@@ -68,7 +65,6 @@ export default function TeamSection() {
         "Dianze Liu is an AI architect and systems engineer from the Georgia Tech Design Intelligence Lab. A specialist in autonomous agent architectures, zero-shot parameter sweeps, and distributed kinematic solvers, Dianze is the first author on cutting-edge spine mechanics simulation research presented at the World Congress of Biomechanics (WCB 2026).",
       bioParagraph2:
         "At SpineTwin, Dianze architects the zero-latency web simulation infrastructure, orchestrating high-performance WebAssembly solvers, multi-agent clinical Sanity Check LLMs, and hospital EHR integration pipelines that bring finite-element precision directly to surgeon browsers.",
-      linkedin: "https://www.linkedin.com",
     },
     {
       id: "kelly",
@@ -83,7 +79,6 @@ export default function TeamSection() {
         "Dr. Michael P. Kelly is an internationally recognized orthopedic spine surgeon and faculty member at the Stanford University School of Medicine. Specializing in complex adult spinal deformity, scoliosis reconstruction, and revision surgery, Dr. Kelly has treated thousands of patients with severe structural spinal disorders.",
       bioParagraph2:
         "His clinical research focuses on proximal junctional kyphosis (PJK), mechanical construct failure, and SRS-Schwab sagittal restoration targets. As a clinical advisor to SpineTwin, Dr. Kelly guides the surgical sanity rules and verification protocols that ensure our computational outputs align with operative reality.",
-      linkedin: "https://www.linkedin.com",
     },
     {
       id: "hills",
@@ -98,7 +93,6 @@ export default function TeamSection() {
         "Dr. Jeff Hills is a practicing orthopedic spine surgeon and clinical investigator at UT Health San Antonio. His surgical expertise spans minimally invasive spine surgery, cervical spine trauma, and complex lumbar fusion procedures.",
       bioParagraph2:
         "Dr. Hills's research investigates biomechanical failure modes in pedicle screw constructs and bone-screw interface longevity. At SpineTwin, Dr. Hills provides continuous clinical feedback on surgical workflow integration, ensuring our planning tools deliver actionable insights that surgeons trust in the OR.",
-      linkedin: "https://www.linkedin.com",
     },
   ];
 
@@ -251,22 +245,6 @@ export default function TeamSection() {
                     <p className="text-xs text-slate-500 font-mono mt-0.5">
                       {selectedMember.affiliations}
                     </p>
-
-                    {/* LinkedIn badge in matching naval blue */}
-                    <div className="mt-3.5">
-                      <a
-                        href={selectedMember.linkedin}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="inline-flex items-center gap-1.5 text-xs font-semibold text-[#0c2f4f] hover:text-[#1b4975] bg-[#eaf2f8] hover:bg-[#d9ebf7] px-3 py-1.5 rounded-lg border border-[#cfe0ee] transition-colors"
-                        aria-label={`LinkedIn profile for ${selectedMember.name}`}
-                      >
-                        <svg className="w-3.5 h-3.5 fill-current" viewBox="0 0 24 24">
-                          <path d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14m-.5 15.5v-5.3a3.26 3.26 0 0 0-3.26-3.26c-.85 0-1.84.52-2.28 1.3v-1.11h-2.79v8.37h2.79v-4.93c0-.77.62-1.4 1.39-1.4a1.4 1.4 0 0 1 1.4 1.4v4.93h2.75M6.46 8.76a1.64 1.64 0 1 0 0-3.28 1.64 1.64 0 0 0 0 3.28m1.39 9.74v-8.37H5.07v8.37h2.78Z" />
-                        </svg>
-                        <span>LinkedIn</span>
-                      </a>
-                    </div>
 
                     {/* Pull Quote */}
                     <div className="mt-4 pt-4 border-t border-slate-100">
