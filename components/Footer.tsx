@@ -18,9 +18,9 @@ export default function Footer() {
               <Image
                 src={`${basePath}/logos/spinetwin-horizontal.png`}
                 alt="SpineTwin"
-                width={180}
-                height={82}
-                className="h-8 sm:h-9 w-auto object-contain transition-transform group-hover:scale-[1.02]"
+                width={220}
+                height={100}
+                className="h-9 sm:h-10 w-auto object-contain transition-transform group-hover:scale-[1.02]"
               />
             </Link>
             <p className="text-xs text-slate-500 max-w-sm leading-relaxed mb-6 font-normal">

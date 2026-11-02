@@ -25,13 +25,13 @@ export default function Navbar() {
     <header className="sticky top-0 z-40 w-full border-b border-slate-200/80 bg-white/90 backdrop-blur-md">
       <div className="mx-auto flex max-w-7xl items-center justify-between px-4 sm:px-6 lg:px-8 h-18">
         {/* Brand / Logo */}
-        <Link href="/" className="flex items-center group py-1" aria-label="SpineTwin Home">
+        <Link href="/" className="flex items-center group py-0.5" aria-label="SpineTwin Home">
           <Image
             src={`${basePath}/logos/spinetwin-horizontal.png`}
             alt="SpineTwin"
-            width={200}
-            height={91}
-            className="h-9 sm:h-10 w-auto object-contain transition-transform duration-200 group-hover:scale-[1.02]"
+            width={240}
+            height={109}
+            className="h-10 sm:h-11 md:h-12 w-auto object-contain transition-transform duration-200 group-hover:scale-[1.02]"
             priority
           />
         </Link>

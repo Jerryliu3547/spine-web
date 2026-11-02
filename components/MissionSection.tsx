@@ -1,8 +1,6 @@
 "use client";
 
 import React, { useState } from "react";
-import Link from "next/link";
-import { ArrowRight, Calendar, Sparkles } from "lucide-react";
 
 export default function MissionSection() {
   const [metricTab, setMetricTab] = useState<"clinical" | "foundry">("clinical");
@@ -89,66 +87,34 @@ export default function MissionSection() {
         />
       </div>
 
-      {/* Subtle Apple Ambient Glow in Center */}
+      {/* Subtle Natural Warm Linen Ambient Glow in Center */}
       <div
-        className="absolute top-1/3 left-1/3 -translate-x-1/2 w-[600px] h-[350px] bg-gradient-to-tr from-purple-100/25 via-indigo-50/15 to-sky-100/20 blur-[130px] rounded-full pointer-events-none -z-10"
+        className="absolute top-1/3 left-1/3 -translate-x-1/2 w-[600px] h-[350px] bg-gradient-to-tr from-stone-100/35 via-amber-50/15 to-transparent blur-[130px] rounded-full pointer-events-none -z-10"
         aria-hidden="true"
       />
 
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        {/* Top-Left Script Calligraphy Label: "Our Mission" */}
-        <div className="mb-10 sm:mb-14">
-          <div className="inline-flex flex-col items-start select-none">
-            <span className="font-mission-script text-3xl sm:text-4xl md:text-[48px] text-[#2c1d18] -rotate-3 tracking-wide leading-none font-medium">
-              Our
-            </span>
-            <span className="font-mission-script text-3xl sm:text-4xl md:text-[48px] text-[#2c1d18] -rotate-3 -mt-1 sm:-mt-2 ml-4 sm:ml-5 tracking-wide leading-none font-medium">
-              Mission
-            </span>
-          </div>
-
-          {/* Apple SF Pro Eyebrow / Scientific Pedigree */}
-          <div className="mt-4 flex items-center gap-2">
-            <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-[11px] font-mono font-semibold uppercase tracking-wider text-[#007aff] bg-blue-50/80 border border-blue-200/60 shadow-2xs">
-              <Sparkles className="h-3 w-3 text-[#007aff]" />
-              <span>Pioneering Computational Surgical Intelligence</span>
-            </span>
-          </div>
+        {/* Page Title: "Our Mission" */}
+        <div className="mb-8 sm:mb-10">
+          <h1 className="text-4xl sm:text-5xl lg:text-6xl font-semibold tracking-[-0.03em] text-[#1d1d1f]">
+            <span>Our</span> <span>Mission</span>
+          </h1>
         </div>
 
-        {/* Main Editorial Mission Statement (High-Contrast Editorial Serif matching screenshot) */}
-        <div className="max-w-3xl sm:max-w-4xl lg:max-w-4xl pr-4 sm:pr-8">
-          <h1 className="font-apple-serif text-3xl sm:text-4xl md:text-5xl lg:text-[54px] font-normal leading-[1.18] sm:leading-[1.22] md:leading-[1.24] text-[#1d1d1f] tracking-tight">
-            <span>
+        {/* Main Editorial Mission Statement (Apple Two-Tone Typography with Balanced Rag & Fluid Leading) */}
+        <div className="max-w-3xl sm:max-w-4xl lg:max-w-4xl xl:max-w-5xl pr-4 sm:pr-8">
+          <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-[38px] xl:text-[40px] font-semibold tracking-[-0.022em] leading-[1.26] sm:leading-[1.28] md:leading-[1.3] text-balance">
+            <span className="text-[#1d1d1f]">
               Biomechanical guesswork shouldn’t stand between spine surgeons and the care they deliver.
             </span>
-            <span className="block mt-6 sm:mt-8 text-[#1d1d1f]">
+            <span className="block mt-4 sm:mt-5 text-[#86868b] font-medium">
               SpineTwin exists to help healthcare teams eliminate mechanical failure with computational certainty.
             </span>
-          </h1>
+          </h2>
 
-          <p className="mt-6 sm:mt-8 text-base sm:text-lg text-slate-600 font-normal leading-relaxed max-w-2xl">
+          <p className="mt-8 sm:mt-10 text-[17px] sm:text-[19px] md:text-[20px] text-[#6e6e73] font-normal leading-[1.58] tracking-[-0.012em] max-w-3xl text-pretty">
             We bridge the gap between surgical intuition and computational mechanics—replacing manual guesswork with patient-specific AI and finite element simulations to protect every patient from implant failure.
           </p>
-
-          {/* Action CTAs in Apple Signature Styling */}
-          <div className="mt-8 sm:mt-10 flex flex-wrap items-center gap-4">
-            <a
-              href="#team"
-              className="apple-cta-blue bg-[#007aff] hover:bg-[#0066d6] inline-flex items-center justify-center gap-2 rounded-xl px-6 py-3.5 text-sm font-semibold text-white shadow-sm shadow-[#007aff]/30 active:scale-95 transition-all"
-            >
-              <span>Meet the Founding Team</span>
-              <ArrowRight className="h-4 w-4" />
-            </a>
-
-            <Link
-              href="/contact"
-              className="inline-flex items-center justify-center gap-2 rounded-xl border border-slate-300 bg-white/90 backdrop-blur-sm px-6 py-3.5 text-sm font-medium text-slate-800 hover:bg-slate-50 hover:border-slate-400 active:scale-95 transition-all shadow-2xs"
-            >
-              <Calendar className="h-4 w-4 text-[#007aff]" />
-              <span>Book 30-min Technical Review</span>
-            </Link>
-          </div>
         </div>
 
         {/* Bottom Section: "SpineTwin in numbers" + Tabular Metrics Rows */}
@@ -156,8 +122,9 @@ export default function MissionSection() {
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-14 items-start">
             {/* Left Header Column */}
             <div className="lg:col-span-4 pl-0 sm:pl-2">
-              <h2 className="font-apple-serif text-2xl sm:text-3xl md:text-[34px] font-normal text-[#1d1d1f] leading-snug">
-                SpineTwin in<br />numbers
+              <h2 className="text-2xl sm:text-3xl md:text-[34px] font-semibold tracking-[-0.025em] text-[#1d1d1f] leading-snug">
+                <span className="text-[#1d1d1f]">SpineTwin in</span><br />
+                <span className="text-[#86868b]">numbers.</span>
               </h2>
               <p className="mt-3 text-xs sm:text-sm text-slate-500 font-normal leading-relaxed max-w-xs">
                 Empirical clinical validation and biomechanical scale across North American research hospitals.
@@ -200,7 +167,7 @@ export default function MissionSection() {
                   >
                     {/* Big Metric Number */}
                     <div className="shrink-0 min-w-[140px] sm:min-w-[180px] lg:min-w-[200px]">
-                      <span className="font-apple-serif text-4xl sm:text-5xl md:text-[56px] font-light sm:font-normal text-[#1d1d1f] tracking-tight leading-none group-hover:text-[#007aff] transition-colors">
+                      <span className="text-4xl sm:text-5xl md:text-[56px] font-semibold text-[#1d1d1f] tracking-tight leading-none group-hover:text-[#007aff] transition-colors">
                         {item.value}
                       </span>
                     </div>
