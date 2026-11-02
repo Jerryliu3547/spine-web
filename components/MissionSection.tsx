@@ -105,7 +105,7 @@ export default function MissionSection() {
         <div className="max-w-3xl sm:max-w-4xl lg:max-w-4xl xl:max-w-5xl pr-4 sm:pr-8">
           <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-[38px] xl:text-[40px] font-semibold tracking-[-0.022em] leading-[1.26] sm:leading-[1.28] md:leading-[1.3] text-balance">
             <span className="text-[#1d1d1f]">
-              Biomechanical guesswork shouldn’t stand between spine surgeons and the care they deliver.
+              Biomechanical Analysisshouldn’t stand between spine surgeons and the care they deliver.
             </span>
             <span className="block mt-4 sm:mt-5 text-[#86868b] font-medium">
               SpineTwin exists to help healthcare teams eliminate mechanical failure with computational certainty.
@@ -135,22 +135,20 @@ export default function MissionSection() {
                 <button
                   type="button"
                   onClick={() => setMetricTab("clinical")}
-                  className={`px-3.5 py-1.5 text-xs font-semibold rounded-full transition-all duration-200 ${
-                    metricTab === "clinical"
-                      ? "bg-white text-[#1d1d1f] shadow-xs ring-1 ring-black/[0.06]"
-                      : "text-slate-600 hover:text-[#1d1d1f]"
-                  }`}
+                  className={`px-3.5 py-1.5 text-xs font-semibold rounded-full transition-all duration-200 ${metricTab === "clinical"
+                    ? "bg-white text-[#1d1d1f] shadow-xs ring-1 ring-black/[0.06]"
+                    : "text-slate-600 hover:text-[#1d1d1f]"
+                    }`}
                 >
                   Clinical Impact
                 </button>
                 <button
                   type="button"
                   onClick={() => setMetricTab("foundry")}
-                  className={`px-3.5 py-1.5 text-xs font-semibold rounded-full transition-all duration-200 ${
-                    metricTab === "foundry"
-                      ? "bg-white text-[#1d1d1f] shadow-xs ring-1 ring-black/[0.06]"
-                      : "text-slate-600 hover:text-[#1d1d1f]"
-                  }`}
+                  className={`px-3.5 py-1.5 text-xs font-semibold rounded-full transition-all duration-200 ${metricTab === "foundry"
+                    ? "bg-white text-[#1d1d1f] shadow-xs ring-1 ring-black/[0.06]"
+                    : "text-slate-600 hover:text-[#1d1d1f]"
+                    }`}
                 >
                   Foundry Scale
                 </button>

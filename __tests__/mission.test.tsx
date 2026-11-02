@@ -8,7 +8,7 @@ describe("MissionSection Component", () => {
     expect(screen.getByText("Our")).toBeInTheDocument();
     expect(screen.getByText("Mission")).toBeInTheDocument();
     expect(
-      screen.getByText(/Biomechanical guesswork shouldn’t stand between spine surgeons/i)
+      screen.getByText(/Biomechanical Analysisshouldn’t stand between spine surgeons/i)
     ).toBeInTheDocument();
     expect(
       screen.getByText(/SpineTwin exists to help healthcare teams eliminate mechanical failure/i)
