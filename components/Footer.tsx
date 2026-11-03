@@ -86,7 +86,7 @@ export default function Footer() {
         {/* Benchling Bottom Bar */}
         <div className="mt-12 pt-8 border-t border-slate-200 flex flex-wrap items-center justify-between gap-4 text-xs font-mono text-slate-500">
           <div>
-            © {new Date().getFullYear()} Esklash Labs, Inc. All rights reserved.
+            © {new Date().getFullYear()} SpineTwin. All rights reserved.
           </div>
           <div className="flex items-center gap-6">
             <span className="hover:text-slate-800 cursor-pointer">Security & Privacy</span>

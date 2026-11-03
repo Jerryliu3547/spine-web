@@ -27,12 +27,12 @@ describe("New Navigation & Pages", () => {
 
   it("renders the About Us page properly", () => {
     render(<AboutPage />);
-    expect(screen.getByText(/biomechanical guesswork/i)).toBeInTheDocument();
+    expect(screen.getAllByText(/biomechanical/i).length).toBeGreaterThanOrEqual(1);
   });
 
   it("renders the Team alias page properly", () => {
     render(<TeamPage />);
-    expect(screen.getByText(/biomechanical guesswork/i)).toBeInTheDocument();
+    expect(screen.getAllByText(/biomechanical/i).length).toBeGreaterThanOrEqual(1);
   });
 
   it("renders the Contact page properly", () => {

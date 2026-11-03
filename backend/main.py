@@ -6,7 +6,7 @@ from datetime import datetime, timezone
 
 app = FastAPI(
     title="SpineTwin API",
-    description="Backend services for Esklash Labs SpineTwin surgical planning and simulation platform",
+    description="Backend services for SpineTwin surgical planning and simulation platform",
     version="0.1.0",
 )
 

@@ -45,6 +45,7 @@ jobs:
           GITHUB_ACTIONS: "true"
           CUSTOM_DOMAIN: "true"
           NEXT_PUBLIC_BASE_PATH: ${{ steps.pages.outputs.base_path }}
+          NEXT_PUBLIC_WEB3FORMS_KEY: ${{ vars.NEXT_PUBLIC_WEB3FORMS_KEY || secrets.NEXT_PUBLIC_WEB3FORMS_KEY }}
 
       - name: Prevent Jekyll processing on GitHub Pages
         run: touch ./out/.nojekyll

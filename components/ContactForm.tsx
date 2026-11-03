@@ -7,6 +7,10 @@ export default function ContactForm() {
   const [isSuccess, setIsSuccess] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
 
+  const accessKey =
+    process.env.NEXT_PUBLIC_WEB3FORMS_KEY ||
+    "4299d329-1866-436e-b5e7-05639aface57";
+
   const onSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     setIsSubmitting(true);
@@ -15,7 +19,7 @@ export default function ContactForm() {
     try {
       const formElement = event.currentTarget;
       const formData = new FormData(formElement);
-      formData.set("access_key", "4299d329-1866-436e-b5e7-05639aface57");
+      formData.set("access_key", accessKey);
 
       const response = await fetch("https://api.web3forms.com/submit", {
         method: "POST",
@@ -58,7 +62,7 @@ export default function ContactForm() {
         <input
           type="hidden"
           name="access_key"
-          value="4299d329-1866-436e-b5e7-05639aface57"
+          value={accessKey}
         />
         <input
           type="checkbox"
