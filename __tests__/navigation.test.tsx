@@ -23,7 +23,7 @@ describe("New Navigation & Pages", () => {
   it("renders the Product page properly with the demo video player", () => {
     render(<ProductPage />);
     expect(screen.getByText(/autonomous biomechanics/i)).toBeInTheDocument();
-    expect(screen.getByLabelText(/spinetwin autonomous clinical workflow/i)).toBeInTheDocument();
+    expect(screen.getByLabelText(/spinetwin/i)).toBeInTheDocument();
   });
 
   it("renders the About Us page properly", () => {

@@ -1,27 +1,57 @@
 "use client";
 
-import React, { useRef, useState, useEffect } from "react";
+import React, { useRef, useState, useEffect, useCallback } from "react";
 import { Play, Pause, Volume2, VolumeX, Maximize2, RotateCcw } from "lucide-react";
 
 /**
- * Placeholder video configuration.
- * Replace `primarySrc` with your new demo video path (e.g. "/product-demo.mp4") inside `public/`.
+ * Product demo video configuration.
  */
 export const DEMO_VIDEO_CONFIG = {
-  primarySrc: "/hero-video.mp4",
-  fallbackSrc: "/gemini_generated_video_95288b1c.mp4",
-  title: "SpineTwin Autonomous Clinical Workflow",
-  durationLabel: "Product Walkthrough",
+  primarySrc: "/product-demo.mp4",
+  fallbackSrc: "/hero-video.mp4",
+  title: "SpineTwin Product Demonstration Walkthrough",
+  durationLabel: "Live Walkthrough",
 };
+
+function formatTime(seconds: number) {
+  if (isNaN(seconds) || seconds < 0) return "0:00";
+  const mins = Math.floor(seconds / 60);
+  const secs = Math.floor(seconds % 60);
+  return `${mins}:${secs < 10 ? "0" : ""}${secs}`;
+}
 
 export default function ProductVideoPlayer() {
   const videoRef = useRef<HTMLVideoElement>(null);
   const containerRef = useRef<HTMLDivElement>(null);
+  const hideControlsTimeoutRef = useRef<NodeJS.Timeout | null>(null);
+
   const [isPlaying, setIsPlaying] = useState(true);
   const [isMuted, setIsMuted] = useState(true);
   const [progress, setProgress] = useState(0);
+  const [currentTime, setCurrentTime] = useState(0);
+  const [duration, setDuration] = useState(0);
+  const [showControls, setShowControls] = useState(true);
 
   const basePath = process.env.NEXT_PUBLIC_BASE_PATH || "";
+
+  // Reset controls hide timer on activity
+  const handleMouseMove = useCallback(() => {
+    setShowControls(true);
+    if (hideControlsTimeoutRef.current) {
+      clearTimeout(hideControlsTimeoutRef.current);
+    }
+    if (isPlaying) {
+      hideControlsTimeoutRef.current = setTimeout(() => {
+        setShowControls(false);
+      }, 2500);
+    }
+  }, [isPlaying]);
+
+  const handleMouseLeave = useCallback(() => {
+    if (isPlaying) {
+      setShowControls(false);
+    }
+  }, [isPlaying]);
 
   useEffect(() => {
     const video = videoRef.current;
@@ -40,6 +70,12 @@ export default function ProductVideoPlayer() {
     } catch {
       // Ignored in test environments (JSDOM)
     }
+
+    return () => {
+      if (hideControlsTimeoutRef.current) {
+        clearTimeout(hideControlsTimeoutRef.current);
+      }
+    };
   }, []);
 
   const togglePlay = () => {
@@ -56,14 +92,15 @@ export default function ProductVideoPlayer() {
       } else {
         video.pause();
         setIsPlaying(false);
+        setShowControls(true);
       }
     } catch {
       setIsPlaying((prev) => !prev);
     }
   };
 
-  const toggleMute = (e: React.MouseEvent) => {
-    e.stopPropagation();
+  const toggleMute = (e?: React.MouseEvent) => {
+    if (e) e.stopPropagation();
     const video = videoRef.current;
     if (!video) return;
     video.muted = !video.muted;
@@ -76,6 +113,7 @@ export default function ProductVideoPlayer() {
     if (!video) return;
     video.currentTime = 0;
     setProgress(0);
+    setCurrentTime(0);
     try {
       const playPromise = video.play();
       if (playPromise !== undefined && typeof playPromise.catch === "function") {
@@ -90,7 +128,14 @@ export default function ProductVideoPlayer() {
   const handleTimeUpdate = () => {
     const video = videoRef.current;
     if (!video || !video.duration) return;
+    setCurrentTime(video.currentTime);
     setProgress((video.currentTime / video.duration) * 100);
+  };
+
+  const handleLoadedMetadata = () => {
+    const video = videoRef.current;
+    if (!video) return;
+    setDuration(video.duration || 0);
   };
 
   const handleSeek = (e: React.MouseEvent<HTMLDivElement>) => {
@@ -102,6 +147,7 @@ export default function ProductVideoPlayer() {
     const percentage = Math.max(0, Math.min(1, clickX / rect.width));
     video.currentTime = percentage * video.duration;
     setProgress(percentage * 100);
+    setCurrentTime(video.currentTime);
   };
 
   const handleFullscreen = (e: React.MouseEvent) => {
@@ -121,10 +167,12 @@ export default function ProductVideoPlayer() {
       <div
         ref={containerRef}
         onClick={togglePlay}
-        className="group relative rounded-[28px] sm:rounded-[36px] bg-[#0B0F19] p-2 sm:p-3 shadow-[0_32px_80px_-16px_rgba(15,23,42,0.28),0_4px_20px_rgba(15,23,42,0.08)] ring-1 ring-black/10 border-t border-white/15 cursor-pointer select-none overflow-hidden transition-transform duration-500 ease-out"
+        onMouseMove={handleMouseMove}
+        onMouseLeave={handleMouseLeave}
+        className="group relative rounded-[24px] sm:rounded-[32px] bg-[#0B0F19] p-2 sm:p-3 shadow-[0_32px_80px_-16px_rgba(15,23,42,0.28),0_4px_20px_rgba(15,23,42,0.08)] ring-1 ring-black/10 border-t border-white/15 cursor-pointer select-none overflow-hidden transition-all duration-300"
       >
         {/* Inner 16:9 Cinema Viewport */}
-        <div className="relative aspect-video w-full overflow-hidden rounded-[20px] sm:rounded-[26px] bg-black">
+        <div className="relative aspect-video w-full overflow-hidden rounded-[18px] sm:rounded-[24px] bg-black">
           <video
             ref={videoRef}
             autoPlay
@@ -133,21 +181,39 @@ export default function ProductVideoPlayer() {
             playsInline
             preload="auto"
             onTimeUpdate={handleTimeUpdate}
+            onLoadedMetadata={handleLoadedMetadata}
             onPlay={() => setIsPlaying(true)}
-            onPause={() => setIsPlaying(false)}
+            onPause={() => {
+              setIsPlaying(false);
+              setShowControls(true);
+            }}
             aria-label={DEMO_VIDEO_CONFIG.title}
-            className="h-full w-full object-cover"
+            className="h-full w-full object-contain bg-black"
           >
             <source src={`${basePath}${DEMO_VIDEO_CONFIG.primarySrc}`} type="video/mp4" />
             <source src={`${basePath}${DEMO_VIDEO_CONFIG.fallbackSrc}`} type="video/mp4" />
           </video>
 
-          {/* Subtle Top & Bottom Cinematic Vignettes */}
-          <div className="pointer-events-none absolute inset-x-0 top-0 h-24 bg-gradient-to-b from-black/45 to-transparent opacity-80 transition-opacity duration-300 group-hover:opacity-100" />
-          <div className="pointer-events-none absolute inset-x-0 bottom-0 h-32 bg-gradient-to-t from-black/65 via-black/25 to-transparent opacity-90 transition-opacity duration-300 group-hover:opacity-100" />
+          {/* Quick Unmute Floating Banner when video is playing muted */}
+          {isMuted && isPlaying && (
+            <div
+              onClick={(e) => {
+                e.stopPropagation();
+                toggleMute();
+              }}
+              className="absolute top-4 right-4 sm:top-5 sm:right-5 z-20 flex items-center gap-2 rounded-full bg-black/60 hover:bg-black/80 backdrop-blur-md border border-white/20 px-3.5 py-1.5 text-xs text-white shadow-md transition-all hover:scale-105 active:scale-95"
+            >
+              <VolumeX className="h-3.5 w-3.5 text-white/90" />
+              <span className="font-medium">Click to Unmute Narration</span>
+            </div>
+          )}
 
           {/* Top-Left Floating Apple Glass Badge */}
-          <div className="pointer-events-none absolute top-4 left-4 sm:top-6 sm:left-6 flex items-center gap-2.5 rounded-full bg-black/45 backdrop-blur-xl border border-white/15 px-3.5 py-1.5 text-white shadow-sm">
+          <div
+            className={`pointer-events-none absolute top-4 left-4 sm:top-5 sm:left-5 z-20 flex items-center gap-2.5 rounded-full bg-black/50 backdrop-blur-xl border border-white/15 px-3 py-1 sm:px-3.5 sm:py-1.5 text-white shadow-sm transition-opacity duration-300 ${
+              showControls || !isPlaying ? "opacity-100" : "opacity-0"
+            }`}
+          >
             <span className="h-2 w-2 rounded-full bg-[#38bdf8] animate-pulse" />
             <span className="text-[11px] sm:text-xs font-medium tracking-tight text-white/90">
               {DEMO_VIDEO_CONFIG.durationLabel}
@@ -156,7 +222,7 @@ export default function ProductVideoPlayer() {
 
           {/* Center Frosted Glass Play Overlay (Visible when paused) */}
           {!isPlaying && (
-            <div className="absolute inset-0 flex items-center justify-center bg-black/25 backdrop-blur-[2px] transition-opacity duration-300">
+            <div className="absolute inset-0 z-20 flex items-center justify-center bg-black/30 backdrop-blur-[2px] transition-opacity duration-300">
               <button
                 type="button"
                 onClick={(e) => {
@@ -174,7 +240,9 @@ export default function ProductVideoPlayer() {
           {/* Bottom Floating Apple Liquid-Glass Control Bar */}
           <div
             onClick={(e) => e.stopPropagation()}
-            className="absolute inset-x-3 bottom-3 sm:inset-x-6 sm:bottom-5 flex items-center gap-3 sm:gap-4 rounded-2xl bg-black/55 backdrop-blur-xl border border-white/15 px-4 py-2.5 sm:px-5 sm:py-3 text-white shadow-lg transition-opacity duration-300"
+            className={`absolute inset-x-3 bottom-3 sm:inset-x-6 sm:bottom-4 z-20 flex items-center gap-2.5 sm:gap-3.5 rounded-2xl bg-black/65 backdrop-blur-xl border border-white/15 px-3.5 py-2 sm:px-4 sm:py-2.5 text-white shadow-lg transition-opacity duration-300 ${
+              showControls || !isPlaying ? "opacity-100 pointer-events-auto" : "opacity-0 pointer-events-none"
+            }`}
           >
             {/* Play / Pause Button */}
             <button
@@ -201,6 +269,11 @@ export default function ProductVideoPlayer() {
               <RotateCcw className="h-3.5 w-3.5" />
             </button>
 
+            {/* Time Stamp Display */}
+            <span className="text-[11px] sm:text-xs font-mono text-white/80 tabular-nums shrink-0">
+              {formatTime(currentTime)} / {formatTime(duration)}
+            </span>
+
             {/* Interactive Scrubbing Timeline */}
             <div
               onClick={handleSeek}
@@ -211,7 +284,7 @@ export default function ProductVideoPlayer() {
               aria-valuemax={100}
               className="group/bar relative flex-1 h-5 flex items-center cursor-pointer"
             >
-              <div className="w-full h-1.5 rounded-full bg-white/20 overflow-hidden transition-all group-hover/bar:h-2">
+              <div className="w-full h-1.5 rounded-full bg-white/25 overflow-hidden transition-all group-hover/bar:h-2">
                 <div
                   className="h-full rounded-full bg-[#007aff] transition-all duration-100"
                   style={{ width: `${progress}%` }}
@@ -224,6 +297,7 @@ export default function ProductVideoPlayer() {
               type="button"
               onClick={toggleMute}
               aria-label={isMuted ? "Unmute video" : "Mute video"}
+              title={isMuted ? "Unmute" : "Mute"}
               className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full text-white/85 hover:text-white hover:bg-white/10 transition-colors"
             >
               {isMuted ? (
@@ -248,3 +322,4 @@ export default function ProductVideoPlayer() {
     </div>
   );
 }
+
