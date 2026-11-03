@@ -21,11 +21,15 @@ export const metadata: Metadata = {
     "An infinite biomechanics team for spine surgery. Autonomous surgical planning, finite element analysis, and musculoskeletal simulation.",
   icons: {
     icon: [
+      { url: `${basePath}/apple-icon.png`, sizes: "180x180", type: "image/png" },
+      { url: `${basePath}/icon.png`, sizes: "512x512", type: "image/png" },
       { url: `${basePath}/favicon.ico`, sizes: "any" },
-      { url: `${basePath}/icon.svg`, type: "image/svg+xml" },
     ],
-    shortcut: `${basePath}/favicon.ico`,
-    apple: `${basePath}/apple-touch-icon.png`,
+    shortcut: `${basePath}/apple-icon.png`,
+    apple: [
+      { url: `${basePath}/apple-icon.png`, sizes: "180x180", type: "image/png" },
+      { url: `${basePath}/apple-touch-icon.png`, sizes: "180x180", type: "image/png" },
+    ],
   },
 };
 
@@ -42,9 +46,12 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
           href="https://fonts.googleapis.com/css2?family=Caveat:wght@500;600;700&family=Newsreader:ital,opsz,wght@0,6..72,400..600;1,6..72,400..600&display=swap"
           rel="stylesheet"
         />
+        <link rel="icon" href={`${basePath}/apple-icon.png`} type="image/png" sizes="180x180" />
+        <link rel="icon" href={`${basePath}/icon.png`} type="image/png" sizes="512x512" />
         <link rel="icon" href={`${basePath}/favicon.ico`} sizes="any" />
-        <link rel="icon" href={`${basePath}/icon.svg`} type="image/svg+xml" />
-        <link rel="apple-touch-icon" href={`${basePath}/apple-touch-icon.png`} />
+        <link rel="shortcut icon" href={`${basePath}/apple-icon.png`} />
+        <link rel="apple-touch-icon" href={`${basePath}/apple-icon.png`} sizes="180x180" />
+        <link rel="apple-touch-icon" href={`${basePath}/apple-touch-icon.png`} sizes="180x180" />
       </head>
       <body className="min-h-full flex flex-col">{children}</body>
     </html>
