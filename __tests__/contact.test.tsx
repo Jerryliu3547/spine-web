@@ -12,10 +12,12 @@ describe("Apple-style Book an appointment ContactForm & Page", () => {
 
   beforeEach(() => {
     vi.restoreAllMocks();
+    process.env.NEXT_PUBLIC_WEB3FORMS_KEY = "mock-web3forms-key";
   });
 
   afterEach(() => {
     global.fetch = originalFetch;
+    delete process.env.NEXT_PUBLIC_WEB3FORMS_KEY;
   });
 
   it("renders ContactForm with Apple design fields matching screenshot", () => {
@@ -33,7 +35,7 @@ describe("Apple-style Book an appointment ContactForm & Page", () => {
     expect(screen.getByRole("button", { name: /Request appointment/i })).toBeInTheDocument();
 
     const accessKeyInput = container.querySelector('input[name="access_key"]');
-    expect(accessKeyInput).toHaveValue("4299d329-1866-436e-b5e7-05639aface57");
+    expect(accessKeyInput).toHaveValue("mock-web3forms-key");
   });
 
   it("submits to Web3Forms and displays success result", async () => {

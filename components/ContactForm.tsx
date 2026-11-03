@@ -7,9 +7,7 @@ export default function ContactForm() {
   const [isSuccess, setIsSuccess] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
 
-  const accessKey =
-    process.env.NEXT_PUBLIC_WEB3FORMS_KEY ||
-    "4299d329-1866-436e-b5e7-05639aface57";
+  const accessKey = process.env.NEXT_PUBLIC_WEB3FORMS_KEY || "";
 
   const onSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
