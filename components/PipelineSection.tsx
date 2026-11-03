@@ -7,7 +7,6 @@ import {
   Bone,
   Activity,
   CheckCircle,
-  Cpu,
   Sliders,
   ChevronRight
 } from "lucide-react";

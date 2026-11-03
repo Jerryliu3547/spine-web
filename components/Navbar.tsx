@@ -58,15 +58,13 @@ export default function Navbar() {
 
         {/* Action Button (Apple Trade In Blue style) */}
         <div className="hidden md:flex items-center gap-4">
-          <a
-            href="https://calendar.app.google/xuDw7PomLrF6Y6BW7"
-            target="_blank"
-            rel="noopener noreferrer"
+          <Link
+            href="/contact"
             className="apple-cta-blue bg-[#007aff] hover:bg-[#0066d6] inline-flex items-center justify-center gap-2 rounded-xl px-4 py-2.5 text-xs font-semibold uppercase tracking-wider text-white active:scale-95 transition-all shadow-sm shadow-[#007aff]/30"
           >
             <span>Request Demo</span>
             <ArrowRight className="h-3.5 w-3.5" />
-          </a>
+          </Link>
         </div>
 
         {/* Mobile menu button */}
@@ -106,16 +104,14 @@ export default function Navbar() {
             })}
           </div>
           <div className="pt-2">
-            <a
-              href="https://calendar.app.google/xuDw7PomLrF6Y6BW7"
-              target="_blank"
-              rel="noopener noreferrer"
+            <Link
+              href="/contact"
               onClick={() => setMobileMenuOpen(false)}
               className="apple-cta-blue bg-[#007aff] hover:bg-[#0066d6] flex w-full items-center justify-center gap-2 rounded-xl py-3 text-sm font-semibold text-white shadow-md shadow-[#007aff]/30"
             >
               <span>Request Clinical Demo</span>
               <ArrowRight className="h-4 w-4" />
-            </a>
+            </Link>
           </div>
         </div>
       )}

@@ -19,10 +19,10 @@ describe("Hero Component", () => {
     ).toBeInTheDocument();
   });
 
-  it("renders Request Clinical Demo CTA button with calendar link", () => {
+  it("renders Request Clinical Demo CTA button with contact page link", () => {
     render(<Hero />);
     const ctaButton = screen.getByRole("link", { name: /request clinical demo/i });
     expect(ctaButton).toBeInTheDocument();
-    expect(ctaButton).toHaveAttribute("href", "https://calendar.app.google/xuDw7PomLrF6Y6BW7");
+    expect(ctaButton).toHaveAttribute("href", "/contact");
   });
 });

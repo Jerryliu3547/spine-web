@@ -2,9 +2,9 @@
 
 ## Project Overview & Core Objectives
 * **Product Name**: SpineTwin by Esklash Labs (`esklashlabs.ai` / `spinetwin.tech`)
-* **Mission**: A flight simulator for spine surgery—transforming an X-ray into a planned, physics-simulated surgical construct (finite element + musculoskeletal models) with an integrated AI agent.
+* **Mission**: A flight simulator for spine surgery: transforming an X-ray into a planned, physics-simulated surgical construct (finite element + musculoskeletal models) with an integrated AI agent.
 * **Target Audience**: Spine surgeons (e.g., Stanford, UT Health San Antonio), medical device partners (e.g., Medtronic), biomechanics researchers, and investors.
-* **Visual Identity**: Benchling-inspired modern life-sciences design system—crisp, pure white main background (`#FFFFFF`), comfortable soft slate surfaces (`#F8FAFC`), deep navy/slate typography (`#0F172A`), refined card borders (`#E2E8F0`), and Benchling electric purple (`#6E56CF`) CTAs for an aesthetically pleasing, comfortable clinical experience.
+* **Visual Identity**: Benchling-inspired modern life-sciences design system with crisp, pure white main background (`#FFFFFF`), comfortable soft slate surfaces (`#F8FAFC`), deep navy/slate typography (`#0F172A`), refined card borders (`#E2E8F0`), and Benchling electric purple (`#6E56CF`) CTAs for an aesthetically pleasing, comfortable clinical experience.
 * **Core Objectives**:
   1. Showcase the 11-stage surgical planner and conversational Spine Agent through high-end Bento grids, interactive step-by-step stage previews, and embedded video.
   2. Highlight institutional pedigree (Georgia Tech, Stanford, Polytechnique, McGill, UBC) and transparent validation metrics.
@@ -30,7 +30,7 @@
 * **Links**: Overview, The 11-Stage Workflow, The Spine Agent, Validation, The Team, Comparison.
 * **Action**: Primary Benchling purple "Request Demo" CTA button linked to calendar booking.
 
-### 2. Hero Section (`Hero.tsx`) — Benchling Style (Comfortable Light Palette)
+### 2. Hero Section (`Hero.tsx`) - Benchling Style (Comfortable Light Palette)
 * **Background**: Crisp white background with subtle ambient lavender/sky radial light meshes.
 * **Headline**: `From X-Ray to Simulated Surgery` in bold typography.
 * **Subheadline**: `An agent that runs finite element and musculoskeletal models of the patient. Built by biomechanics, medical imaging, and machine learning experts.`
@@ -47,7 +47,7 @@
 * **Copy**: `Backed by clinical research and academic excellence across:`
 * **Cards**: Clean elevated white cards for Georgia Tech, Stanford Medicine, UT Health San Antonio, Polytechnique Montréal, McGill, UBC, IRSST, Torus Biomedical.
 
-### 4. The 4-Card Pipeline ("How It Works" — Benchling Bento Grid) (`PipelineSection.tsx`)
+### 4. The 4-Card Pipeline ("How It Works" - Benchling Bento Grid) (`PipelineSection.tsx`)
 * **Background**: Pure white (`bg-white border-t border-slate-200/80`).
 * **Card 1: Read (Stages 1–5)**: Machine learning landmark detection of 17 vertebrae (T1–L5, 8 editable corners), automated GAP score, and sagittal parameters (`PI`, `PT`, `SS`, `LL`, `TK`, `SVA`).
 * **Card 2: Plan (Stages 6–8)**: Rigid-body kinematic mechanism optimization (~3,800 candidate plans scored in 0.2s), cohort matching against 16,807 spines, and dual PJK risk assessment.

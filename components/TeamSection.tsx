@@ -2,7 +2,7 @@
 
 import React, { useState, useRef } from "react";
 import Image from "next/image";
-import { Plus, Minus, X, Quote } from "lucide-react";
+import { Plus, Minus, X } from "lucide-react";
 
 interface TeamMember {
   id: string;
@@ -15,9 +15,26 @@ interface TeamMember {
   quote: string;
   bioParagraph1: string;
   bioParagraph2: string;
+  pendingConsent?: boolean;
 }
 
-export default function TeamSection() {
+interface InstitutionalLogo {
+  name: string;
+  src: string;
+  height: string;
+  pendingConsent?: boolean;
+}
+
+interface TeamSectionProps {
+  /**
+   * Set to true to show clinical advisors whose consent is pending
+   * (Dr. Michael P. Kelly & Dr. Jeffrey M. Hills).
+   * Default is false to keep profiles safely saved but unexposed until consent is acquired.
+   */
+  showPendingConsent?: boolean;
+}
+
+export default function TeamSection({ showPendingConsent = false }: TeamSectionProps = {}) {
   const basePath = process.env.NEXT_PUBLIC_BASE_PATH || "";
   const showcaseRef = useRef<HTMLDivElement>(null);
   const [selectedMemberId, setSelectedMemberId] = useState<string | null>("farshid");
@@ -50,7 +67,7 @@ export default function TeamSection() {
       bioParagraph1:
         "Dr. Amir Hossein Eskandari is a biomedical engineer and data scientist with over a decade of research and industry leadership in spine mechanics, musculoskeletal modeling, and medical image processing. Holding a PhD from Polytechnique Montréal and an engineering background from Sharif University of Technology, followed by an advanced research fellowship at UBC Radiology, Amir led algorithm development for intraoperative measurements, automated landmark extraction, and computer-assisted surgical navigation at Torus Biomedical Solutions.",
       bioParagraph2:
-        "Recipient of the 2024 Health Research BC – Mitacs Industry-Based Award and holder of patents in orthopedic fixation systems, Amir has published extensively on subject-specific finite element spine modeling, bio-signal processing, and AI in healthcare. At SpineTwin, he directs our medical imaging and computer vision pipelines, powering automated 2D-to-3D spine reconstruction and sub-millimeter anatomical segmentation.",
+        "Recipient of the 2024 Health Research BC - Mitacs Industry-Based Award and holder of patents in orthopedic fixation systems, Amir has published extensively on subject-specific finite element spine modeling, bio-signal processing, and AI in healthcare. At SpineTwin, he directs our medical imaging and computer vision pipelines, powering automated 2D-to-3D spine reconstruction and sub-millimeter anatomical segmentation.",
     },
     {
       id: "dianze",
@@ -79,6 +96,7 @@ export default function TeamSection() {
         "Dr. Michael P. Kelly is an internationally recognized orthopedic spine surgeon and faculty member at the Stanford University School of Medicine. Specializing in complex adult spinal deformity, scoliosis reconstruction, and revision surgery, Dr. Kelly has treated thousands of patients with severe structural spinal disorders.",
       bioParagraph2:
         "His clinical research focuses on proximal junctional kyphosis (PJK), mechanical construct failure, and SRS-Schwab sagittal restoration targets. As a clinical advisor to SpineTwin, Dr. Kelly guides the surgical sanity rules and verification protocols that ensure our computational outputs align with operative reality.",
+      pendingConsent: true,
     },
     {
       id: "hills",
@@ -93,21 +111,30 @@ export default function TeamSection() {
         "Dr. Jeffrey M. Hills is an orthopaedic spine surgeon and Assistant Professor of Orthopaedics at UT Health San Antonio (Long School of Medicine). Graduating with honors in Biochemistry from the University of Kansas and earning his medical degree from the KU School of Medicine, he completed his Orthopaedic Surgery residency at Vanderbilt University Medical Center in Nashville, followed by a fellowship in spine surgery at Washington University School of Medicine / Barnes-Jewish Hospital in St. Louis.",
       bioParagraph2:
         "Extensively trained in adult and pediatric spinal deformity and complex revision spine surgery, Dr. Hills treats a wide spectrum of cervical, thoracic, and lumbar conditions. Holding a Master of Science in Clinical Investigation and Translational Science (MSCI-TS), he is actively involved across international spine study groups and advises SpineTwin on translating predictive analytics and biomechanical simulation into routine preoperative planning.",
+      pendingConsent: true,
     },
   ];
 
-  const institutionalLogos = [
-    { name: "Stanford Medicine", src: "/logos/stanford-medicine.svg", height: "h-7 sm:h-8" },
+  const institutionalLogos: InstitutionalLogo[] = [
+    { name: "Stanford Medicine", src: "/logos/stanford-medicine.svg", height: "h-7 sm:h-8", pendingConsent: true },
     { name: "Georgia Tech", src: "/logos/georgia-tech.svg", height: "h-6 sm:h-7" },
     { name: "Polytechnique Montréal", src: "/logos/polytechnique-montreal.png", height: "h-7 sm:h-8" },
     { name: "McGill University", src: "/logos/mcgill-logo.svg", height: "h-8 sm:h-9" },
     { name: "UBC Radiology", src: "/logos/ubc.svg", height: "h-6 sm:h-7" },
-    { name: "UT Health San Antonio", src: "/logos/ut-health-san-antonio.svg", height: "h-7 sm:h-8" },
+    { name: "UT Health San Antonio", src: "/logos/ut-health-san-antonio.svg", height: "h-7 sm:h-8", pendingConsent: true },
     { name: "IRSST", src: "/logos/irsst.png", height: "h-7 sm:h-8" },
     { name: "Torus Biomedical", src: "/logos/torus-biomedical.png", height: "h-6 sm:h-7" },
   ];
 
-  const selectedMember = teamMembers.find((m) => m.id === selectedMemberId);
+  const visibleMembers = showPendingConsent
+    ? teamMembers
+    : teamMembers.filter((m) => !m.pendingConsent);
+
+  const visibleLogos = showPendingConsent
+    ? institutionalLogos
+    : institutionalLogos.filter((logo) => !logo.pendingConsent);
+
+  const selectedMember = visibleMembers.find((m) => m.id === selectedMemberId);
 
   const handleMemberClick = (memberId: string) => {
     if (selectedMemberId === memberId) {
@@ -131,7 +158,7 @@ export default function TeamSection() {
             Meet the Team
           </h2>
           <p className="mt-4 text-base sm:text-[17px] text-[#86868b] font-normal leading-relaxed">
-            Built by doctors, clinicians, engineers, and operators who believe behavioral healthcare is broken by design—and ready to be rebuilt around the people who deliver care.
+            Built by doctors, clinicians, engineers, and operators who believe behavioral healthcare is broken by design, and ready to be rebuilt around the people who deliver care.
           </p>
         </div>
 
@@ -151,7 +178,7 @@ export default function TeamSection() {
 
             <div className="flex w-max animate-marquee items-center gap-12 sm:gap-16 py-2">
               {/* Primary list */}
-              {institutionalLogos.map((item, idx) => (
+              {visibleLogos.map((item, idx) => (
                 <div
                   key={`logo-primary-${idx}`}
                   className="h-9 flex items-center justify-center shrink-0 transition-transform duration-300 hover:scale-105"
@@ -168,7 +195,7 @@ export default function TeamSection() {
               ))}
 
               {/* Duplicate list for continuous infinite rolling */}
-              {institutionalLogos.map((item, idx) => (
+              {visibleLogos.map((item, idx) => (
                 <div
                   key={`logo-dup-${idx}`}
                   aria-hidden="true"
@@ -277,8 +304,14 @@ export default function TeamSection() {
 
         {/* Team Members Grid (as in Image 1) */}
         <div>
-          <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-6 sm:gap-8">
-            {teamMembers.map((member) => {
+          <div
+            className={
+              visibleMembers.length <= 3
+                ? "grid grid-cols-1 sm:grid-cols-3 gap-6 sm:gap-8 max-w-4xl mx-auto"
+                : "grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-6 sm:gap-8"
+            }
+          >
+            {visibleMembers.map((member) => {
               const isSelected = selectedMemberId === member.id;
               const isHovered = hoveredMemberId === member.id;
 

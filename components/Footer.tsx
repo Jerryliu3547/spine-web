@@ -3,7 +3,6 @@
 import React from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { ExternalLink } from "lucide-react";
 
 export default function Footer() {
   const basePath = process.env.NEXT_PUBLIC_BASE_PATH || "";
@@ -68,15 +67,12 @@ export default function Footer() {
               <li><Link href="/about" className="hover:text-[#007aff] transition-colors">Academic Institutions</Link></li>
               <li><Link href="/contact" className="hover:text-[#007aff] transition-colors">Contact Us & Review</Link></li>
               <li>
-                <a
-                  href="https://calendar.app.google/xuDw7PomLrF6Y6BW7"
-                  target="_blank"
-                  rel="noopener noreferrer"
+                <Link
+                  href="/contact"
                   className="hover:text-[#0066d6] transition-colors inline-flex items-center gap-1 font-semibold text-[#007aff]"
                 >
                   <span>Request Live Demo</span>
-                  <ExternalLink className="h-3 w-3" />
-                </a>
+                </Link>
               </li>
               <li><a href="mailto:contact@esklashlabs.ai" className="hover:text-[#007aff] transition-colors">contact@esklashlabs.ai</a></li>
             </ul>

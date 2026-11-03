@@ -1,4 +1,4 @@
-import { render, screen, fireEvent } from "@testing-library/react";
+import { render, screen } from "@testing-library/react";
 import { describe, it, expect } from "vitest";
 import MissionSection from "@/components/MissionSection";
 
@@ -15,24 +15,11 @@ describe("MissionSection Component", () => {
     ).toBeInTheDocument();
   });
 
-  it("renders 'SpineTwin in numbers' and default clinical metrics", () => {
+  it("does not render the 'SpineTwin in numbers' section", () => {
     render(<MissionSection />);
-    expect(screen.getByText(/SpineTwin in/i)).toBeInTheDocument();
-    expect(screen.getByText("22%+")).toBeInTheDocument();
-    expect(screen.getByText("50%+")).toBeInTheDocument();
-    expect(screen.getByText("60%+")).toBeInTheDocument();
-    expect(screen.getByText("500k+")).toBeInTheDocument();
-  });
-
-  it("toggles to Foundry Scale metrics when Foundry Scale tab is clicked", () => {
-    render(<MissionSection />);
-    const foundryTab = screen.getByRole("button", { name: /foundry scale/i });
-    fireEvent.click(foundryTab);
-
-    expect(screen.getByText("552")).toBeInTheDocument();
-    expect(screen.getByText("14×")).toBeInTheDocument();
-    expect(screen.getByText("0.20s")).toBeInTheDocument();
-    expect(screen.getByText("85+")).toBeInTheDocument();
+    expect(screen.queryByText(/SpineTwin in/i)).not.toBeInTheDocument();
+    expect(screen.queryByText(/numbers\./i)).not.toBeInTheDocument();
+    expect(screen.queryByText(/Empirical clinical validation and biomechanical scale/i)).not.toBeInTheDocument();
   });
 
   it("renders torn paper side graphic images with correct src", () => {
@@ -43,3 +30,4 @@ describe("MissionSection Component", () => {
     expect(srcList.some((src) => src?.includes("/mission/torn-paper-bottom-left.jpg"))).toBe(true);
   });
 });
+

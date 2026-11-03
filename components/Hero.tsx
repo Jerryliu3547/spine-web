@@ -1,6 +1,7 @@
 "use client";
 
 import React from "react";
+import Link from "next/link";
 import { ArrowRight } from "lucide-react";
 
 export default function Hero() {
@@ -64,15 +65,13 @@ export default function Hero() {
 
           {/* Apple Trade In Blue CTA */}
           <div className="mt-8 flex flex-wrap items-center justify-center gap-4">
-            <a
-              href="https://calendar.app.google/xuDw7PomLrF6Y6BW7"
-              target="_blank"
-              rel="noopener noreferrer"
+            <Link
+              href="/contact"
               className="apple-cta-blue bg-[#007aff] hover:bg-[#0066d6] inline-flex items-center justify-center gap-2.5 rounded-xl px-7 py-3.5 text-sm font-semibold text-white transition-all shadow-md shadow-[#007aff]/35 hover:shadow-lg hover:shadow-[#007aff]/50 hover:-translate-y-0.5 active:translate-y-0"
             >
               <span>Request Clinical Demo</span>
               <ArrowRight className="h-4 w-4" />
-            </a>
+            </Link>
           </div>
         </div>
       </div>

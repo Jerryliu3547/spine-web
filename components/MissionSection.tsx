@@ -1,65 +1,15 @@
 "use client";
 
-import React, { useState } from "react";
+import React from "react";
 
 export default function MissionSection() {
-  const [metricTab, setMetricTab] = useState<"clinical" | "foundry">("clinical");
-
-  const clinicalMetrics = [
-    {
-      value: "22%+",
-      label: "Higher sagittal alignment restoration accuracy compared to traditional manual templating",
-      tag: "Clinical Precision",
-    },
-    {
-      value: "50%+",
-      label: "Lower computational solve time for patient-specific nonlinear finite element meshing",
-      tag: "Solver Throughput",
-    },
-    {
-      value: "60%+",
-      label: "Reduction in post-operative junctional mechanical risk and revision probability",
-      tag: "Patient Safety",
-    },
-    {
-      value: "500k+",
-      label: "Biomechanical stress iterations simulated across validated anatomical spine models",
-      tag: "In-Silico Scale",
-    },
-  ];
-
-  const foundryMetrics = [
-    {
-      value: "552",
-      label: "Dynamically solved trunk muscle groups in real-time static optimization",
-      tag: "Musculoskeletal",
-    },
-    {
-      value: "14×",
-      label: "Titanium rod yield stress safety margin verified before incision",
-      tag: "Hardware Stability",
-    },
-    {
-      value: "0.20s",
-      label: "Rapid in-browser surgical plan evaluation and deformity correction ranking",
-      tag: "Zero-Latency AI",
-    },
-    {
-      value: "85+",
-      label: "Peer-reviewed finite element and in-vitro cadaveric kinematic validation cases",
-      tag: "Scientific Pedigree",
-    },
-  ];
-
-  const activeMetrics = metricTab === "clinical" ? clinicalMetrics : foundryMetrics;
-
   const basePath = process.env.NEXT_PUBLIC_BASE_PATH || "";
 
   return (
     <section
       id="mission"
       aria-label="Our Mission"
-      className="relative overflow-hidden bg-white text-[#1d1d1f] pt-14 pb-24 sm:pt-20 sm:pb-32 md:pt-24 md:pb-36 border-b border-slate-200/80"
+      className="relative overflow-hidden bg-white text-[#1d1d1f] pt-14 pb-20 sm:pt-20 sm:pb-24 md:pt-24 md:pb-28 border-b border-slate-200/80"
     >
       {/* Visual Accent: Torn Paper Collage on Right Edge (matches user reference screenshot) */}
       <div
@@ -113,74 +63,8 @@ export default function MissionSection() {
           </h2>
 
           <p className="mt-8 sm:mt-10 text-[17px] sm:text-[19px] md:text-[20px] text-[#6e6e73] font-normal leading-[1.58] tracking-[-0.012em] max-w-3xl text-pretty">
-            We bridge the gap between surgical intuition and computational mechanics—replacing manual guesswork with patient-specific AI and finite element simulations to protect every patient from implant failure.
+            We bridge the gap between surgical intuition and computational mechanics, replacing manual guesswork with patient-specific AI and finite element simulations to protect every patient from implant failure.
           </p>
-        </div>
-
-        {/* Bottom Section: "SpineTwin in numbers" + Tabular Metrics Rows */}
-        <div className="mt-20 sm:mt-28 md:mt-36 pt-10 sm:pt-14 border-t border-slate-200/80">
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-14 items-start">
-            {/* Left Header Column */}
-            <div className="lg:col-span-4 pl-0 sm:pl-2">
-              <h2 className="text-2xl sm:text-3xl md:text-[34px] font-semibold tracking-[-0.025em] text-[#1d1d1f] leading-snug">
-                <span className="text-[#1d1d1f]">SpineTwin in</span><br />
-                <span className="text-[#86868b]">numbers.</span>
-              </h2>
-              <p className="mt-3 text-xs sm:text-sm text-slate-500 font-normal leading-relaxed max-w-xs">
-                Empirical clinical validation and biomechanical scale across North American research hospitals.
-              </p>
-
-              {/* Apple Segmented Capsule Tab Toggle */}
-              <div className="mt-6 inline-flex p-1 rounded-full bg-slate-100 border border-slate-200/80 shadow-2xs">
-                <button
-                  type="button"
-                  onClick={() => setMetricTab("clinical")}
-                  className={`px-3.5 py-1.5 text-xs font-semibold rounded-full transition-all duration-200 ${metricTab === "clinical"
-                    ? "bg-white text-[#1d1d1f] shadow-xs ring-1 ring-black/[0.06]"
-                    : "text-slate-600 hover:text-[#1d1d1f]"
-                    }`}
-                >
-                  Clinical Impact
-                </button>
-                <button
-                  type="button"
-                  onClick={() => setMetricTab("foundry")}
-                  className={`px-3.5 py-1.5 text-xs font-semibold rounded-full transition-all duration-200 ${metricTab === "foundry"
-                    ? "bg-white text-[#1d1d1f] shadow-xs ring-1 ring-black/[0.06]"
-                    : "text-slate-600 hover:text-[#1d1d1f]"
-                    }`}
-                >
-                  Foundry Scale
-                </button>
-              </div>
-            </div>
-
-            {/* Right Metrics Rows Column (Exact match to reference screenshot: [Number] | [Description]) */}
-            <div className="lg:col-span-8">
-              <div className="divide-y divide-slate-200/90 border-t border-b border-slate-200/90">
-                {activeMetrics.map((item, idx) => (
-                  <div
-                    key={idx}
-                    className="py-6 sm:py-8 flex flex-col sm:flex-row sm:items-baseline justify-start gap-4 sm:gap-12 md:gap-16 group transition-colors duration-200 hover:bg-slate-50/70 -mx-3 px-3 sm:-mx-4 sm:px-4 rounded-xl"
-                  >
-                    {/* Big Metric Number */}
-                    <div className="shrink-0 min-w-[140px] sm:min-w-[180px] lg:min-w-[200px]">
-                      <span className="text-4xl sm:text-5xl md:text-[56px] font-semibold text-[#1d1d1f] tracking-tight leading-none group-hover:text-[#007aff] transition-colors">
-                        {item.value}
-                      </span>
-                    </div>
-
-                    {/* Metric Description */}
-                    <div className="flex-1 max-w-lg">
-                      <p className="text-xs sm:text-sm text-slate-600 group-hover:text-slate-900 font-normal leading-relaxed transition-colors">
-                        {item.label}
-                      </p>
-                    </div>
-                  </div>
-                ))}
-              </div>
-            </div>
-          </div>
         </div>
       </div>
     </section>

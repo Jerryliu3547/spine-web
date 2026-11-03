@@ -8,7 +8,8 @@ import Footer from "@/components/Footer";
 
 export const metadata: Metadata = {
   title: "About Us | SpineTwin - Scientific Leadership & Advisory",
-  description: "Meet the scientists, biomechanists, and AI architects behind SpineTwin, with roots across Polytechnique Montréal, McGill, UBC, and Stanford.",
+  // Note: Clinical advisor affiliations (Stanford, UT Health) saved and ready to be re-enabled once consent is acquired.
+  description: "Meet the scientists, biomechanists, and AI architects behind SpineTwin, with roots across Polytechnique Montréal, McGill, Georgia Tech, and UBC.",
 };
 
 export default function AboutPage() {

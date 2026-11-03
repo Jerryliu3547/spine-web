@@ -11,13 +11,13 @@ vi.mock("next/navigation", () => ({
 }));
 
 describe("Demo Page, Contact Page, and CalBookingWidget", () => {
-  it("renders Navbar and Hero Request Demo buttons linking to user Google Calendar", () => {
+  it("renders Navbar and Hero Request Demo buttons linking to contact page", () => {
     const { container: navContainer } = render(<Navbar />);
-    const requestDemoLink = navContainer.querySelector('a[href="https://calendar.app.google/xuDw7PomLrF6Y6BW7"]');
+    const requestDemoLink = navContainer.querySelector('a[href="/contact"]');
     expect(requestDemoLink).toBeInTheDocument();
 
     const { container: heroContainer } = render(<Hero />);
-    const heroDemoLink = heroContainer.querySelector('a[href="https://calendar.app.google/xuDw7PomLrF6Y6BW7"]');
+    const heroDemoLink = heroContainer.querySelector('a[href="/contact"]');
     expect(heroDemoLink).toBeInTheDocument();
   });
 
