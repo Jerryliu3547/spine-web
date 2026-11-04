@@ -18,6 +18,8 @@ concurrency:
 
 jobs:
   build:
+    # Temporarily disable GitHub Pages hosting
+    if: ${{ false }}
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repository
@@ -56,6 +58,7 @@ jobs:
           path: ./out
 
   deploy:
+    if: ${{ false }}
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
