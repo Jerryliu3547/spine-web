@@ -5,12 +5,14 @@ import { Play, Pause, Volume2, VolumeX, Maximize2, RotateCcw } from "lucide-reac
 
 /**
  * Product demo video configuration.
+ * Note: Temporarily playing placeholder video (/hero-video.mp4).
+ * To restore the full product walkthrough: set primarySrc to "/product-demo.mp4" and durationLabel to "Live Walkthrough".
  */
 export const DEMO_VIDEO_CONFIG = {
-  primarySrc: "/product-demo.mp4",
-  fallbackSrc: "/hero-video.mp4",
+  primarySrc: "/hero-video.mp4",
+  fallbackSrc: "/gemini_generated_video_95288b1c.mp4",
   title: "SpineTwin Product Demonstration Walkthrough",
-  durationLabel: "Live Walkthrough",
+  durationLabel: "Placeholder Video",
 };
 
 function formatTime(seconds: number) {
@@ -188,7 +190,7 @@ export default function ProductVideoPlayer() {
               setShowControls(true);
             }}
             aria-label={DEMO_VIDEO_CONFIG.title}
-            className="h-full w-full object-contain bg-black"
+            className="h-full w-full object-cover bg-black"
           >
             <source src={`${basePath}${DEMO_VIDEO_CONFIG.primarySrc}`} type="video/mp4" />
             <source src={`${basePath}${DEMO_VIDEO_CONFIG.fallbackSrc}`} type="video/mp4" />
@@ -204,7 +206,7 @@ export default function ProductVideoPlayer() {
               className="absolute top-4 right-4 sm:top-5 sm:right-5 z-20 flex items-center gap-2 rounded-full bg-black/60 hover:bg-black/80 backdrop-blur-md border border-white/20 px-3.5 py-1.5 text-xs text-white shadow-md transition-all hover:scale-105 active:scale-95"
             >
               <VolumeX className="h-3.5 w-3.5 text-white/90" />
-              <span className="font-medium">Click to Unmute Narration</span>
+              <span className="font-medium">Click to Unmute</span>
             </div>
           )}
 
