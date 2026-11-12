@@ -50,9 +50,6 @@ export default function Footer() {
             <ul className="space-y-2.5 text-[13px] text-[#86868b]">
               <li><Link href="/product#validation" className="hover:text-[#1d1d1f] transition-colors">Zero-Failure Biomechanics</Link></li>
               <li><Link href="/product#validation" className="hover:text-[#1d1d1f] transition-colors">Finite Element Verification</Link></li>
-              <li><Link href="/product#validation" className="hover:text-[#1d1d1f] transition-colors">Cadaver Motion Verification</Link></li>
-              <li><Link href="/product#validation" className="hover:text-[#1d1d1f] transition-colors">ASME V&V 40 Compliance</Link></li>
-              <li><Link href="/product#validation" className="hover:text-[#1d1d1f] transition-colors">FDA 21 CFR Part 11</Link></li>
             </ul>
           </div>
 
@@ -74,7 +71,6 @@ export default function Footer() {
                   <span>Request Live Demo</span>
                 </Link>
               </li>
-              <li><a href="mailto:contact@esklashlabs.ai" className="hover:text-[#007aff] transition-colors">contact@esklashlabs.ai</a></li>
             </ul>
           </div>
         </div>
