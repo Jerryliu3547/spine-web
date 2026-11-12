@@ -16,6 +16,7 @@ export default function Navbar() {
   const basePath = process.env.NEXT_PUBLIC_BASE_PATH || "";
 
   const navLinks = [
+    { label: "Home", href: "/" },
     { label: "Product", href: "/product" },
     { label: "About Us", href: "/about" },
     { label: "Contact", href: "/contact" },

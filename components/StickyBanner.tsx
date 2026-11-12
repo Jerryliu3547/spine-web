@@ -43,7 +43,7 @@ export default function StickyBanner() {
           <span className="text-[#d2d2d7]">|</span>
           <div className="flex items-center gap-1 text-[11px] text-[#6e6e73] hover:text-[#1d1d1f] cursor-pointer transition-colors">
             <Globe className="h-3 w-3 text-[#86868b]" />
-            <span>Global · FDA 21 CFR Part 11</span>
+            <span>Global Access</span>
           </div>
           <button
             onClick={() => setIsVisible(false)}

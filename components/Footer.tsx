@@ -35,10 +35,8 @@ export default function Footer() {
             </h4>
             <ul className="space-y-2.5 text-[13px] text-[#86868b]">
               <li><Link href="/product" className="hover:text-[#1d1d1f] transition-colors">Product Overview</Link></li>
-              <li><Link href="/product#pipeline" className="hover:text-[#1d1d1f] transition-colors">11-Stage Pipeline</Link></li>
-              <li><Link href="/product#comparison" className="hover:text-[#1d1d1f] transition-colors">Platform Comparison</Link></li>
-              <li><Link href="/product#validation" className="hover:text-[#1d1d1f] transition-colors">Finite Element Analysis</Link></li>
-              <li><Link href="/product#validation" className="hover:text-[#1d1d1f] transition-colors">552-Muscle Musculoskeletal</Link></li>
+              <li><Link href="/#workbench" className="hover:text-[#1d1d1f] transition-colors">Clinical Workbench</Link></li>
+              <li><Link href="/#overview" className="hover:text-[#1d1d1f] transition-colors">Platform Architecture</Link></li>
             </ul>
           </div>
 
@@ -48,8 +46,8 @@ export default function Footer() {
               Science
             </h4>
             <ul className="space-y-2.5 text-[13px] text-[#86868b]">
-              <li><Link href="/product#validation" className="hover:text-[#1d1d1f] transition-colors">Zero-Failure Biomechanics</Link></li>
-              <li><Link href="/product#validation" className="hover:text-[#1d1d1f] transition-colors">Finite Element Verification</Link></li>
+              <li><Link href="/#workbench" className="hover:text-[#1d1d1f] transition-colors">Finite Element Analysis</Link></li>
+              <li><Link href="/product" className="hover:text-[#1d1d1f] transition-colors">Musculoskeletal Dynamics</Link></li>
             </ul>
           </div>
 
@@ -82,7 +80,6 @@ export default function Footer() {
           </div>
           <div className="flex items-center gap-6">
             <span className="hover:text-slate-800 cursor-pointer">Security & Privacy</span>
-            <span className="hover:text-slate-800 cursor-pointer">ASME V&V 40 Compliance</span>
             <span className="hover:text-slate-800 cursor-pointer">Terms of Service</span>
           </div>
         </div>

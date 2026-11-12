@@ -37,7 +37,6 @@ export default function Hero() {
           aria-hidden="true"
         >
           <source src={`${process.env.NEXT_PUBLIC_BASE_PATH || ""}/hero-video.mp4`} type="video/mp4" />
-          <source src={`${process.env.NEXT_PUBLIC_BASE_PATH || ""}/gemini_generated_video_95288b1c.mp4`} type="video/mp4" />
         </video>
         {/* Soft gradient masks to blend cleanly into white background with rich contrast for text */}
         <div className="absolute inset-0 bg-gradient-to-b from-slate-950/60 via-slate-900/40 to-white" />

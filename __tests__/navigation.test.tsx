@@ -12,8 +12,9 @@ vi.mock("next/navigation", () => ({
 }));
 
 describe("New Navigation & Pages", () => {
-  it("renders Product, About Us, and Contact navigation links, and omits Mission", () => {
+  it("renders Home, Product, About Us, and Contact navigation links, and omits Mission", () => {
     render(<Navbar />);
+    expect(screen.getByRole("link", { name: /^home$/i })).toHaveAttribute("href", "/");
     expect(screen.getByRole("link", { name: /^product$/i })).toHaveAttribute("href", "/product");
     expect(screen.getByRole("link", { name: /^about us$/i })).toHaveAttribute("href", "/about");
     expect(screen.getByRole("link", { name: /^contact$/i })).toHaveAttribute("href", "/contact");
