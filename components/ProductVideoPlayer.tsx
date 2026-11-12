@@ -5,14 +5,13 @@ import { Play, Pause, Volume2, VolumeX, Maximize2, RotateCcw } from "lucide-reac
 
 /**
  * Product demo video configuration.
- * Note: Temporarily playing placeholder video (/hero-video.mp4).
- * To restore the full product walkthrough: set primarySrc to "/product-demo.mp4" and durationLabel to "Live Walkthrough".
+ * primarySrc plays the full product walkthrough; fallbackSrc is used only if the primary fails to load.
  */
 export const DEMO_VIDEO_CONFIG = {
-  primarySrc: "/hero-video.mp4",
-  fallbackSrc: "/gemini_generated_video_95288b1c.mp4",
+  primarySrc: "/product-demo.mp4",
+  fallbackSrc: "/hero-video.mp4",
   title: "SpineTwin Product Demonstration Walkthrough",
-  durationLabel: "Placeholder Video",
+  durationLabel: "Live Walkthrough",
 };
 
 function formatTime(seconds: number) {
